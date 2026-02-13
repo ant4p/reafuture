@@ -18,4 +18,4 @@ echo "from django.contrib.auth import get_user_model; User = get_user_model(); U
 
 python manage.py collectstatic --noinput
 
-gunicorn --bind 0.0.0.0:8000 factory.wsgi
+gunicorn --bind 0.0.0.0:8000 reafuture.wsgi
