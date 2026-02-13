@@ -168,3 +168,204 @@ body {
     background: #183c5a;
     color: #f0f6ff;
 }
+
+/* ============================================
+   минималистичный футуризм + матрица
+   стили ТОЛЬКО для текстовых блоков
+   цветовая гамма: чёрный/угольный + холодный синий/голубой
+   ============================================ */
+
+/* ---------- БАЗОВЫЕ СТИЛИ ТЕКСТА ---------- */
+body {
+    color: #e3e9f2;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                 Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    text-shadow: 0 0 5px rgba(0, 20, 30, 0.9);
+}
+
+/* ---------- ЗАГОЛОВКИ ---------- */
+h1 {
+    font-weight: 380;
+    font-size: 4.2rem;
+    letter-spacing: -4px;
+    line-height: 0.95;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Inter', 'SF Pro Display', 'Helvetica Now', sans-serif;
+    font-stretch: condensed;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-weight: 340;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+    color: #b4d4ff;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---------- ПАРАГРАФЫ ---------- */
+p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #cddbe9;
+    max-width: 640px;
+    margin-bottom: 1.8rem;
+    border-left: 2px solid rgba(30, 210, 255, 0.25);
+    padding-left: 1.4rem;
+    transition: border-left 0.2s ease;
+}
+
+p:hover {
+    border-left: 2px solid #4cc9ff;
+}
+
+/* ---------- СТАТИСТИКА / МЕТКИ ---------- */
+.stat {
+    font-size: 1.3rem;
+    font-weight: 350;
+    color: #d2e5ff;
+    background: rgba(18, 28, 40, 0.7);
+    backdrop-filter: blur(2px);
+    padding: 0.2rem 1.2rem;
+    border-radius: 40px;
+    border: 0.5px solid rgba(100, 200, 255, 0.25);
+    letter-spacing: 1px;
+}
+
+.time-pulse {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #a0c6ff;
+    border: 0.6px solid #2d4c6e;
+    padding: 0.2rem 0.9rem;
+    border-radius: 24px;
+    background: #0f131a;
+    font-weight: 400;
+}
+
+/* ---------- НАВИГАЦИЯ ---------- */
+.nav a {
+    color: #8ba9cc;
+    text-decoration: none;
+    font-weight: 350;
+    letter-spacing: 0.5px;
+    border-bottom: 1px dashed #3e6077;
+    padding-bottom: 2px;
+    transition: 0.15s;
+}
+
+.nav a:hover {
+    color: #b3e2ff;
+    border-bottom: 1px solid #90d0ff;
+}
+
+/* ---------- ФУТЕР ---------- */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9rem;
+    color: #70859c;
+    border-top: 0.5px solid rgba(80, 160, 255, 0.15);
+    padding-top: 1.8rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+
+/* ---------- МАЛЕНЬКИЕ ЭЛЕМЕНТЫ ---------- */
+.meta-signal span {
+    font-size: 0.75rem;
+    color: #85afcf;
+}
+
+.system-ready {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: #799fbf;
+}
+
+.boundary-text {
+    font-size: 0.95rem;
+    color: #bad2ff;
+}
+
+.protocol-text {
+    font-size: 1rem;
+    font-weight: 350;
+    color: #b0cef0;
+}
+
+.quantum-text {
+    font-size: 1rem;
+    font-weight: 350;
+    color: #d8ecff;
+    border-bottom: 0.5px solid #2880b0;
+    padding-bottom: 2px;
+}
+
+.neo-min {
+    font-size: 0.8rem;
+    color: #6a8daa;
+    letter-spacing: 2px;
+}
+
+/* ---------- ВЫДЕЛЕНИЕ ---------- */
+::selection {
+    background: #183c5a;
+    color: #f0f6ff;
+}
+
+/* ---------- АДАПТАЦИЯ ---------- */
+@media (max-width: 500px) {
+    h1 { 
+        font-size: 2.8rem; 
+        letter-spacing: -2px; 
+    }
+    p { 
+        font-size: 1rem; 
+    }
+}
+
+
+
+                .data-button {
+                    display: inline-block;
+                    padding: 0.8rem 2rem;
+                    background: transparent;
+                    border: 1.5px solid #4f9fff;
+                    color: #e3f0ff;
+                    font-family: 'Inter', 'Courier New', monospace;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    backdrop-filter: blur(4px);
+                    box-shadow: 0 0 20px rgba(79, 159, 255, 0.2);
+                    cursor: pointer;
+                    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+                    border-radius: 0;
+                    position: relative;
+                    z-index: 10;
+                    margin-top: 0;
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                .data-button:hover {
+                    border: 1.5px solid #a0d0ff;
+                    background: rgba(79, 159, 255, 0.08);
+                    box-shadow: 0 0 35px rgba(79, 159, 255, 0.4);
+                    color: #ffffff;
+                }
+                .data-button:active {
+                    transform: scale(0.98);
+                }
+

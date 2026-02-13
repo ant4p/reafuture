@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>минимализм / футуризм / МАТРИЦА</title>
+    <style>
+        /* 
+            минималистичный футуризм + матрица (цифровой дождь)
+            цветовая гамма сохранена: чёрный/угольный + холодный синий/голубой
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0b0e;    /* глубокий угольно-черный с синим отливом */
+            color: #e3e9f2;         /* холодный, почти белый, но мягкий */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                         Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* ---------- ПОЛНОЭКРАННЫЙ МАТРИЧНЫЙ ФОН (canvas) ---------- */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none; /* чтобы не мешать взаимодействию */
+            opacity: 0.27;        /* призрачный, минималистичный, не нарушает цветовую гамму */
+        }
+
+        /* весь контент поверх фона, сохранена цветовая гамма */
+        .frame {
+            max-width: 820px;
+            width: 100%;
+            margin: 0 auto;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(0.3px); /* лёгкая дымка, усиливает глубину */
+            text-shadow: 0 0 5px rgba(0, 20, 30, 0.9); /* микро-свечение для читаемости */
+        }
+
+        /* секция: крупный ритм, ничего лишнего */
+        section {
+            border-bottom: 0.5px solid rgba(160, 200, 255, 0.18);
+            padding-bottom: 2.2rem;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* заголовки — легкие, разреженные */
+        h1 {
+            font-weight: 380;
+            font-size: 4.2rem;
+            letter-spacing: -4px;
+            line-height: 0.95;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', 'SF Pro Display', 'Helvetica Now', sans-serif;
+            font-stretch: condensed;
+        }
+
+        /* футуристический акцент: тонкий глитч */
+        .glitch-marker {
+            display: inline-block;
+            width: 36px;
+            height: 2px;
+            background: #68c4ff;
+            margin-left: 8px;
+            vertical-align: middle;
+            opacity: 0.5;
+        }
+
+        h2 {
+            font-weight: 340;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+            color: #b4d4ff;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* эфемерные линии */
+        .thin-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #4f9fff 0%, transparent 90%);
+            opacity: 0.3;
+        }
+
+        /* текстовые блоки — воздух и свисающие элементы */
+        p {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #cddbe9;
+            max-width: 640px;
+            margin-bottom: 1.8rem;
+            border-left: 2px solid rgba(30, 210, 255, 0.25);
+            padding-left: 1.4rem;
+            transition: border-left 0.2s ease;
+        }
+
+        p:hover {
+            border-left: 2px solid #4cc9ff;
+        }
+
+        /* минимальная сетка / будущее */
+        .grid-hint {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .stat {
+            font-size: 1.3rem;
+            font-weight: 350;
+            color: #d2e5ff;
+            background: rgba(18, 28, 40, 0.7);
+            backdrop-filter: blur(2px);
+            padding: 0.2rem 1.2rem 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 0.5px solid rgba(100, 200, 255, 0.25);
+            letter-spacing: 1px;
+        }
+
+        /* элемент времени — дата как пульсар */
+        .time-pulse {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #a0c6ff;
+            border: 0.6px solid #2d4c6e;
+            padding: 0.2rem 0.9rem;
+            border-radius: 24px;
+            background: #0f131a;
+            font-weight: 400;
+            margin-top: 0.6rem;
+        }
+
+        /* футер — пустота и направление */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.9rem;
+            color: #70859c;
+            border-top: 0.5px solid rgba(80, 160, 255, 0.15);
+            padding-top: 1.8rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #8ba9cc;
+            text-decoration: none;
+            font-weight: 350;
+            letter-spacing: 0.5px;
+            border-bottom: 1px dashed #3e6077;
+            padding-bottom: 2px;
+            transition: 0.15s;
+        }
+
+        .nav a:hover {
+            color: #b3e2ff;
+            border-bottom: 1px solid #90d0ff;
+        }
+
+        /* маленький индикатор — футуристичный артефакт */
+        .meta-signal {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #48c8ff;
+            border-radius: 0px;   /* квадратная точка — цифровая строгость */
+            opacity: 0.9;
+            animation: softBlink 4s infinite;
+        }
+
+        @keyframes softBlink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* интерфейсная метка / рамка-радар */
+        .scope {
+            border: 1px solid rgba(70, 140, 255, 0.18);
+            padding: 2rem 2rem 1.8rem;
+            background: rgba(5, 10, 18, 0.4);
+            backdrop-filter: blur(1px);
+            transition: border 0.25s;
+        }
+
+        .scope:hover {
+            border: 1px solid rgba(30, 190, 255, 0.35);
+        }
+
+        /* адаптация */
+        @media (max-width: 500px) {
+            h1 { font-size: 2.8rem; letter-spacing: -2px; }
+            .frame { gap: 2rem; }
+            p { font-size: 1rem; }
+        }
+
+        /* лаконичный selection */
+        ::selection {
+            background: #183c5a;
+            color: #f0f6ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- ХОЛСТ ДЛЯ МАТРИЧНОГО ДОЖДЯ (буквы, цифры, символы) -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="frame">
+        
+        <!-- секция 0: заголовок / метка времени -->
+        <section>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                <h1>∅ VOID//<span style="font-weight: 200;">2118</span></h1>
+                <span class="time-pulse">▲ ПОТОК 06</span>
+            </div>
+            <!-- минималистичный glitch-маркер -->
+            <div style="display: flex; gap: 12px; align-items: center; margin-top: -5px;">
+                <span class="dot" style="background: #5db0e0;"></span>
+                <span style="font-size: 0.85rem; letter-spacing: 3px; color: #799fbf;">СИСТЕМА ГОТОВА</span>
+                <span style="flex:1; border-bottom: 0.5px solid rgba(100,200,255,0.15);"></span>
+            </div>
+        </section>
+        
+        <!-- секция 1: основная информация — пустота/сигнал -->
+        <section>
+            <h2>
+                <span>01/ ДИАЛОГ</span>
+                <span class="thin-line"></span>
+            </h2>
+            <p>
+                Будущее не требует декора. <br>
+                Только ритм, пропорция и свет.  
+                <span style="display: inline-block; width: 12px;"></span> 
+                <span style="color: #87c5ff; font-weight: 350;">[ 404 ]</span>
+            </p>
+            <div class="grid-hint">
+                <span class="stat">СКОРОСТЬ 2.4G</span>
+                <span class="stat">ШИФР A/256</span>
+                <span class="stat">ЛАГ 0.01ms</span>
+            </div>
+            <!-- намёк на интерфейс без интерфейса -->
+            <div style="height: 4px; background: linear-gradient(90deg, #245b8f 0%, #0a1a2a 80%); width: 180px; margin-top: 16px;"></div>
+        </section>
+        
+        <!-- секция 2: почти пустой блок, только суть -->
+        <section>
+            <h2>
+                <span>02/ ГРАНИЦА</span>
+                <span class="thin-line"></span>
+            </h2>
+            <!-- scope — как экран радара -->
+            <div class="scope">
+                <div style="display: flex; gap: 1.8rem; align-items: flex-start; flex-wrap: wrap;">
+                    <div style="min-width: 160px;">
+                        <div style="font-size: 2.2rem; font-weight: 300; color: white; line-height: 1;">+0,1</div>
+                        <div style="font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #70b0e0; margin-top: 2px;">постоянная</div>
+                    </div>
+                    <div style="border-left: 0.5px solid #1c4966; padding-left: 1.5rem;">
+                        <span style="font-size: 0.95rem; color: #bad2ff;">минимальная единица — контраст тишины.</span>
+                        <div class="meta-signal" style="margin-top: 12px;">
+                            <span class="dot"></span>
+                            <span class="dot" style="background: #4070a0;"></span>
+                            <span class="dot" style="background: #7fb0d0;"></span>
+                            <span style="margin-left: 8px; font-size: 0.75rem; color: #85afcf;">прием</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- секция 3: футуристичный навигационный слой (абсолютный минимум) -->
+        <section style="border-bottom: none; padding-bottom: 0.5rem;">
+            <h2>
+                <span>03/ СВЯЗЬ</span>
+                <span class="thin-line"></span>
+            </h2>
+            <!-- навигация не перегружает, а обозначает направление -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 2rem;">
+                    <span style="font-size: 1rem; font-weight: 350; color: #d8ecff; border-bottom: 0.5px solid #2880b0; padding-bottom: 2px;">КВАНТ</span>
+                    <span style="font-size: 1rem; font-weight: 350; color: #b0cef0;">ПРОТОКОЛ</span>
+                    <span style="font-size: 1rem; font-weight: 350; color: #b0cef0;">АРХИВ</span>
+                </div>
+                <span style="font-size: 0.8rem; color: #6a8daa; letter-spacing: 2px;">NEO//MIN</span>
+            </div>
+        </section>
+
+        <!-- FOOTER — минимальный, но с ощущением завтрашнего дня -->
+        <footer>
+            <div class="meta-signal">
+                <span class="dot" style="background: #3070a0;"></span>
+                <span>∞ 2118 / 02.12 / 22:04</span>
+            </div>
+            <div class="nav">
+                <a href="#">[ ОСЬ ]</a>
+                <a href="#">[ ДАННЫЕ ]</a>
+                <a href="#">[ СБРОС ]</a>
+            </div>
+        </footer>
+    </div>
+    <!-- маленький дыхательный элемент — очень тихий, почти скрытый -->
+    <div style="position: fixed; bottom: 12px; right: 20px; color: #255a70; font-size: 0.7rem; letter-spacing: 8px; opacity: 0.2; z-index: 3;">······</div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ---------- НАСТРОЙКИ МАТРИЧНОГО ДОЖДЯ ----------
+            // Цветовая гамма строго сохранена: оттенки синего/голубого/белого
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+
+            // символы: буквы (лат + кир), цифры, спецсимволы — настоящий матричный набор
+            const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЭЮЯабвгдежзиклмнопрстуфхцчшщэюя~!@#$%^&*()_+{}[]:;<>,.?/|\\=+-*/";
+
+            // параметры столбцов
+            let columns = [];
+            let columnCount = 0;
+            let fontSize = 18;       // чуть меньше для изящности
+            let drops = [];
+            
+            // цвета в гамме #0b0b0e / синий / голубой / белый
+            // матричные столбцы будут менять яркость и оттенок, но оставаться в спектре (синий-голубой)
+            function getMatrixColor(brightness, isHead = false) {
+                if (isHead) {
+                    return '#c0e2ff'; // почти белый с голубым
+                }
+                // градиент от ярко-синего до мягкого бирюзового
+                const colors = ['#3c8db0', '#4f9fff', '#68b0e0', '#7fc0ff', '#5da0d0', '#48b0e8', '#2f8cb0'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                // пересчитываем количество столбцов на основе ширины и размера шрифта
+                columnCount = Math.floor(canvas.width / (fontSize * 0.8)); // чуть плотнее
+                columns = new Array(columnCount).fill(0);
+                
+                // инициализируем drops
+                for (let i = 0; i < columnCount; i++) {
+                    drops[i] = Math.floor(Math.random() * -canvas.height / fontSize); // старт с разных позиций
+                }
+            }
+
+            // рисование матричного дождя
+            function drawMatrix() {
+                // полупрозрачный черный слой для эффекта затухания (в гамме фона)
+                ctx.fillStyle = 'rgba(11, 11, 14, 0.062)'; // очень плавное затухание
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.font = fontSize + 'px "Courier New", "MS Gothic", "Lucida Console", monospace';
+                
+                for (let i = 0; i < columnCount; i++) {
+                    // случайный символ
+                    const char = chars[Math.floor(Math.random() * chars.length)];
+                    
+                    // координаты
+                    const x = i * (fontSize * 0.8);
+                    const y = drops[i] * fontSize;
+                    
+                    // головная капля (верхняя) — ярче
+                    const isHead = (Math.random() > 0.95); // некоторые делаем головными
+                    
+                    // цвет в рамках палитры
+                    ctx.fillStyle = getMatrixColor(0.8, isHead);
+                    
+                    // рисование символа
+                    ctx.fillText(char, x, y);
+                    
+                    // сброс позиции, если ушли за край экрана
+                    if (y > canvas.height && Math.random() > 0.98) {
+                        drops[i] = 0;
+                    }
+                    
+                    // смещение вниз
+                    drops[i] += 0.5 + Math.random() * 0.4; // скорость, плавная
+                    
+                    // иногда добавляем дополнительный символ под основным для густоты (эффект капель)
+                    if (Math.random() > 0.8) {
+                        ctx.fillStyle = '#2a607a'; // более тёмный синий
+                        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y + fontSize * 0.6);
+                    }
+                }
+            }
+
+            // анимация
+            let matrixInterval;
+            function startMatrix() {
+                if (matrixInterval) clearInterval(matrixInterval);
+                matrixInterval = setInterval(drawMatrix, 38); // ~26fps, плавный дождь
+            }
+
+            // обработчик ресайза
+            window.addEventListener('resize', function() {
+                resizeCanvas();
+                // сброс позиций при сильном изменении размера (опционально)
+            });
+
+            // инициализация
+            resizeCanvas();
+            startMatrix();
+
+            // небольшая пауза при загрузке страницы для корректного старта
+            // также очищаем интервал, если канвас уничтожается (хотя это не обязательно)
+            window.addEventListener('beforeunload', function() {
+                clearInterval(matrixInterval);
+            });
+        })();
+    </script>
+</body>
+</html>
