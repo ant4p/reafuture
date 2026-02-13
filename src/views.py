@@ -8,3 +8,4 @@ class ShowMainPage(TemplateView):
 
 class ShowReIAPage(TemplateView):
     template_name = "src/reia.html"
+    
