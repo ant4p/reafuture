@@ -1,0 +1,64 @@
+services:
+  db:
+    image: postgres:16
+    container_name: db
+    restart: always
+    volumes:
+      - ~/.pg.pg_data/reafuture:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  reafuture:
+    build:
+      context: .
+    container_name: reafuture
+    image: reafuture
+    restart: always
+    entrypoint: /reafuture/start.sh
+    depends_on:
+      - db
+    volumes:
+      - static:/reafuture/static
+      - media:/reafuture/media
+    env_file:
+      - .env
+    environment:
+      - VIRTUAL_HOST=${ALLOWED_HOST}
+      - LETSENCRYPT_HOST=${ALLOWED_HOST}
+      - DEFAULT_HOST=${ALLOWED_HOST}
+
+  nginx:
+    build:
+      context: ./nginx/
+    container_name: nginx
+    restart: always
+    volumes:
+      - static:/reafuture/static
+      - media:/reafuture/media
+      - certs:/etc/nginx/certs:ro
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - reafuture
+    ports:
+      - "80:80"
+      - "443:443"
+
+  acme_companion:
+    image: nginxproxy/acme-companion
+    container_name: acme
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
+      - certs:/etc/nginx/certs:rw
+
+volumes:
+  static:
+  media:
+  certs:
+  vhost:
+  html:
+  acme:

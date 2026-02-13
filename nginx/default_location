@@ -1,0 +1,7 @@
+location /static/ {
+    alias /reafuture/static/;
+}
+
+location /media/ {
+    alias /reafuture/media/;
+}

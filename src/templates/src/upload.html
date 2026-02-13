@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+
+<div class="center-container">
+    <div class="terminal">
+        <span id="typed-text"></span>
+    </div>
+    
+    <a href={% url 'src:main' %} id="join-button" class="join-button" target="_blank" rel="noopener noreferrer">Присоединиться</a>
+</div>
+
+<div class="micro-signal">
+    <span class="dot-micro"></span>
+    <span>······</span>
+</div>
+{% endblock %}
