@@ -5,3 +5,6 @@ class ShowUploadPage(TemplateView):
 
 class ShowMainPage(TemplateView):
     template_name = "src/index.html"
+
+class ShowReIAPage(TemplateView):
+    template_name = "src/reia.html"
