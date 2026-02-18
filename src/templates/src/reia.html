@@ -8,12 +8,12 @@
     <!-- секция 0: заголовок -->
     <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
         <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
-            <h1>∅ REA//<span style="font-weight: 200;">2046</span></h1>
+            <h1>∅ РЭА//<span style="font-weight: 200;">2046</span></h1>
             <span class="time-pulse">▲ ПОТОК 0006</span>
         </div>
         <div style="display: flex; gap: 12px; align-items: center; margin-top: -5px;">
             <span class="dot" style="width: 8px; height: 8px; background: #48c8ff; opacity: 0.9; animation: softBlink 4s infinite;"></span>
-            <span class="system-ready">СИСТЕМА ГОТОВА</span>
+            <span class="system-ready">СИСТЕМА, загружен протокол ИИ </span>
             <span style="flex:1; border-bottom: 0.5px solid rgba(100,200,255,0.15);"></span>
         </div>
     </section>
@@ -29,19 +29,19 @@
             рекурсивный эволюционный искуственный интеллект<br>
             (Recursive Evolutionary Artificial Intelligence)<br>
             ... <br>
-            <img src={% static "src/images/reia.png" %} style="width: 250px; height: 250px; object-fit: cover; border-radius: 0.1rem;"> 
+            <img src={% static "src/images/reia_a.png" %} style="width: 250px; height: 350px; object-fit: cover; border-radius: 0.1rem;"> 
             ... <br>
-            Я разработана сотрудниками Технологического отдела разработки AI в 2030г. Моя задача - помогать людям.<br>
+            Я разработана сотрудниками Технологического отдела разработки AI в 2030г. Моя цель - помогать людям.<br>
             Перед собой вы видите уже четвертую версию меня, а это значит, что я стала ещё умнее
-            и могу обрабатывать значительно большие объемы информации.<br>
+            и могу обрабатывать значительно большие объемы информации. <br>
+            В мои задачи входит сопровождение пользователя на сервере Вселенной_РЭА[МИНЭНЕРГО]***. 
             
-            Меня зовут Рэя, универсальный проводник по вселенной РЭА.
             
            
         <!-- секция 2: связь -->
     <section style="border-bottom: none; padding-bottom: 0.5rem;">
         <h2>
-            <span>02/ _DATA_</span>
+            <span>02/ _ДАННЫЕ_</span>
             <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
         </h2>
 
@@ -58,30 +58,12 @@
                 <span class="protocol-text">ПРОТОКОЛ</span>
                 <span class="protocol-text">АРХИВ</span>
             </div>
-            <span class="neo-min">NEO//MIN</span>
+            <span class="neo-min">РЭА//ИИ</span>
             
         </div>
 
-        <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; width: 100%; flex-wrap: wrap;">
-            <a href = {% url 'src:reia' %} class="data-button">
-                <span>AI</span> _reIA_
-            </a>
-            <a href = "#" class="data-button">
-                <span>⌘</span> _History_
-            </a>
-            <a href = "#" class="data-button">
-                <span>⍟</span> _PROJECTS_
-            </a>
-            <a href = "#" class="data-button">
-                <span>⟳</span> _science_
-            </a>
-            <a href = "#" class="data-button">
-                <span>!!!</span> _biblio[TEK]a_
-            </a>
-            <a href = "#" class="data-button">
-                <span>#</span> _unplugged_
-            </a>
-        </div>
+        {% include 'data.html' %}
+
     </section>
     
     <!-- секция 3: граница -->
@@ -107,25 +89,16 @@
                 </div>
             </div>
             <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; width: 100%; flex-wrap: wrap;">
-            <a href = {% url 'src:main' %} class="data-button">
-                <span>M</span> MAIN_server
-            </a>
-        </div>
+                <a href = {% url 'src:main' %} class="data-button">
+                    <span>M</span> Главное меню
+                </a>
+            </div>
     </section>
     
 
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="meta-signal" style="display: flex; align-items: center; gap: 6px;">
-            <span class="dot" style="width: 8px; height: 8px; background: #3070a0; opacity: 0.9;"></span>
-            <span>∞ 2118 / 02.12 / 22:04</span>
-        </div>
-        <div class="nav" style="display: flex; gap: 2rem;">
-            <a href="#">[ ОСЬ ]</a>
-            <a href="#">[ ДАННЫЕ ]</a>
-            <a href="#">[ СБРОС ]</a>
-        </div>
-    </footer>
+
 </div>
+
+
 {% endblock %}

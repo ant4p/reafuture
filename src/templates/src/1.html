@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 720px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2.5rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
+
+    <!-- Секция 0: заголовок и статус сети -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+            <h1 style="font-size: 3.2rem;">∅ СЕТЬ//<span style="font-weight: 200;">NODES</span></h1>
+            <span class="time-pulse">⚡ ONLINE 23/47</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-top: -5px;">
+            <span class="dot" style="width: 8px; height: 8px; background: #6aff8c; opacity: 0.9; animation: softBlink 2s infinite;"></span>
+            <span class="system-ready" style="color: #8cffa0;">СЕТЬ СТАБИЛЬНА</span>
+            <span style="flex:1; border-bottom: 0.5px solid rgba(100,255,150,0.15);"></span>
+        </div>
+    </section>
+
+    <!-- Секция 1: Карта узлов (визуализация) -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
+        <h2>
+            <span>01/ ТОПОЛОГИЯ</span>
+            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+        </h2>
+        <div class="node-map" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-around; align-items: center; background: rgba(5, 12, 24, 0.6); border: 1px solid rgba(70, 140, 255, 0.2); padding: 2rem 1.5rem;">
+            <!-- Центральный узел -->
+            <div style="text-align: center; position: relative;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #4f9fff; box-shadow: 0 0 30px #4f9fff; display: flex; align-items: center; justify-content: center; background: rgba(15, 50, 90, 0.5); margin-bottom: 0.5rem;">
+                    <span style="color: white; font-size: 1.8rem;">⏺</span>
+                </div>
+                <span style="color: #b0d0ff;">HUB-01</span>
+                <div style="font-size: 0.7rem; color: #6a9fcf;">10.0.0.1</div>
+            </div>
+            <!-- Линия-связь (имитация) -->
+            <div style="width: 40px; height: 2px; background: linear-gradient(90deg, #4f9fff, #8fc0ff); opacity: 0.5;"></div>
+            <!-- Спутниковый узел 1 -->
+            <div style="text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid #6ab0ff; box-shadow: 0 0 15px #3a7bb0; display: flex; align-items: center; justify-content: center; background: rgba(10, 30, 50, 0.5); margin-bottom: 0.5rem;">
+                    <span style="color: #a0c8ff;">◉</span>
+                </div>
+                <span style="color: #b0d0ff;">NODE-07</span>
+                <div style="font-size: 0.7rem; color: #6a9fcf;">LAT 54.3</div>
+            </div>
+            <!-- Линия-связь -->
+            <div style="width: 40px; height: 2px; background: linear-gradient(90deg, #8fc0ff, #4f9fff); opacity: 0.5;"></div>
+            <!-- Спутниковый узел 2 -->
+            <div style="text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid #6ab0ff; display: flex; align-items: center; justify-content: center; background: rgba(10, 30, 50, 0.5); margin-bottom: 0.5rem;">
+                    <span style="color: #a0c8ff;">◉</span>
+                </div>
+                <span style="color: #b0d0ff;">NODE-12</span>
+                <div style="font-size: 0.7rem; color: #6a9fcf;">LAG 0.02ms</div>
+            </div>
+        </div>
+        <p style="margin-top: 1.5rem; border-left-color: #6aff8c;">
+            Обнаружено 47 активных узлов. 3 узла в режиме ожидания. Пропускная способность канала 10 Гбит/с.
+        </p>
+    </section>
+
+    <!-- Секция 2: Логи и интерфейсы -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
+        <h2>
+            <span>02/ ИНТЕРФЕЙСЫ</span>
+            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+        </h2>
+        <div class="log-list" style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9fc5ff; background: rgba(0, 10, 20, 0.7); padding: 1.2rem; border: 1px solid #1e3f60;">
+            <div>[10:47:23] <span style="color:#6aff8c;">eth0:</span> link up (1000baseT)</div>
+            <div>[10:47:25] <span style="color:#6aff8c;">wlan0:</span> connected to SSR-NET</div>
+            <div>[10:47:28] <span style="color:#ffaa6a;">*</span> new node registered: NODE-48 (10.0.1.34)</div>
+            <div>[10:47:32] <span style="color:#6aff8c;">route:</span> table updated</div>
+            <div style="color: #6080b0;">... логи непрерывного потока ...</div>
+        </div>
+    </section>
+
+    <!-- Секция 3: Управление -->
+    <section>
+        <h2>
+            <span>03/ УПРАВЛЕНИЕ</span>
+            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+        </h2>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#" class="data-button" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">⟲ ПИНГ</a>
+            <a href="#" class="data-button" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">⇄ ТРАССИРОВКА</a>
+            <a href="#" class="data-button" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">⚙ КОНФИГ</a>
+        </div>
+        <div class="meta-signal" style="margin-top: 2rem;">
+            <span class="dot" style="background: #6aff8c;"></span>
+            <span>ПОТОК ДАННЫХ: 1.2 TB/s | ЛОГОВ: 4521</span>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+</div>
+{% endblock %}

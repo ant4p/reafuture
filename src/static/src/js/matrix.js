@@ -75,7 +75,7 @@
     const textElement = document.getElementById('typed-text');
     const button = document.getElementById('join-button');
     
-    const fullText = "connect_to_virtual_universe\nРЭА МИН[ЭНЕРГО]***\n...connect...\n...connect...\n...\n...\n...\nдоступ разрешен и рекомендован\n...\nДОБРО ПОЖАЛОВАТЬ В БУДУЩЕЕ!";
+    const fullText = "Соединение_с_виртуальной_вселенной\nРЭА МИН[ЭНЕРГО]***\n...соединение...\n...соединение...\n...\n...\n...\nдоступ разрешен и рекомендован\n...\nДОБРО ПОЖАЛОВАТЬ В БУДУЩЕЕ!";
     
     let currentIndex = 0;
     

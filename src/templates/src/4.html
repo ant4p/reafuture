@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 720px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2.5rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
+
+    <!-- Секция 0: заголовок -->
+    <section style="border-bottom: 0.5px solid rgba(0, 255, 200, 0.25); padding-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <h1 style="font-size: 3.8rem; color: #b0fff0;">∅ Q//<span style="font-weight: 200;">TERMINAL</span></h1>
+            <span class="time-pulse" style="border-color: #00ccb0; color: #90ffe0;">⚲ QUBITS 8/8</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <span class="dot" style="width: 8px; height: 8px; background: #00ffd0; box-shadow: 0 0 15px #00ffd0;"></span>
+            <span class="system-ready" style="color: #a0fff0;">СОСТОЯНИЕ: СУПЕРПОЗИЦИЯ</span>
+        </div>
+    </section>
+
+    <!-- Секция 1: визуализация кубитов -->
+    <section style="border-bottom: 0.5px solid rgba(0, 255, 200, 0.25); padding-bottom: 2.5rem;">
+        <h2 style="color: #7fffe5;">
+            <span>01/ КУБИТЫ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #00ccb0 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; margin: 1.8rem 0;">
+            <!-- Qubit 1 -->
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00ccb0; box-shadow: 0 0 25px #00ffd0; background: rgba(0, 40, 40, 0.6); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: #b0fff0; font-size: 1.8rem;">|0⟩</span>
+                </div>
+                <span style="color: #80e0d0;">q1</span>
+                <div style="font-size: 0.7rem; color: #309880;">α:0.92 β:0.38</div>
+            </div>
+            <!-- Qubit 2 -->
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00ccb0; box-shadow: 0 0 15px #0088aa; background: rgba(0, 40, 40, 0.6); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: #b0fff0; font-size: 1.8rem;">|1⟩</span>
+                </div>
+                <span style="color: #80e0d0;">q2</span>
+                <div style="font-size: 0.7rem; color: #309880;">α:0.12 β:0.99</div>
+            </div>
+            <!-- Qubit 3 -->
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00ccb0; box-shadow: 0 0 25px #00ffd0; background: rgba(0, 40, 40, 0.6); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: #b0fff0; font-size: 1.8rem;">|+⟩</span>
+                </div>
+                <span style="color: #80e0d0;">q3</span>
+                <div style="font-size: 0.7rem; color: #309880;">фаза 45°</div>
+            </div>
+            <!-- Qubit 4 -->
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00ccb0; box-shadow: 0 0 15px #0088aa; background: rgba(0, 40, 40, 0.6); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: #b0fff0; font-size: 1.8rem;">|−⟩</span>
+                </div>
+                <span style="color: #80e0d0;">q4</span>
+                <div style="font-size: 0.7rem; color: #309880;">фаза 225°</div>
+            </div>
+        </div>
+        <div style="background: #031010; border: 1px solid #00aa99; padding: 1.2rem; font-family: 'Courier New';">
+            <span style="color: #40ffd0;">>>> </span><span style="color: #b0f0e0;">КВАНТОВАЯ ЗАПУТАННОСТЬ: q1-q3 (98.7%)</span>
+        </div>
+    </section>
+
+    <!-- Секция 2: квантовые вентили -->
+    <section style="border-bottom: 0.5px solid rgba(0, 255, 200, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #7fffe5;">
+            <span>02/ ГЕЙТЫ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #00ccb0 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+            <a href="#" class="data-button" style="border-color: #00ccb0; color: #b0fff0; padding: 0.8rem 1.2rem;">H (Адамар)</a>
+            <a href="#" class="data-button" style="border-color: #00ccb0; color: #b0fff0; padding: 0.8rem 1.2rem;">X (НЕ)</a>
+            <a href="#" class="data-button" style="border-color: #00ccb0; color: #b0fff0; padding: 0.8rem 1.2rem;">Y</a>
+            <a href="#" class="data-button" style="border-color: #00ccb0; color: #b0fff0; padding: 0.8rem 1.2rem;">Z</a>
+            <a href="#" class="data-button" style="border-color: #00ccb0; color: #b0fff0; padding: 0.8rem 1.2rem;">CNOT</a>
+            <a href="#" class="data-button" style="border-color: #00ccb0; color: #b0fff0; padding: 0.8rem 1.2rem;">Toffoli</a>
+        </div>
+        <div class="meta-signal">
+            <span class="dot" style="background: #00ffd0;"></span>
+            <span>ГОТОВНОСТЬ К КВАНТОВЫМ ВЫЧИСЛЕНИЯМ: 100%</span>
+        </div>
+    </section>
+
+    <!-- Секция 3: результаты измерений -->
+    <section>
+        <h2 style="color: #7fffe5;">
+            <span>03/ ИЗМЕРЕНИЯ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #00ccb0 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="border: 1px solid #007a6a; padding: 1rem;">
+                <div style="font-size: 0.8rem; color: #60c0b0;">ВЕРОЯТНОСТЬ 0</div>
+                <div style="font-size: 2rem; color: white;">0.327</div>
+                <div style="height: 4px; background: #004d40; width: 100%; margin-top: 8px;">
+                    <div style="height: 4px; background: #00ffd0; width: 32.7%;"></div>
+                </div>
+            </div>
+            <div style="border: 1px solid #007a6a; padding: 1rem;">
+                <div style="font-size: 0.8rem; color: #60c0b0;">ВЕРОЯТНОСТЬ 1</div>
+                <div style="font-size: 2rem; color: white;">0.673</div>
+                <div style="height: 4px; background: #004d40; width: 100%; margin-top: 8px;">
+                    <div style="height: 4px; background: #00ffd0; width: 67.3%;"></div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 1.5rem; text-align: right; color: #308070;">
+            коллапс волновой функции || измерение #
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+</div>
+{% endblock %}

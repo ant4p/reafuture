@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 1000px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 3rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
+
+    <!-- Секция 0: заголовок -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+            <h1 style="font-size: 3.8rem;">∅ ХРОНИКИ <span style="font-weight: 200;">/_2046</span></h1>
+            <span class="time-pulse">⚲ РАЗВИТИЕ</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-top: -5px;">
+            <span class="dot" style="width: 8px; height: 8px; background: #48c8ff; opacity: 0.9; animation: softBlink 3s infinite;"></span>
+            <span class="system-ready">20 ЛЕТ ЭНЕРГЕТИЧЕСКОЙ ЭВОЛЮЦИИ</span>
+            <span style="flex:1; border-bottom: 0.5px solid rgba(100,200,255,0.15);"></span>
+        </div>
+    </section>
+
+    <!-- Секция 1: основная линия времени -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 4rem;">
+        <h2>
+            <span>01/ МАГИСТРАЛЬНАЯ ХРОНОЛОГИЯ</span>
+            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+        </h2>
+        
+        <!-- Контейнер для линии времени с отступами для плашек -->
+        <div style="position: relative; margin: 5rem 0 7rem 0; padding: 0 2rem;">
+            <!-- Базовая линия -->
+            <div style="height: 2px; background: linear-gradient(90deg, #1a3f60, #4f9fff, #1a3f60); width: 100%; position: relative; z-index: 1;"></div>
+            
+            <!-- Отметки годов (над линией) -->
+            <div style="display: flex; justify-content: space-between; position: relative; top: 10px; z-index: 5; pointer-events: none;">
+                <span style="background: #0b0e14; padding: 0 0.5rem; color: #7fb0d0; font-weight: 400; border-left: 1px solid #2f5070;">2026</span>
+                <span style="background: #0b0e14; padding: 0 0.5rem; color: #7fb0d0;">2030</span>
+                <span style="background: #0b0e14; padding: 0 0.5rem; color: #7fb0d0;">2034</span>
+                <span style="background: #0b0e14; padding: 0 0.5rem; color: #7fb0d0;">2038</span>
+                <span style="background: #0b0e14; padding: 0 0.5rem; color: #7fb0d0;">2042</span>
+                <span style="background: #0b0e14; padding: 0 0.5rem; color: #7fb0d0;">2046</span>
+            </div>
+            
+            <!-- Отметки событий (над линией, не перекрывают года) -->
+            <!-- 2027 -->
+            <div style="position: absolute; left: 5%; top: -35px; transform: translateX(-50%); z-index: 10;">
+                <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 20px #4f9fff; cursor: pointer; transition: all 0.2s;" 
+                     onmouseover="this.style.transform='scale(1.3)'; document.getElementById('event-2027').style.opacity='1';"
+                     onmouseout="this.style.transform='scale(1)'; document.getElementById('event-2027').style.opacity='0';">
+                </div>
+                <div id="event-2027" style="position: absolute; top: 20px; left: -70px; width: 160px; background: rgba(10, 25, 45, 0.95); border: 1px solid #2f5070; padding: 0.8rem; font-size: 0.8rem; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 20;">
+                    <div style="color: #b0e0ff; font-weight: bold;">⚡ ИНИЦИАЦИЯ</div>
+                    <div style="color: #6a9fcf;">2026 / Протокол №001</div>
+                </div>
+            </div>
+            
+            <!-- 2031 -->
+            <div style="position: absolute; left: 25%; top: -45px; transform: translateX(-50%); z-index: 10;">
+                <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 25px #4f9fff; cursor: pointer; transition: all 0.2s;"
+                     onmouseover="this.style.transform='scale(1.3)'; document.getElementById('event-2031').style.opacity='1';"
+                     onmouseout="this.style.transform='scale(1)'; document.getElementById('event-2031').style.opacity='0';">
+                </div>
+                <div id="event-2031" style="position: absolute; top: 24px; left: -75px; width: 170px; background: rgba(10, 25, 45, 0.95); border: 1px solid #2f5070; padding: 0.8rem; font-size: 0.8rem; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s; pointer-events: none;">
+                    <div style="color: #b0e0ff; font-weight: bold;">⚡ ЗАПУСК ИИ "РЕЯ"</div>
+                    <div style="color: #6a9fcf;">2031.07.22 / Версия 1.0</div>
+                </div>
+            </div>
+            
+            <!-- 2035 -->
+            <div style="position: absolute; left: 45%; top: -25px; transform: translateX(-50%); z-index: 10;">
+                <div style="width: 18px; height: 18px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 25px #ffaa4f; cursor: pointer; transition: all 0.2s;"
+                     onmouseover="this.style.transform='scale(1.3)'; document.getElementById('event-2035').style.opacity='1';"
+                     onmouseout="this.style.transform='scale(1)'; document.getElementById('event-2035').style.opacity='0';">
+                </div>
+                <div id="event-2035" style="position: absolute; top: 22px; left: -80px; width: 180px; background: rgba(30, 20, 10, 0.95); border: 1px solid #aa7733; padding: 0.8rem; font-size: 0.8rem; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s; pointer-events: none;">
+                    <div style="color: #ffcc88; font-weight: bold;">⚡ ЭНЕРГОМАРКЕТ</div>
+                    <div style="color: #ccaa66;">2035.01.15 / Первые торги</div>
+                </div>
+            </div>
+            
+            <!-- 2039 -->
+            <div style="position: absolute; left: 65%; top: -50px; transform: translateX(-50%); z-index: 10;">
+                <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 25px #4f9fff; cursor: pointer; transition: all 0.2s;"
+                     onmouseover="this.style.transform='scale(1.3)'; document.getElementById('event-2039').style.opacity='1';"
+                     onmouseout="this.style.transform='scale(1)'; document.getElementById('event-2039').style.opacity='0';">
+                </div>
+                <div id="event-2039" style="position: absolute; top: 24px; left: -80px; width: 180px; background: rgba(10, 25, 45, 0.95); border: 1px solid #2f5070; padding: 0.8rem; font-size: 0.8rem; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s; pointer-events: none;">
+                    <div style="color: #b0e0ff; font-weight: bold;">⚡ ИНТЕГРАЦИЯ С ЕЭС</div>
+                    <div style="color: #6a9fcf;">2039.09.30 / Полная синхронизация</div>
+                </div>
+            </div>
+            
+            <!-- 2043 -->
+            <div style="position: absolute; left: 85%; top: -35px; transform: translateX(-50%); z-index: 10;">
+                <div style="width: 18px; height: 18px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 25px #ff6f6f; cursor: pointer; transition: all 0.2s;"
+                     onmouseover="this.style.transform='scale(1.3)'; document.getElementById('event-2043').style.opacity='1';"
+                     onmouseout="this.style.transform='scale(1)'; document.getElementById('event-2043').style.opacity='0';">
+                </div>
+                <div id="event-2043" style="position: absolute; top: 22px; left: -90px; width: 200px; background: rgba(45, 15, 15, 0.95); border: 1px solid #aa5555; padding: 0.8rem; font-size: 0.8rem; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s; pointer-events: none;">
+                    <div style="color: #ffb0b0; font-weight: bold;">⚠ ПОВЕДЕНЧЕСКИЙ ОПЕРАТОР</div>
+                    <div style="color: #cc8888;">2043.05.18 / Активация</div>
+                </div>
+            </div>
+            
+            <!-- 2046 (текущий момент) -->
+            <div style="position: absolute; left: 98%; top: -25px; transform: translateX(-50%); z-index: 10;">
+                <div style="width: 22px; height: 22px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 30px #88ff88; animation: pulse 2s infinite; cursor: pointer; transition: all 0.2s;"
+                     onmouseover="this.style.transform='scale(1.2)'; document.getElementById('event-2046').style.opacity='1';"
+                     onmouseout="this.style.transform='scale(1)'; document.getElementById('event-2046').style.opacity='0';">
+                </div>
+                <div id="event-2046" style="position: absolute; top: 28px; left: -70px; width: 160px; background: rgba(15, 45, 15, 0.95); border: 1px solid #55aa55; padding: 0.8rem; font-size: 0.8rem; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s; pointer-events: none;">
+                    <div style="color: #ccffcc; font-weight: bold;">⊚ НАСТОЯЩЕЕ</div>
+                    <div style="color: #99cc99;">2046 / Эпоха стабильности</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Легенда (под линией) -->
+        <div style="display: flex; gap: 2.5rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; border-top: 0.5px solid #1f3f5f; padding-top: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 10px #4f9fff;"></div>
+                <span style="font-size: 0.85rem;">РАЗРАБОТКА / ЗАПУСК</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 14px; height: 14px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 10px #ffaa4f;"></div>
+                <span style="font-size: 0.85rem;">ЭНЕРГОРЫНОК</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 14px; height: 14px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 10px #ff6f6f;"></div>
+                <span style="font-size: 0.85rem;">КЛЮЧЕВЫЕ ИЗМЕНЕНИЯ</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 14px; height: 14px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 10px #88ff88;"></div>
+                <span style="font-size: 0.85rem;">ТЕКУЩИЙ МОМЕНТ</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 2: вертикальная линия времени (детали) -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.5rem;">
+        <h2>
+            <span>02/ ДЕТАЛЬНАЯ ХРОНИКА 2026–2046</span>
+            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+        </h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 1.8rem; position: relative; padding-left: 2.5rem;">
+            <!-- Вертикальная линия -->
+            <div style="position: absolute; left: 10px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(180deg, #1a3f60, #4f9fff, #1a3f60);"></div>
+            
+            <!-- Событие 2027 -->
+            <div style="display: flex; gap: 1.5rem; position: relative;">
+                <div style="position: absolute; left: -2.1rem; top: 0.3rem; width: 18px; height: 18px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff;"></div>
+                <div style="min-width: 100px; color: #8fc0ff; font-weight: bold;">2027.03.12</div>
+                <div>
+                    <div style="color: #e0f0ff; font-size: 1.1rem;">Инициация эволюционного развития</div>
+                    <div style="font-size: 0.85rem; color: #8aa9c0;">Подписание энергетического протокола. Начало цифровой трансформации.</div>
+                </div>
+            </div>
+            
+            <!-- Событие 2031 -->
+            <div style="display: flex; gap: 1.5rem; position: relative;">
+                <div style="position: absolute; left: -2.1rem; top: 0.3rem; width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff;"></div>
+                <div style="min-width: 100px; color: #8fc0ff;">2031.07.22</div>
+                <div>
+                    <div style="color: #e0f0ff;">Первый запуск ИИ "Рея"</div>
+                    <div style="font-size: 0.85rem; color: #8aa9c0;">Инициализация универсального проводника. Версия 1.0.</div>
+                </div>
+            </div>
+            
+            <!-- Событие 2035 -->
+            <div style="display: flex; gap: 1.5rem; position: relative;">
+                <div style="position: absolute; left: -2.1rem; top: 0.3rem; width: 18px; height: 18px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 15px #ffaa4f;"></div>
+                <div style="min-width: 100px; color: #ffbb66;">2035.01.15</div>
+                <div>
+                    <div style="color: #ffdbaa;">Обновление Энергомаркета</div>
+                    <div style="font-size: 0.85rem; color: #b89f6f;">Первые торги мощностью. Объем: 1.2 ПВт·ч.</div>
+                </div>
+            </div>
+            
+            <!-- Событие 2039 -->
+            <div style="display: flex; gap: 1.5rem; position: relative;">
+                <div style="position: absolute; left: -2.1rem; top: 0.3rem; width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff;"></div>
+                <div style="min-width: 100px; color: #8fc0ff;">2039.09.30</div>
+                <div>
+                    <div style="color: #e0f0ff;">Интеграция с сетями ЕЭС</div>
+                    <div style="font-size: 0.85rem; color: #8aa9c0;">Полная синхронизация с единой энергосистемой.</div>
+                </div>
+            </div>
+            
+            <!-- Событие 2043 -->
+            <div style="display: flex; gap: 1.5rem; position: relative;">
+                <div style="position: absolute; left: -2.1rem; top: 0.3rem; width: 20px; height: 20px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 20px #ff6f6f;"></div>
+                <div style="min-width: 100px; color: #ff8888;">2043.05.18</div>
+                <div>
+                    <div style="color: #ffc0c0;">Активация Поведенческого оператора</div>
+                    <div style="font-size: 0.85rem; color: #b77;">Предиктивное управление нагрузками.</div>
+                </div>
+            </div>
+            
+            <!-- Событие 2046 -->
+            <div style="display: flex; gap: 1.5rem; position: relative;">
+                <div style="position: absolute; left: -2.3rem; top: 0.3rem; width: 24px; height: 24px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 25px #88ff88; animation: pulse 2s infinite;"></div>
+                <div style="min-width: 100px; color: #aaffaa;">2046.02.17</div>
+                <div>
+                    <div style="color: #ccffcc;">Текущий момент</div>
+                    <div style="font-size: 0.85rem; color: #9c9;">20-летие системы. Стабильность 99.97%.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 3: статистика и управление -->
+    <section style="border-bottom: none; padding-bottom: 0.5rem;">
+        <h2>
+            <span>03/ ПАРАМЕТРЫ ХРОНИК</span>
+            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0;">
+            <div style="background: rgba(5, 15, 30, 0.7); border: 0.5px solid #2f5070; padding: 1.2rem; text-align: center;">
+                <div style="font-size: 2rem; color: #4f9fff;">20</div>
+                <div style="font-size: 0.8rem;">ЛЕТ ЭПОХИ</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 0.5px solid #2f5070; padding: 1.2rem; text-align: center;">
+                <div style="font-size: 2rem; color: #ffaa4f;">47</div>
+                <div style="font-size: 0.8rem;">КЛЮЧЕВЫХ СОБЫТИЙ</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 0.5px solid #2f5070; padding: 1.2rem; text-align: center;">
+                <div style="font-size: 2rem; color: #88ff88;">6</div>
+                <div style="font-size: 0.8rem;">ЭТАПОВ РАЗВИТИЯ</div>
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0 1rem;">
+            <!-- <a href="#" class="data-button" style="padding: 0.8rem 2rem;">
+                <span>← 2026</span>
+            </a> -->
+            <a href="#" class="data-button" style="padding: 0.8rem 2rem; border-color: #88ff88;">
+                <span>⊚ 2046</span>
+            </a>
+            <!-- <a href="#" class="data-button" style="padding: 0.8rem 2rem;">
+                <span>ПРОГНОЗ 2047 →</span>
+            </a> -->
+                            <a href = {% url 'src:main' %} class="data-button">
+                    <span>#</span> Главное меню
+                </a>
+        </div>
+
+        
+        <div class="meta-signal" style="justify-content: flex-end; margin-top: 1rem;">
+            <span class="dot" style="background: #48c8ff;"></span>
+            <span>ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ: 2046[*.*] / ###</span>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+</div>
+
+<style>
+    /* Анимация пульса */
+    @keyframes pulse {
+        0% { opacity: 0.9; box-shadow: 0 0 10px #88ff88; }
+        50% { opacity: 1; box-shadow: 0 0 30px #88ff88; }
+        100% { opacity: 0.9; box-shadow: 0 0 10px #88ff88; }
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 800px) {
+        .frame {
+            padding: 0 0.5rem;
+        }
+        [style*="position: absolute; left"] {
+            transform: translateX(-50%) scale(0.9);
+        }
+        [style*="position: absolute; left"] > div[style*="position: absolute"] {
+            width: 130px !important;
+            left: -65px !important;
+        }
+    }
+    
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 2.5rem !important;
+        }
+        .stat-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+
+<script>
+    // Дополнительная интерактивность
+    document.addEventListener('DOMContentLoaded', function() {
+        // Можно добавить логику для кликов по точкам
+        const points = document.querySelectorAll('[style*="position: absolute; left"][style*="top: -"] > div:first-child');
+        points.forEach((point, index) => {
+            point.addEventListener('click', function() {
+                // Здесь можно добавить переход на страницу события
+                console.log('Clicked point', index);
+            });
+        });
+    });
+</script>
+
+{% endblock %}

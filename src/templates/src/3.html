@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 700px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2.5rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
+
+    <section style="border-bottom: 0.5px solid rgba(255, 160, 200, 0.18); padding-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between;">
+            <h1 style="font-size: 3.5rem;">∅ ЛАБ//<span style="font-weight: 200;">PROTO</span></h1>
+            <span class="time-pulse" style="border-color:#ff70a0;">⚡ ЭКСПЕРИМЕНТАЛЬНЫЙ РЕЖИМ</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <span class="dot" style="background: #ff6090; animation: softBlink 0.8s infinite;"></span>
+            <span class="system-ready" style="color: #ffa0c0;">ПРОТОТИП #17: АКТИВЕН</span>
+        </div>
+    </section>
+
+    <section style="border-bottom: 0.5px solid rgba(255, 160, 200, 0.18); padding-bottom: 2rem;">
+        <h2 style="color: #ffb0d0;">
+            <span>01/ ТЕЛЕМЕТРИЯ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ff70a0 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+            <div style="border: 1px solid #ff5080; padding: 1rem; min-width: 120px; text-align: center;">
+                <div style="font-size: 2rem; color: #ffb0d0;">98%</div>
+                <div style="font-size: 0.7rem;">ЗАГРУЗКА КВАНТ. ЯДРА</div>
+            </div>
+            <div style="border: 1px solid #ff5080; padding: 1rem; min-width: 120px; text-align: center;">
+                <div style="font-size: 2rem; color: #ffb0d0;">1.4</div>
+                <div style="font-size: 0.7rem;">TFLOPS</div>
+            </div>
+        </div>
+        <!-- Имитация графика/индикатора -->
+        <div style="margin-top: 1.5rem; background: #1a0c14; padding: 1rem;">
+            <div style="display: flex; gap: 2px; align-items: flex-end; height: 80px;">
+                <div style="flex:1; height: 40px; background: #ff5080;"></div>
+                <div style="flex:1; height: 70px; background: #ff80a0;"></div>
+                <div style="flex:1; height: 30px; background: #ff5080;"></div>
+                <div style="flex:1; height: 90px; background: #ffb0d0;"></div>
+                <div style="flex:1; height: 55px; background: #ff80a0;"></div>
+                <div style="flex:1; height: 45px; background: #ff5080;"></div>
+                <div style="flex:1; height: 85px; background: #ffb0d0;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: #c06080; font-size: 0.7rem; margin-top: 4px;">
+                <span>12:00</span><span>12:10</span><span>12:20</span><span>12:30</span>
+            </div>
+        </div>
+    </section>
+
+    <section style="border-bottom: 0.5px solid rgba(255, 160, 200, 0.18); padding-bottom: 2rem;">
+        <h2 style="color: #ffb0d0;">
+            <span>02/ АКТИВНЫЕ ПРОТОТИПЫ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ff70a0 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <div style="display: flex; gap: 1rem; background: #140a12; padding: 0.6rem 1rem;">
+                <span style="color: #ffa0c0;">⦿</span>
+                <span style="flex:1;">НЕЙРОИНТЕРФЕЙС v.4</span>
+                <span style="color: #ff6080;">[ ТЕСТ ]</span>
+            </div>
+            <div style="display: flex; gap: 1rem; background: #140a12; padding: 0.6rem 1rem;">
+                <span style="color: #ffa0c0;">⦿</span>
+                <span style="flex:1;">КВАНТОВЫЙ СИМУЛЯТОР</span>
+                <span style="color: #80ffa0;">[ OK ]</span>
+            </div>
+            <div style="display: flex; gap: 1rem; background: #140a12; padding: 0.6rem 1rem;">
+                <span style="color: #ffa0c0;">⦿</span>
+                <span style="flex:1;">ПОВЕДЕНЧ. ОПЕРАТОР (ALPHA)</span>
+                <span style="color: #ffc080;">[ ОЖИДАНИЕ ]</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="color: #ffb0d0;">
+            <span>03/ ЗАПУСТИТЬ ЭКСПЕРИМЕНТ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ff70a0 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; gap: 1rem;">
+            <a href="#" class="data-button" style="border-color: #ff70a0; color: #ffc0e0; flex:1;">ЗАПУСК ПРОТОТИПА #17</a>
+            <a href="#" class="data-button" style="border-color: #ff70a0; color: #ffc0e0;">СБРОС</a>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+</div>
+{% endblock %}

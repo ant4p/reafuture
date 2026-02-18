@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 750px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2.5rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
+
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between;">
+            <h1 style="font-size: 3.8rem; color: #ffdd99;">∅ ЭНЕРГО//<span style="font-weight: 200;">GRID</span></h1>
+            <span class="time-pulse" style="border-color: #ffaa33;">⚡ 3.4 GW</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <span class="dot" style="width: 8px; height: 8px; background: #ffaa33; animation: pulse 2s infinite;"></span>
+            <span class="system-ready" style="color: #ffcc88;">СЕТЬ: СБАЛАНСИРОВАНА</span>
+        </div>
+    </section>
+
+    <!-- Секция 1: основные показатели -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>01/ ПОТОКИ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 1.8rem; color: #ffaa33;">↑ 2.1</div>
+                <div style="font-size: 0.7rem;">ГЕНЕРАЦИЯ (GW)</div>
+            </div>
+            <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 1.8rem; color: #88ccff;">↓ 1.9</div>
+                <div style="font-size: 0.7rem;">ПОТРЕБЛЕНИЕ (GW)</div>
+            </div>
+            <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 1.8rem; color: #88ff99;">↻ 0.2</div>
+                <div style="font-size: 0.7rem;">НАКОПЛЕНИЕ (GW)</div>
+            </div>
+        </div>
+        <!-- Индикатор баланса -->
+        <div style="margin: 1rem 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #b89040;">
+                <span>ДИСБАЛАНС</span>
+                <span>+0.2 GW (ИЗБЫТОК)</span>
+            </div>
+            <div style="height: 8px; background: #332811; width: 100%; margin-top: 4px;">
+                <div style="height: 8px; background: #88ff99; width: 52%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 2: источники генерации -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>02/ ИСТОЧНИКИ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>ТЭС</span>
+                    <span>1.2 GW (57%)</span>
+                </div>
+                <div style="height: 4px; background: #332811;">
+                    <div style="height: 4px; background: #ff884d; width: 57%;"></div>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>ГЭС</span>
+                    <span>0.6 GW (28%)</span>
+                </div>
+                <div style="height: 4px; background: #332811;">
+                    <div style="height: 4px; background: #4da6ff; width: 28%;"></div>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>ВИЭ (солнце/ветер)</span>
+                    <span>0.3 GW (15%)</span>
+                </div>
+                <div style="height: 4px; background: #332811;">
+                    <div style="height: 4px; background: #88ff88; width: 15%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 3: регионы и нагрузка -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>03/ РЕГИОНАЛЬНАЯ НАГРУЗКА</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">СЕВЕР</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 45%;"></div>
+                </div>
+                <span>0.9 GW</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">ЦЕНТР</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 82%;"></div>
+                </div>
+                <span>1.6 GW</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">ЮГ</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 31%;"></div>
+                </div>
+                <span>0.6 GW</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">ВОСТОК</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 64%;"></div>
+                </div>
+                <span>1.2 GW</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 4: прогноз -->
+    <section>
+        <h2 style="color: #ffcc88;">
+            <span>04/ ПРОГНОЗ НА 24Ч</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; gap: 4px; align-items: flex-end; height: 100px;">
+            <div style="flex:1; height: 40px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 65px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 80px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 95px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 70px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 55px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 45px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 35px; background: #ffaa33;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; color: #aa8844; margin-top: 4px;">
+            <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+</div>
+{% endblock %}
