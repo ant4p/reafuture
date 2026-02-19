@@ -62,40 +62,13 @@
             
         </div>
 
-        {% include 'data.html' %}
+        <!-- {% include 'data.html' %} -->
 
     </section>
     
-    <!-- секция 3: граница -->
-    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
-        <h2>
-            <span>03/ ОБРАБОТКА НИР</span>
-            <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
-        </h2>
-        <div class="scope" style="border: 1px solid rgba(70, 140, 255, 0.18); padding: 2rem 2rem 1.8rem; background: rgba(5, 10, 18, 0.4); backdrop-filter: blur(1px);">
-            <div style="display: flex; gap: 1.8rem; align-items: flex-start; flex-wrap: wrap;">
-                <div style="min-width: 160px;">
-                    <div style="font-size: 2.2rem; font-weight: 300; color: white; line-height: 1;">+0,1</div>
-                    <div style="font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #70b0e0; margin-top: 2px;">постоянная</div>
-                </div>
-                <div style="border-left: 0.5px solid #1c4966; padding-left: 1.5rem;">
-                    <span class="boundary-text">потоковая загрузка данных ... </span>
-                    <div class="meta-signal" style="display: flex; align-items: center; gap: 6px; margin-top: 12px;">
-                        <span class="dot" style="width: 8px; height: 8px; background: #48c8ff; opacity: 0.9;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; background: #4070a0; opacity: 0.9;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; background: #7fb0d0; opacity: 0.9;"></span>
-                        <span style="margin-left: 8px;">прием</span>
-                    </div>
-                </div>
-            </div>
-            <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; width: 100%; flex-wrap: wrap;">
-                <a href = {% url 'src:main' %} class="data-button">
-                    <span>M</span> Главное меню
-                </a>
-            </div>
-    </section>
-    
 
+
+{% include "back_button.html" %}
 {% include "footer.html" %}
 
 </div>
