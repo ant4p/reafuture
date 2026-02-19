@@ -603,4 +603,375 @@ footer {
     }
 
 
- 
+ /* Кнопка с паролем */
+
+ /* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 11, 14, 0.85);
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #0b0b0e;
+    border: 1px solid rgba(79, 159, 255, 0.25);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 30px rgba(79, 159, 255, 0.2);
+    padding: 2.5rem;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content h3 {
+    color: #ffffff;
+    font-family: 'Inter', 'Courier New', monospace;
+    font-weight: 350;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    border-left: 2px solid rgba(79, 159, 255, 0.25);
+    padding-left: 1rem;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid rgba(79, 159, 255, 0.25);
+    color: #e3f0ff;
+    font-family: 'Inter', 'Courier New', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-input:focus {
+    outline: none;
+    border: 1px solid #a0d0ff;
+    box-shadow: 0 0 20px rgba(79, 159, 255, 0.3);
+}
+
+.modal-input::placeholder {
+    color: rgba(227, 233, 242, 0.3);
+    font-size: 1rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.modal-button {
+    padding: 0.8rem 2rem;
+    background: transparent;
+    border: 1.5px solid #4f9fff;
+    color: #e3f0ff;
+    font-family: 'Inter', 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px rgba(79, 159, 255, 0.2);
+    cursor: pointer;
+    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border-radius: 0;
+}
+
+.modal-button:hover {
+    border: 1.5px solid #a0d0ff;
+    background: rgba(79, 159, 255, 0.08);
+    box-shadow: 0 0 35px rgba(79, 159, 255, 0.4);
+    color: #ffffff;
+}
+
+.modal-button:active {
+    transform: scale(0.98);
+}
+
+/* Стили для сообщения об ошибке */
+.error-message {
+    background: rgba(11, 11, 14, 0.95);
+    border: 1px solid rgba(255, 79, 79, 0.4);
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+    margin-bottom: 1.5rem; /* Изменено с margin-top на margin-bottom */
+    color: #ff9f9f;
+    font-family: 'Inter', 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-left: 2px solid #ff4f4f;
+    animation: errorPulse 2s infinite;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@keyframes errorPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 79, 79, 0.2);
+        border-color: rgba(255, 79, 79, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 79, 79, 0.4);
+        border-color: rgba(255, 79, 79, 0.8);
+    }
+}
+
+.error-message::before {
+    content: "⚠";
+    font-size: 1.2rem;
+    color: #ff4f4f;
+    animation: blinkWarning 1.2s infinite;
+}
+
+@keyframes blinkWarning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Стили для микро-сигнала (если их нет в основном CSS) */
+.micro-signal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2e607a;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    opacity: 0.25;
+}
+
+.dot-micro {
+    width: 6px;
+    height: 6px;
+    background: #2f8cb0;
+    opacity: 0.5;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 500px) {
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-input {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .modal-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+    
+    .modal-button {
+        width: 100%;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 380px) {
+    .modal-content {
+        padding: 1.2rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.1rem;
+        padding-left: 0.8rem;
+    }
+}
+
+
+
+
+    /* Стили для интерактивных карточек */
+    .risk-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .risk-card:hover {
+        border-color: #ff6f6f !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 100, 100, 0.2);
+    }
+    
+    .risk-card.expanded {
+        border-color: #ff6f6f;
+        background: rgba(40, 10, 10, 0.8);
+    }
+    
+    .matrix-cell {
+        transition: background 0.2s;
+        cursor: help;
+    }
+    
+    .matrix-cell:hover {
+        filter: brightness(1.2);
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 700px) {
+        #risks-grid {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: repeat(2, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+    }
+
+
+
+    /* АРХИВ */
+        /* Оверлей (затемненный фон) */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(2, 10, 20, 0.85);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    /* Контейнер модального окна */
+    .modal-container {
+        max-width: 500px;
+        width: 90%;
+        background: rgba(8, 18, 28, 0.95);
+        border: 1px solid rgba(79, 159, 255, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(79, 159, 255, 0.2);
+        padding: 1.8rem;
+        position: relative;
+        animation: slideUp 0.3s ease;
+        backdrop-filter: blur(10px);
+        border-top: 2px solid;
+    }
+    
+    /* Заголовок модального окна */
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 0.5px solid rgba(160, 200, 255, 0.18);
+    }
+    
+    .modal-year {
+        font-size: 2.2rem;
+        font-weight: 200;
+        text-shadow: 0 0 15px currentColor;
+    }
+    
+    .modal-close {
+        font-size: 1.8rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+        color: #b0c8e0;
+    }
+    
+    .modal-close:hover {
+        opacity: 1;
+        color: #ff8f8f;
+    }
+    
+    /* Контент модального окна */
+    .modal-content {
+        color: #b0c8e0;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .modal-content p {
+        margin-bottom: 1rem;
+        border: none;
+        padding: 0;
+    }
+    
+    .modal-data-row {
+        display: flex;
+        margin-bottom: 0.8rem;
+        border-bottom: 0.5px solid rgba(79, 159, 255, 0.1);
+        padding-bottom: 0.5rem;
+    }
+    
+    .modal-data-label {
+        width: 120px;
+        color: #4f9fff;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .modal-data-value {
+        flex: 1;
+        color: #e0f0ff;
+    }
+    
+    /* Анимации */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* Кнопки навигации теперь кликабельны */
+    .nav-year-btn {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-year-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px currentColor;
+    }

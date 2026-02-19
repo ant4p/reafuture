@@ -1,0 +1,429 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Единый контейнер -->
+<div class="frame" style="max-width: 1000px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box;">
+
+    <!-- Заголовок -->
+    <section style="text-align: center; margin: 0.5rem 0 2rem 0;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, transparent, #7fc0ff);"></span>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 200; letter-spacing: 4px; margin: 0; text-shadow: 0 0 30px #4f9fff; color: #ffffff;">ИННОВАЦИОННЫЙ</h1>
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, #7fc0ff, transparent);"></span>
+        </div>
+        <div style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 200; color: #b0e0ff; margin-top: -0.5rem; letter-spacing: 6px;">ЦОД</div>
+        
+        <div style="display: flex; justify-content: center; gap: 2rem; color: #8fc0ff; font-size: 0.9rem; letter-spacing: 2px; margin-top: 1rem; flex-wrap: wrap;">
+            <span>⚡ НИЗКОНАПОРНЫЙ ГАЗ</span>
+            <span>✦</span>
+            <span>⚡ УКПГ / УППГ</span>
+            <span>✦</span>
+            <span>⚡ ДИВЕРСИФИКАЦИЯ</span>
+        </div>
+        
+        <div style="width: 300px; height: 1px; background: linear-gradient(90deg, transparent, #4f9fff, #7fc0ff, #4f9fff, transparent); margin: 1.5rem auto; opacity: 0.5;"></div>
+    </section>
+
+    <!-- Ключевое преимущество -->
+    <section style="position: relative; background: rgba(5, 15, 30, 0.7); backdrop-filter: blur(10px); border: 1px solid #4f9fff; padding: 2rem; margin-bottom: 1rem;">
+        <div style="position: absolute; top: -10px; left: 20px; background: #0a1a2a; padding: 0 1rem; color: #7fc0ff; font-size: 0.8rem; letter-spacing: 2px;">
+            КЛЮЧЕВОЕ ПРЕИМУЩЕСТВО
+        </div>
+        
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
+            <div style="font-size: 3rem; color: #4f9fff; font-family: 'Courier New';">⏣</div>
+            <p style="font-size: 1.1rem; color: #e0f0ff; line-height: 1.8; margin: 0; border-left: none; padding-left: 0;">
+                Создание и эксплуатация ЦОДов при использовании низконапорного газа на действующей площадке установки комплексной либо первичной подготовки газа.
+            </p>
+        </div>
+        
+        <div style="margin-top: 1.5rem; padding: 1rem; background: #0a1a2a; border-left: 3px solid #4f9fff;">
+            <p style="font-size: 0.9rem; color: #b0c8e0; margin: 0; border: none; padding: 0;">
+                Это открыло новые возможности для диверсификации деятельности газодобывающих компаний.
+            </p>
+        </div>
+    </section>
+
+    <!-- Схема работы (газ → энергия → ЦОД) -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>01/ ТЕХНОЛОГИЧЕСКАЯ СХЕМА</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <!-- УКПГ/УППГ -->
+            <div style="flex: 1; min-width: 150px; text-align: center; background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem 1rem;">
+                <div style="font-size: 2.5rem; color: #4f9fff; margin-bottom: 0.5rem;">⏣</div>
+                <div style="font-weight: 400; color: #b0e0ff;">УКПГ / УППГ</div>
+                <div style="font-size: 0.7rem; color: #7fc0ff; margin-top: 0.5rem;">Действующая площадка</div>
+                <div style="margin-top: 1rem; height: 2px; background: #1a3f60; width: 100%;">
+                    <div style="width: 100%; height: 2px; background: #4f9fff;"></div>
+                </div>
+            </div>
+            
+            <!-- Стрелка -->
+            <div style="font-size: 2rem; color: #4f9fff;">→</div>
+            
+            <!-- Низконапорный газ -->
+            <div style="flex: 1; min-width: 150px; text-align: center; background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem 1rem;">
+                <div style="font-size: 2.5rem; color: #7fc0ff; margin-bottom: 0.5rem;">⌇</div>
+                <div style="font-weight: 400; color: #b0e0ff;">НИЗКОНАПОРНЫЙ ГАЗ</div>
+                <div style="font-size: 0.7rem; color: #7fc0ff; margin-top: 0.5rem;">0.3–1.2 МПа</div>
+                <div style="margin-top: 1rem; height: 2px; background: #1a3f60; width: 100%;">
+                    <div style="width: 100%; height: 2px; background: #7fc0ff;"></div>
+                </div>
+            </div>
+            
+            <!-- Стрелка -->
+            <div style="font-size: 2rem; color: #7fc0ff;">→</div>
+            
+            <!-- Энергогенерация -->
+            <div style="flex: 1; min-width: 150px; text-align: center; background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem 1rem;">
+                <div style="font-size: 2.5rem; color: #b0e0ff; margin-bottom: 0.5rem;">⚡</div>
+                <div style="font-weight: 400; color: #b0e0ff;">ЭЛЕКТРОГЕНЕРАЦИЯ</div>
+                <div style="font-size: 0.7rem; color: #7fc0ff; margin-top: 0.5rem;">ГТУ / ГПА</div>
+                <div style="margin-top: 1rem; height: 2px; background: #1a3f60; width: 100%;">
+                    <div style="width: 100%; height: 2px; background: #b0e0ff;"></div>
+                </div>
+            </div>
+            
+            <!-- Стрелка -->
+            <div style="font-size: 2rem; color: #b0e0ff;">→</div>
+            
+            <!-- ЦОД -->
+            <div style="flex: 1; min-width: 150px; text-align: center; background: rgba(5, 15, 30, 0.7); border: 1px solid #4f9fff; padding: 1.5rem 1rem;">
+                <div style="font-size: 2.5rem; color: #4f9fff; margin-bottom: 0.5rem;">⌗</div>
+                <div style="font-weight: 400; color: #b0e0ff;">ЦОД</div>
+                <div style="font-size: 0.7rem; color: #7fc0ff; margin-top: 0.5rem;">PUE < 1.15</div>
+                <div style="margin-top: 1rem; height: 2px; background: #1a3f60; width: 100%;">
+                    <div style="width: 100%; height: 2px; background: #4f9fff;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества технологии -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>02/ ТЕХНОЛОГИЧЕСКИЕ ПРЕИМУЩЕСТВА</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;">
+            <!-- Утилизация газа -->
+            <div class="advantage-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <span style="font-size: 1.8rem; color: #4f9fff; font-family: 'Courier New';">⌇</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">УТИЛИЗАЦИЯ НИЗКОНАПОРНОГО ГАЗА</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin-bottom: 1rem; border-left: 2px solid #4f9fff; padding-left: 0.8rem;">
+                    Использование газа, который ранее сжигался на факелах или не использовался. Снижение выбросов CO₂ до 47 тыс. тонн/год.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #7fc0ff;">
+                    <span>ЭКОЛОГИЧНОСТЬ</span>
+                    <span>+100%</span>
+                </div>
+            </div>
+            
+            <!-- Энергоэффективность -->
+            <div class="advantage-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <span style="font-size: 1.8rem; color: #7fc0ff; font-family: 'Courier New';">⚡</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">ЭНЕРГОЭФФЕКТИВНОСТЬ</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin-bottom: 1rem; border-left: 2px solid #7fc0ff; padding-left: 0.8rem;">
+                    Себестоимость электроэнергии в 3.2 раза ниже сетевых тарифов. PUE ЦОДА достигает 1.12–1.15.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #7fc0ff;">
+                    <span>PUE</span>
+                    <span>1.12</span>
+                </div>
+            </div>
+            
+            <!-- Инфраструктура -->
+            <div class="advantage-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <span style="font-size: 1.8rem; color: #b0e0ff; font-family: 'Courier New';">⏣</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">ГОТОВАЯ ИНФРАСТРУКТУРА</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin-bottom: 1rem; border-left: 2px solid #b0e0ff; padding-left: 0.8rem;">
+                    Размещение на действующей площадке УКПГ/УППГ. Сокращение CAPEX на 40%, ускорение ввода в эксплуатацию.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #7fc0ff;">
+                    <span>СРОКИ</span>
+                    <span>-60%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Экономические показатели -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>03/ ЭКОНОМИЧЕСКАЯ ЭФФЕКТИВНОСТЬ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+            <!-- Левая колонка - цифры -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #2f5070;">
+                    <span style="color: #b0e0ff;">CAPEX</span>
+                    <span style="font-size: 1.5rem; color: #4f9fff;">-40%</span>
+                </div>
+                <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #2f5070;">
+                    <span style="color: #b0e0ff;">OPEX</span>
+                    <span style="font-size: 1.5rem; color: #7fc0ff;">-35%</span>
+                </div>
+                <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #2f5070;">
+                    <span style="color: #b0e0ff;">СЕБЕСТОИМОСТЬ Э/Э</span>
+                    <span style="font-size: 1.5rem; color: #b0e0ff;">3.2x ↓</span>
+                </div>
+                <div style="display: flex; align-items: baseline; justify-content: space-between;">
+                    <span style="color: #b0e0ff;">ОКУПАЕМОСТЬ</span>
+                    <span style="font-size: 1.5rem; color: #4f9fff;">3.2 ГОДА</span>
+                </div>
+            </div>
+            
+            <!-- Правая колонка - график эффективности -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="margin-bottom: 1rem; color: #b0e0ff;">СРАВНЕНИЕ PUE</div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #8fc0ff;">
+                        <span>ТРАДИЦИОННЫЙ ЦОД</span>
+                        <span>1.58</span>
+                    </div>
+                    <div style="height: 6px; background: #1a3f60; width: 100%; margin: 0.3rem 0;">
+                        <div style="width: 79%; height: 6px; background: #2f5070;"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #8fc0ff;">
+                        <span>ГАЗОВЫЙ ЦОД</span>
+                        <span style="color: #4f9fff;">1.12</span>
+                    </div>
+                    <div style="height: 6px; background: #1a3f60; width: 100%; margin: 0.3rem 0;">
+                        <div style="width: 56%; height: 6px; background: #4f9fff;"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; padding: 0.8rem; background: #0a1a2a;">
+                    <div style="display: flex; justify-content: space-between; color: #7fc0ff; font-size: 0.8rem;">
+                        <span>ГОДОВАЯ ЭКОНОМИЯ</span>
+                        <span>124 МЛН ₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Диверсификация для газодобывающих компаний -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>04/ НОВЫЕ ВОЗМОЖНОСТИ ДЛЯ ГАЗОДОБЫВАЮЩИХ КОМПАНИЙ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;">
+            <!-- Диверсификация 1 -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #4f9fff; font-family: 'Courier New';">⤴</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">МОНЕТИЗАЦИЯ ПОПУТНОГО ГАЗА</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin: 0; border-left: 2px solid #4f9fff; padding-left: 0.8rem;">
+                    Превращение низконапорного газа, ранее не имевшего коммерческой ценности, в высокомаржинальный продукт — вычислительные мощности.
+                </p>
+            </div>
+            
+            <!-- Диверсификация 2 -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #7fc0ff; font-family: 'Courier New';">⌗</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">ЦИФРОВАЯ ИНФРАСТРУКТУРА</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin: 0; border-left: 2px solid #7fc0ff; padding-left: 0.8rem;">
+                    Создание собственной цифровой инфраструктуры для обработки геоданных, моделирования месторождений и IoT.
+                </p>
+            </div>
+            
+            <!-- Диверсификация 3 -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #b0e0ff; font-family: 'Courier New';">⏣</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">НОВЫЙ БИЗНЕС-СЕГМЕНТ</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin: 0; border-left: 2px solid #b0e0ff; padding-left: 0.8rem;">
+                    Выход на рынок коммерческих ЦОД и облачных услуг, диверсификация доходов, снижение зависимости от цен на газ.
+                </p>
+            </div>
+            
+            <!-- Диверсификация 4 -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #4f9fff; font-family: 'Courier New';">⚡</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">ЭНЕРГОНЕЗАВИСИМОСТЬ</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #b0c8e0; margin: 0; border-left: 2px solid #4f9fff; padding-left: 0.8rem;">
+                    Обеспечение собственных объектов генерацией от низконапорного газа, снижение нагрузки на энергосистему.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Технические характеристики ЦОД -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>05/ ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem; text-align: center;">
+                <div style="font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.5rem;">МОЩНОСТЬ</div>
+                <div style="font-size: 1.5rem; color: #4f9fff;">24</div>
+                <div style="font-size: 0.7rem;">МВт</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem; text-align: center;">
+                <div style="font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.5rem;">СТОЕК</div>
+                <div style="font-size: 1.5rem; color: #7fc0ff;">1200</div>
+                <div style="font-size: 0.7rem;">42U</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem; text-align: center;">
+                <div style="font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.5rem;">PUE</div>
+                <div style="font-size: 1.5rem; color: #b0e0ff;">1.12</div>
+                <div style="font-size: 0.7rem;">ЦЕЛЕВОЙ</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem; text-align: center;">
+                <div style="font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.5rem;">ГАЗ</div>
+                <div style="font-size: 1.5rem; color: #4f9fff;">0.3-1.2</div>
+                <div style="font-size: 0.7rem;">МПа</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem; text-align: center;">
+                <div style="font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.5rem;">ГТУ</div>
+                <div style="font-size: 1.5rem; color: #7fc0ff;">4</div>
+                <div style="font-size: 0.7rem;">SGT-800</div>
+            </div>
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem; text-align: center;">
+                <div style="font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.5rem;">CO₂</div>
+                <div style="font-size: 1.5rem; color: #b0e0ff;">-47</div>
+                <div style="font-size: 0.7rem;">тыс. т/год</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Реализованные проекты -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>06/ РЕАЛИЗОВАННЫЕ ПРОЕКТЫ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <!-- Проект 1 -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 2rem; color: #4f9fff;">⏣</span>
+                    <div>
+                        <div style="font-weight: 400;">Уренгойский ЦОД</div>
+                        <div style="font-size: 0.7rem; color: #7fc0ff;">Газпром добыча Уренгой</div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; display: flex; justify-content: space-between; font-size: 0.8rem;">
+                    <span>12 МВт</span>
+                    <span>PUE 1.14</span>
+                    <span>2029</span>
+                </div>
+            </div>
+            
+            <!-- Проект 2 -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 2rem; color: #7fc0ff;">⏣</span>
+                    <div>
+                        <div style="font-weight: 400;">Ямбургский ЦОД</div>
+                        <div style="font-size: 0.7rem; color: #7fc0ff;">Газпром добыча Ямбург</div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; display: flex; justify-content: space-between; font-size: 0.8rem;">
+                    <span>8 МВт</span>
+                    <span>PUE 1.12</span>
+                    <span>2032</span>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--     Кнопка и мета-информация
+    <section style="display: flex; justify-content: center; margin: 2rem 0 1rem;">
+        <button class="action-button" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 1rem 3rem; font-size: 1rem; letter-spacing: 3px; cursor: pointer; transition: all 0.3s;">
+            ЗАПРОСИТЬ ТЕХНИКО-ЭКОНОМИЧЕСКОЕ ОБОСНОВАНИЕ
+        </button>
+    </section> -->
+    
+
+    <section style="margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid #2f5070;">
+        <div class="meta-signal">
+            <span class="dot" style="background: #4f9fff;"></span>
+            <span>НИЗКОНАПОРНЫЙ ГАЗ • УКПГ • ЦОД • ДИВЕРСИФИКАЦИЯ</span>
+        </div>
+    </section>
+{% include "back_button.html" %}
+    {% include "footer.html" %}
+
+</div>
+
+<style>
+    /* Минимальные интерактивные эффекты */
+    .advantage-card, [style*="grid-template-columns: repeat(2, 1fr)"] > div, [style*="grid-template-columns: repeat(3, 1fr)"] > div {
+        transition: border-color 0.2s ease;
+    }
+    
+    .advantage-card:hover, [style*="grid-template-columns: repeat(2, 1fr)"] > div:hover, [style*="grid-template-columns: repeat(3, 1fr)"] > div:hover {
+        border-color: #4f9fff;
+    }
+    
+    .action-button:hover {
+        background: rgba(79, 159, 255, 0.05);
+        border-color: #7fc0ff;
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 700px) {
+        [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: repeat(2, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;"] {
+            flex-direction: column;
+        }
+        
+        [style*="font-size: 2rem;"][style*="color: #4f9fff;"] {
+            font-size: 1.5rem !important;
+        }
+    }
+    
+    /* Убираем hover на тач-устройствах */
+    @media (hover: none) {
+        .advantage-card:hover, [style*="grid-template-columns: repeat(2, 1fr)"] > div:hover, [style*="grid-template-columns: repeat(3, 1fr)"] > div:hover {
+            border-color: #2f5070 !important;
+        }
+    }
+</style>
+
+{% endblock %}

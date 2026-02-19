@@ -38,14 +38,14 @@
                 <span style="font-size: 2rem; color: #ff6f6f;">⚠</span>
                 <div>
                     <div style="font-weight: 400; color: #ffb0b0;">ИНТЕГРАЛЬНЫЙ УРОВЕНЬ РИСКА</div>
-                    <div style="font-size: 0.8rem; color: #ff8888;">По состоянию на 2046.02.19</div>
+                    <div style="font-size: 0.8rem; color: #ff8888;">По состоянию [ОНЛАЙН]</div>
                 </div>
             </div>
             <div style="display: flex; align-items: center; gap: 1.5rem;">
-                <div style="font-size: 2.5rem; color: #ffb0b0;" id="integral-risk">47.3</div>
+                <div style="font-size: 2.5rem; color: #ffb0b0;" id="integral-risk">27.3</div>
                 <div style="width: 150px;">
                     <div style="height: 8px; background: #551f1f; width: 100%; border-radius: 4px;">
-                        <div id="integral-bar" style="width: 47.3%; height: 8px; background: linear-gradient(90deg, #ffaa4f, #ff6f6f); border-radius: 4px;"></div>
+                        <div id="integral-bar" style="width: 27.3%; height: 8px; background: linear-gradient(90deg, #ffaa4f, #ff6f6f); border-radius: 4px;"></div>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 0.3rem; font-size: 0.6rem; color: #ff8888;">
                         <span>НИЗКИЙ</span>
@@ -480,128 +480,10 @@
             <span>СИСТЕМА УПРАВЛЕНИЯ РИСКАМИ • ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ: 2046.02.19</span>
         </div>
     </section>
-
+    {% include "back_button.html" %}
+    {% include "footer.html" %}
 </div>
 
-<style>
-    /* Стили для интерактивных карточек */
-    .risk-card {
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    
-    .risk-card:hover {
-        border-color: #ff6f6f !important;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(255, 100, 100, 0.2);
-    }
-    
-    .risk-card.expanded {
-        border-color: #ff6f6f;
-        background: rgba(40, 10, 10, 0.8);
-    }
-    
-    .matrix-cell {
-        transition: background 0.2s;
-        cursor: help;
-    }
-    
-    .matrix-cell:hover {
-        filter: brightness(1.2);
-    }
-    
-    /* Адаптация для мобильных */
-    @media (max-width: 700px) {
-        #risks-grid {
-            grid-template-columns: 1fr !important;
-        }
-        
-        [style*="grid-template-columns: repeat(2, 1fr)"] {
-            grid-template-columns: 1fr !important;
-        }
-    }
-</style>
 
-<script>
-    // Интерактивность для карточек рисков
-    document.addEventListener('DOMContentLoaded', function() {
-        const riskCards = document.querySelectorAll('.risk-card');
-        const integralRisk = document.getElementById('integral-risk');
-        const integralBar = document.getElementById('integral-bar');
-        
-        // Функция обновления интегрального риска
-        function updateIntegralRisk() {
-            const levels = document.querySelectorAll('.risk-level');
-            let sum = 0;
-            levels.forEach(el => {
-                sum += parseInt(el.textContent);
-            });
-            const avg = (sum / levels.length).toFixed(1);
-            if (integralRisk) integralRisk.textContent = avg;
-            if (integralBar) integralBar.style.width = avg + '%';
-        }
-        
-        // Разворачивание/сворачивание карточек
-        riskCards.forEach(card => {
-            if (card.querySelector('.risk-details')) { // Только для карточек с деталями
-                card.addEventListener('click', function(e) {
-                    // Предотвращаем срабатывание при клике на индикатор
-                    if (e.target.classList.contains('expand-indicator')) {
-                        e.stopPropagation();
-                    }
-                    
-                    const details = this.querySelector('.risk-details');
-                    const indicator = this.querySelector('.expand-indicator');
-                    
-                    if (details.style.display === 'none') {
-                        details.style.display = 'block';
-                        this.classList.add('expanded');
-                        if (indicator) indicator.innerHTML = '▲ СВЕРНУТЬ';
-                    } else {
-                        details.style.display = 'none';
-                        this.classList.remove('expanded');
-                        if (indicator) indicator.innerHTML = '▼ ПОДРОБНЕЕ';
-                    }
-                });
-            }
-        });
-        
-        // Интерактивность для матрицы рисков
-        const matrixCells = document.querySelectorAll('.matrix-cell');
-        matrixCells.forEach(cell => {
-            cell.addEventListener('mouseenter', function() {
-                // Показываем подсказку (можно добавить tooltip)
-                const x = this.dataset.x;
-                const y = this.dataset.y;
-                if (x && y) {
-                    // Здесь можно добавить тултип
-                }
-            });
-        });
-        
-        // Периодическое обновление для имитации динамики
-        setInterval(() => {
-            // Небольшие случайные изменения для демонстрации
-            const bars = document.querySelectorAll('.risk-bar');
-            bars.forEach(bar => {
-                const currentWidth = parseFloat(bar.style.width);
-                if (currentWidth) {
-                    const change = (Math.random() - 0.5) * 2;
-                    let newWidth = currentWidth + change;
-                    newWidth = Math.max(10, Math.min(95, newWidth));
-                    bar.style.width = newWidth + '%';
-                    
-                    // Обновляем текст
-                    const levelEl = bar.closest('.risk-card')?.querySelector('.risk-level');
-                    if (levelEl) {
-                        levelEl.textContent = Math.round(newWidth) + '%';
-                    }
-                }
-            });
-            
-            updateIntegralRisk();
-        }, 5000);
-    });
-</script>
 
 {% endblock %}

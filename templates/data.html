@@ -1,20 +1,131 @@
 <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; width: 100%; flex-wrap: wrap;">
-    <a href = {% url 'src:reia' %} class="data-button">
+    <a href="{% url 'src:reia' %}" class="data-button">
         <span>ИИ</span> _РЕЯ_
     </a>
-    <a href = {% url 'src:archive' %} class="data-button">
+    <a href="{% url 'src:archive' %}" class="data-button">
         <span>⌘</span> _АРХИВ_26-46_
     </a>
-    <a href = {% url 'src:cons' %} class="data-button">
+    <a href="{% url 'src:cons' %}" class="data-button">
         <span>⍟</span> _КОНСОРЦИУМ_
     </a>
-    <a href = {% url 'src:energomarket' %} class="data-button">
+    <a href="{% url 'src:energomarket' %}" class="data-button">
         <span>⟳</span> _ЭНЕРГОМАРКЕТ_
     </a>
-    <a href = {% url 'src:ops' %} class="data-button">
+    <a href="{% url 'src:cod' %}" class="data-button">
+        <span>P</span> _ЦОД_[ЭНЕРГО]обеспечение
+    </a>
+    <a href="{% url 'src:ops' %}" class="data-button">
         <span>!!!</span> _ПОВЕДЕНЧЕСКИЙ ОПЕРАТОР ЭНЕРГОСИСТЕМЫ_
     </a>
-    <a href = "#" class="data-button">
-        <span>#</span> СЕКРЕТНО
+    
+    <!-- Кнопка с паролем (внутри того же контейнера) -->
+    <a href="javascript:void(0);" onclick="openModal()" class="data-button">
+        <span>#</span> ЗАШИФРОВАНО
     </a>
 </div>
+
+<!-- Модальное окно -->
+<div id="passwordModal" class="modal">
+    <div class="modal-content">
+        <h3>$ ТРЕБУЕТСЯ АВТОРИЗАЦИЯ</h3>
+        <input type="password" id="passwordInput" class="modal-input" placeholder="ВВЕДИТЕ ПАРОЛЬ" onkeypress="handleKeyPress(event)">
+        
+        <!-- Контейнер для сообщения об ошибке -->
+        <div id="errorContainer"></div>
+        
+        <div class="modal-buttons">
+            <button onclick="checkPasswordModal()" class="modal-button">ДОСТУП</button>
+            <button onclick="closeModal()" class="modal-button">ОТМЕНА</button>
+        </div>
+        
+        <!-- Микро-сигнал в стиле вашего дизайна -->
+        <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+            <div class="micro-signal" style="position: static; opacity: 0.5;">
+                <span>SECURE</span>
+                <div class="dot-micro"></div>
+                <span>CHANNEL</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Кнопка с паролем
+
+function openModal() {
+    document.getElementById('passwordModal').style.display = 'flex';
+    document.getElementById('passwordInput').focus();
+    clearError();
+}
+
+function closeModal() {
+    document.getElementById('passwordModal').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+    clearError();
+}
+
+function showError(message) {
+    const errorContainer = document.getElementById('errorContainer');
+    errorContainer.innerHTML = `
+        <div class="error-message">
+            ${message}
+        </div>
+    `;
+    document.getElementById('passwordInput').value = '';
+    
+    // Подсветка поля ввода
+    highlightInput();
+    
+    // Эффект для модального окна
+    const modal = document.querySelector('.modal-content');
+    modal.style.animation = 'none';
+    modal.offsetHeight;
+    modal.style.animation = 'modalFadeIn 0.3s ease';
+}
+
+function clearError() {
+    document.getElementById('errorContainer').innerHTML = '';
+}
+
+function checkPasswordModal() {
+    var password = document.getElementById('passwordInput').value;
+    if (password === "2046") {
+        const modal = document.querySelector('.modal-content');
+        modal.style.border = '1px solid rgba(79, 255, 79, 0.4)';
+        modal.style.boxShadow = '0 0 40px rgba(79, 255, 79, 0.3)';
+        
+        setTimeout(function() {
+            window.location.href = "{% url 'src:risk' %}";
+        }, 300);
+    } else if (password !== "") {
+        showError("НЕВЕРНЫЙ ПАРОЛЬ ДОСТУПА");
+    } else {
+        showError("ТРЕБУЕТСЯ ВВЕСТИ ПАРОЛЬ");
+    }
+}
+
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        checkPasswordModal();
+    }
+}
+
+function highlightInput() {
+    const input = document.getElementById('passwordInput');
+    input.style.border = '1px solid #ff4f4f';
+    input.style.boxShadow = '0 0 20px rgba(255, 79, 79, 0.3)';
+    
+    setTimeout(function() {
+        input.style.border = '1px solid rgba(79, 159, 255, 0.25)';
+        input.style.boxShadow = 'none';
+    }, 1000);
+}
+
+// Закрытие модального окна при клике вне его
+window.onclick = function(event) {
+    var modal = document.getElementById('passwordModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+</script>

@@ -24,6 +24,18 @@ class ShowEMPage(TemplateView):
 class ShowConsPage(TemplateView):
     template_name = "src/cons.html"
 
+class ShowAxisPage(TemplateView):
+    template_name = "src/axis.html"
+
+class ShowConventionPage(TemplateView):
+    template_name = "src/convention.html"
+
+class ShowCODPage(TemplateView):
+    template_name = "src/cod.html"
+
+class ShowRiskPage(TemplateView):
+    template_name = "src/risk.html"
+
 class Show1(TemplateView):
     template_name = "src/1.html"
 

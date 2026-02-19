@@ -51,3 +51,88 @@ document.querySelectorAll('.market-card').forEach(card => {
         console.log('Card clicked:', this);
     });
 });
+
+ // РИСКИ
+ // Интерактивность для карточек рисков
+    document.addEventListener('DOMContentLoaded', function() {
+        const riskCards = document.querySelectorAll('.risk-card');
+        const integralRisk = document.getElementById('integral-risk');
+        const integralBar = document.getElementById('integral-bar');
+        
+        // Функция обновления интегрального риска
+        function updateIntegralRisk() {
+            const levels = document.querySelectorAll('.risk-level');
+            let sum = 0;
+            levels.forEach(el => {
+                sum += parseInt(el.textContent);
+            });
+            const avg = (sum / levels.length).toFixed(1);
+            if (integralRisk) integralRisk.textContent = avg;
+            if (integralBar) integralBar.style.width = avg + '%';
+        }
+        
+        // Разворачивание/сворачивание карточек
+        riskCards.forEach(card => {
+            if (card.querySelector('.risk-details')) { // Только для карточек с деталями
+                card.addEventListener('click', function(e) {
+                    // Предотвращаем срабатывание при клике на индикатор
+                    if (e.target.classList.contains('expand-indicator')) {
+                        e.stopPropagation();
+                    }
+                    
+                    const details = this.querySelector('.risk-details');
+                    const indicator = this.querySelector('.expand-indicator');
+                    
+                    if (details.style.display === 'none') {
+                        details.style.display = 'block';
+                        this.classList.add('expanded');
+                        if (indicator) indicator.innerHTML = '▲ СВЕРНУТЬ';
+                    } else {
+                        details.style.display = 'none';
+                        this.classList.remove('expanded');
+                        if (indicator) indicator.innerHTML = '▼ ПОДРОБНЕЕ';
+                    }
+                });
+            }
+        });
+        
+        // Интерактивность для матрицы рисков
+        const matrixCells = document.querySelectorAll('.matrix-cell');
+        matrixCells.forEach(cell => {
+            cell.addEventListener('mouseenter', function() {
+                // Показываем подсказку (можно добавить tooltip)
+                const x = this.dataset.x;
+                const y = this.dataset.y;
+                if (x && y) {
+                    // Здесь можно добавить тултип
+                }
+            });
+        });
+        
+        // Периодическое обновление для имитации динамики
+        setInterval(() => {
+            // Небольшие случайные изменения для демонстрации
+            const bars = document.querySelectorAll('.risk-bar');
+            bars.forEach(bar => {
+                const currentWidth = parseFloat(bar.style.width);
+                if (currentWidth) {
+                    const change = (Math.random() - 0.5) * 2;
+                    let newWidth = currentWidth + change;
+                    newWidth = Math.max(10, Math.min(30, newWidth));
+                    bar.style.width = newWidth + '%';
+                    
+                    // Обновляем текст
+                    const levelEl = bar.closest('.risk-card')?.querySelector('.risk-level');
+                    if (levelEl) {
+                        levelEl.textContent = Math.round(newWidth) + '%';
+                    }
+                }
+            });
+            
+            updateIntegralRisk();
+        }, 5000);
+    });
+
+
+
+
