@@ -533,5 +533,74 @@ footer {
     }
 
 
+/* Энергомаркет */
+  /* Анимация для карточек при наведении */
+    .market-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .market-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 170, 79, 0.2);
+        border-color: #ffaa4f;
+    }
+    
+    .market-card::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #ffaa4f, transparent, #ffaa4f);
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: -1;
+        border-radius: 6px;
+    }
+    
+    .market-card:hover::before {
+        opacity: 0.1;
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 700px) {
+        [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: repeat(2, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: repeat(4, 1fr)"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+    
+    @media (max-width: 400px) {
+        .frame {
+            padding: 1rem !important;
+        }
+        
+        h1 {
+            font-size: 1.8rem !important;
+        }
+    }
+    
+    /* Убираем hover на тач-устройствах */
+    @media (hover: none) {
+        .market-card:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        
+        .market-card:hover::before {
+            opacity: 0 !important;
+        }
+    }
+
 
  

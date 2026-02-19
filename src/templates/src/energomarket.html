@@ -4,7 +4,7 @@
 {% block content %}
 <canvas id="matrix-canvas"></canvas>
 
-<!-- Единый контейнер -->
+<!-- Единый контейнер с фиксированной максимальной шириной для всех страниц -->
 <div class="frame" style="max-width: 1000px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box;">
 
     <!-- Заголовок -->
@@ -112,7 +112,7 @@
 
     <!-- Разделитель -->
     <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
-        <span style="color: #ffaa4f; font-size: 1.5rem; opacity: 0.5;">⍟ ⍟ ⍟</span>
+        <span style="color: #ffaa4f; font-size: 1.5rem; opacity: 0.5;"># # #</span>
     </div>
 
     <!-- Второй блок: Оборудование для ТЭК + Специалисты + Проектирование -->
@@ -183,6 +183,7 @@
         </div>
     </section>
 
+
     <!-- Текущие торги и лоты -->
     <section style="margin: 1rem 0; border-top: 0.5px solid #aa7733; padding-top: 2rem;">
         <h2 style="font-size: 1.3rem; font-weight: 300; color: #ffdbaa; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
@@ -228,7 +229,7 @@
     </section>
 
     <!-- Навигация и мета-информация -->
-    <section style="margin-top: 2rem; padding-top: 1.5rem; border-top: 0.5px solid #aa7733;">
+    <!-- <section style="margin-top: 2rem; padding-top: 1.5rem; border-top: 0.5px solid #aa7733;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div class="meta-signal">
                 <span class="dot" style="background: #ffaa4f; width: 8px; height: 8px;"></span>
@@ -238,7 +239,7 @@
                 <a href="#" style="color: #ffaa4f; text-decoration: none; font-size: 0.9rem;">ВСЕ ЛОТЫ →</a>
                 <a href="#" style="color: #ffaa4f; text-decoration: none; font-size: 0.9rem;">СТАТИСТИКА РЫНКА →</a>
             </div>
-        </div>
+        </div> -->
         
         <!-- Индикатор активности -->
         <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
@@ -250,93 +251,9 @@
         </div>
     </section>
 
+    {% include "back_button.html" %}
+    {% include "footer.html" %}
+
 </div>
-
-<style>
-    /* Анимация для карточек при наведении */
-    .market-card {
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .market-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(255, 170, 79, 0.2);
-        border-color: #ffaa4f;
-    }
-    
-    .market-card::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, #ffaa4f, transparent, #ffaa4f);
-        opacity: 0;
-        transition: opacity 0.3s;
-        z-index: -1;
-        border-radius: 6px;
-    }
-    
-    .market-card:hover::before {
-        opacity: 0.1;
-    }
-    
-    /* Единый стиль для всех значков */
-    .market-card span:first-child {
-        font-family: 'Courier New', monospace;
-        font-weight: 300;
-        line-height: 1;
-    }
-    
-    /* Адаптация для мобильных */
-    @media (max-width: 700px) {
-        [style*="grid-template-columns: repeat(3, 1fr)"] {
-            grid-template-columns: 1fr !important;
-        }
-        
-        [style*="grid-template-columns: repeat(2, 1fr)"] {
-            grid-template-columns: 1fr !important;
-        }
-        
-        [style*="grid-template-columns: repeat(4, 1fr)"] {
-            grid-template-columns: repeat(2, 1fr) !important;
-        }
-    }
-    
-    @media (max-width: 400px) {
-        .frame {
-            padding: 1rem !important;
-        }
-        
-        h1 {
-            font-size: 1.8rem !important;
-        }
-    }
-    
-    /* Убираем hover на тач-устройствах */
-    @media (hover: none) {
-        .market-card:hover {
-            transform: none !important;
-            box-shadow: none !important;
-        }
-        
-        .market-card:hover::before {
-            opacity: 0 !important;
-        }
-    }
-</style>
-
-<script>
-    // Добавляем интерактивность для карточек
-    document.querySelectorAll('.market-card').forEach(card => {
-        card.addEventListener('click', function() {
-            // Здесь можно добавить переход на страницу раздела
-            console.log('Card clicked:', this);
-        });
-    });
-</script>
 
 {% endblock %}

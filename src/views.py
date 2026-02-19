@@ -18,6 +18,12 @@ class ShowArchiveWPage(TemplateView):
 class ShowOPSPage(TemplateView):
     template_name = "src/ops.html"
 
+class ShowEMPage(TemplateView):
+    template_name = "src/energomarket.html"
+
+class ShowConsPage(TemplateView):
+    template_name = "src/cons.html"
+
 class Show1(TemplateView):
     template_name = "src/1.html"
 

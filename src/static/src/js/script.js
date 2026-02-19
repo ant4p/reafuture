@@ -43,3 +43,11 @@ window.dispatchEvent(new Event('scroll'));
 if ('ontouchstart' in window) {
     document.documentElement.style.setProperty('--hover-none', 'none');
 }
+
+// Добавляем интерактивность для карточек (опционально) Энергомаркет
+document.querySelectorAll('.market-card').forEach(card => {
+    card.addEventListener('click', function() {
+        // Здесь можно добавить переход на страницу раздела
+        console.log('Card clicked:', this);
+    });
+});
