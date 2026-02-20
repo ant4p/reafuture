@@ -20,6 +20,7 @@ from django.urls import include, path
 
 from reafuture import settings
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("src.urls", namespace="src")),
