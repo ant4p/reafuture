@@ -38,7 +38,7 @@ class ShowRiskPage(TemplateView):
     template_name = "src/risk.html"
 
 def handler_404(request, exception):
-    return render(request, template_name='src/error_404.html')
+    return render(request, template_name='src/handlers/error_404.html')
 
 class Show1(TemplateView):
     template_name = "src/1.html"

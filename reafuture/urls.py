@@ -30,4 +30,4 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-handler_404 = handler_404
+handler404 = handler_404
