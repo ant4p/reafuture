@@ -2,15 +2,23 @@
 
 {% block content %}
 
-<main class="main">
-    <section class="contacts">
-        <div class="contacts__inner container">
-            <div class="section-header">
-                <div class="section-header__subtitle title">Страница не найдена</div>
-            </div>
-            <div class="contacts__text text">Запрошенная страница не существует.</div>
+<canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 620px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 3rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
+    
+    <!-- секция 0: заголовок -->
+    <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+            <h1>∅ РЭА//<span style="font-weight: 200;">2046</span></h1>
+            <span class="time-pulse">▲ ПОТОК 0006</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-top: -5px;">
+            <span class="dot" style="width: 8px; height: 8px; background: #48c8ff; opacity: 0.9; animation: softBlink 4s infinite;"></span>
+            <span class="system-ready">ЗАПРАШИВАЕМЫЙ УЗЕЛ НЕ НАЙДЕН</span>
+            <span style="flex:1; border-bottom: 0.5px solid rgba(100,200,255,0.15);"></span>
         </div>
     </section>
-</main>
+    {% include 'back_button.html' %}
+
+</div>
 
 {% endblock %}
