@@ -3,605 +3,352 @@
 
 {% block content %}
 <canvas id="matrix-canvas"></canvas>
+<div class="frame" style="max-width: 750px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2.5rem; position: relative; z-index: 2; backdrop-filter: blur(0.3px);">
 
-<!-- Единый контейнер -->
-<div class="frame" style="max-width: 1000px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box;">
-
-    <!-- Заголовок -->
-    <section style="text-align: center; margin: 0.5rem 0 2rem 0;">
-        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, transparent, #ff6f6f);"></span>
-            <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 200; letter-spacing: 4px; margin: 0; text-shadow: 0 0 30px #ff6f6f; color: #ffffff;">ФАКТОРЫ</h1>
-            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, #ff6f6f, transparent);"></span>
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between;">
+            <h1 style="font-size: 3.8rem; color: #ffdd99;">∅ ЭНЕРГО//<span style="font-weight: 200;">РЭА</span></h1>
+            <span class="time-pulse" style="border-color: #ffaa33;">⚡ 3.4 GW</span>
         </div>
-        <div style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 200; color: #ffb0b0; margin-top: -0.5rem; letter-spacing: 6px;">РИСКА</div>
-        
-        <div style="display: flex; justify-content: center; gap: 2rem; color: #ff8888; font-size: 0.9rem; letter-spacing: 2px; margin-top: 1rem; flex-wrap: wrap;">
-            <span>⚠ ТЕХНОЛОГИИ</span>
-            <span>✦</span>
-            <span>⚠ ФИНАНСЫ</span>
-            <span>✦</span>
-            <span>⚠ КИБЕРБЕЗОПАСНОСТЬ</span>
-            <span>✦</span>
-            <span>⚠ КАДРЫ</span>
-            <span>✦</span>
-            <span>⚠ СОЦИУМ</span>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <span class="dot" style="width: 8px; height: 8px; background: #ffaa33; animation: pulse 2s infinite;"></span>
+            <span class="system-ready" style="color: #ffcc88;">СЕТЬ: СБАЛАНСИРОВАНА</span>
         </div>
-        
-        <div style="width: 300px; height: 1px; background: linear-gradient(90deg, transparent, #ff6f6f, #ffb0b0, #ff6f6f, transparent); margin: 1.5rem auto; opacity: 0.5;"></div>
     </section>
 
-    <!-- Общий индикатор риска (интерактивный) -->
-    <section style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #ff6f6f; padding: 1.5rem; margin-bottom: 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <!-- Секция 1: основные показатели -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>01/ ПОТОКИ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <p>
+            [МОДУЛЬ] __Поведенческий_{оператор}_энергосистемы__<br><br>
+            [ОПИСАНИЕ МОДУЛЯ]<br> <strong>РЭА Минэнерго России</strong> является системным аналитическим центром и оператором управления спросом в электроэнергетике.<br>
+            Агентство занимается не столько генерацией или передачей энергии, сколько управлением потреблением, т.е. анализирует, как люди, города и отрасли экономики используют электроэнергию, и на основании этого управляет устойчивостью энергосистемы.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 1.8rem; color: #ffaa33;">↑ 2.1</div>
+                <div style="font-size: 0.7rem;">ГЕНЕРАЦИЯ (GW)</div>
+            </div>
+            <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 1.8rem; color: #88ccff;">↓ 1.9</div>
+                <div style="font-size: 0.7rem;">ПОТРЕБЛЕНИЕ (GW)</div>
+            </div>
+            <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 1.8rem; color: #88ff99;">↻ 0.2</div>
+                <div style="font-size: 0.7rem;">НАКОПЛЕНИЕ (GW)</div>
+            </div>
+        </div>
+        
+        <!-- Индикатор баланса -->
+        <div style="margin: 1rem 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #b89040;">
+                <span>ДИСБАЛАНС</span>
+                <span>+0.2 GW (ИЗБЫТОК)</span>
+            </div>
+            <div style="height: 8px; background: #332811; width: 100%; margin-top: 4px;">
+                <div style="height: 8px; background: #88ff99; width: 52%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 2: источники генерации -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>02/ ИСТОЧНИКИ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>ТЭС</span>
+                    <span>1.2 GW (57%)</span>
+                </div>
+                <div style="height: 4px; background: #332811;">
+                    <div style="height: 4px; background: #ff884d; width: 57%;"></div>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>ГЭС</span>
+                    <span>0.6 GW (28%)</span>
+                </div>
+                <div style="height: 4px; background: #332811;">
+                    <div style="height: 4px; background: #4da6ff; width: 28%;"></div>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>ВИЭ (солнце/ветер)</span>
+                    <span>0.3 GW (15%)</span>
+                </div>
+                <div style="height: 4px; background: #332811;">
+                    <div style="height: 4px; background: #88ff88; width: 15%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК: Индекс энергетического настроения (ИЭН) -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>03/ ИНДЭКС ЭНЕРГЕТИЧЕСКОГО НАСТРОЕНИЯ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        
+        <!-- Основной показатель с анимацией -->
+        <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.5rem; margin: 1rem 0;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;">
+                <span style="color: #ffcc88; font-size: 1.1rem;">ТЕКУЩЕЕ ЗНАЧЕНИЕ ИЭН</span>
+                <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                    <span style="font-size: 2.5rem; color: #88ff99; font-weight: 300;" id="ien-value">+6,3</span>
+                    <span style="color: #88ff99; font-size: 1.2rem;">%</span>
+                </div>
+            </div>
+            <div style="margin-top: 0.5rem; color: #b89040; font-size: 0.9rem;">
+                к среднегодовой норме
+            </div>
+            
+            <!-- Анимированный тренд -->
+            <div style="margin-top: 1.5rem; height: 40px; display: flex; align-items: flex-end; gap: 2px;">
+                <div style="flex: 1; height: 20px; background: #ffaa33; opacity: 0.5;"></div>
+                <div style="flex: 1; height: 28px; background: #ffaa33; opacity: 0.6;"></div>
+                <div style="flex: 1; height: 35px; background: #ffaa33; opacity: 0.7;"></div>
+                <div style="flex: 1; height: 42px; background: #88ff99; width: 8px;" id="trend-bar"></div>
+                <div style="flex: 1; height: 38px; background: #ffaa33; opacity: 0.8;"></div>
+                <div style="flex: 1; height: 30px; background: #ffaa33; opacity: 0.6;"></div>
+                <div style="flex: 1; height: 25px; background: #ffaa33; opacity: 0.5;"></div>
+            </div>
+        </div>
+
+        <!-- Детальные показатели -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; padding: 1rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 0.7rem; color: #b89040; margin-bottom: 0.3rem;">НОЧНАЯ НАГРУЗКА</div>
+                <div style="font-size: 1.5rem; color: #88ff99;">+4,8%</div>
+                <div style="font-size: 0.6rem; color: #b89040;">промышленность</div>
+            </div>
+            <div style="background: #1a150c; padding: 1rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 0.7rem; color: #b89040; margin-bottom: 0.3rem;">КОММЕРЧЕСКИЙ СЕКТОР</div>
+                <div style="font-size: 1.5rem; color: #88ff99;">+5,1%</div>
+                <div style="font-size: 0.6rem; color: #b89040;">потребление</div>
+            </div>
+            <div style="background: #1a150c; padding: 1rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 0.7rem; color: #b89040; margin-bottom: 0.3rem;">БЫТОВОЙ СПРОС</div>
+                <div style="font-size: 1.5rem; color: #ffaa33;">СТАБИЛЬНО</div>
+                <div style="font-size: 0.6rem; color: #b89040;">без пиков</div>
+            </div>
+        </div>
+
+        <!-- Вывод -->
+        <div style="background: #0a0f0a; border-left: 3px solid #88ff99; padding: 1rem;">
+            <span style="color: #ffcc88; font-size: 0.9rem;">
+                Индекс демонстрирует умеренно позитивную динамику экономической активности.
+            </span>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК: Состояние гибкости энергосистемы -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>04/ ГИБКОСТЬ ЭНЕРГОСИСТЕМЫ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+
+        <!-- Основные показатели в сетке -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="font-size: 0.8rem; color: #b89040;">УПРАВЛЯЕМАЯ НАГРУЗКА</div>
+                <div style="font-size: 2rem; color: #88ccff; font-weight: 300;">18,7</div>
+                <div style="font-size: 0.7rem; color: #b89040;">ГВт</div>
+                <div style="margin-top: 0.5rem; height: 4px; background: #332811;">
+                    <div style="width: 62%; height: 4px; background: #88ccff;" id="load-bar"></div>
+                </div>
+            </div>
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="font-size: 0.8rem; color: #b89040;">ГИБКОЕ РЕГУЛИРОВАНИЕ</div>
+                <div style="font-size: 2rem; color: #88ff99; font-weight: 300;">12,3%</div>
+                <div style="font-size: 0.7rem; color: #b89040;">потребления</div>
+                <div style="margin-top: 0.5rem; height: 4px; background: #332811;">
+                    <div style="width: 12.3%; height: 4px; background: #88ff99;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Эффективность управления -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <span style="color: #b89040; font-size: 0.8rem;">ВЕЧЕРНИЕ ПИКИ</span>
+                    <span style="color: #88ff99; font-size: 1.2rem;">−9,6%</span>
+                </div>
+                <div style="margin-top: 0.8rem; height: 6px; background: #332811;">
+                    <div style="width: 90.4%; height: 6px; background: #ffaa33;" id="peak-bar"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                    <span style="font-size: 0.6rem; color: #b89040;">БЫЛО</span>
+                    <span style="font-size: 0.6rem; color: #b89040;">СТАЛО</span>
+                </div>
+            </div>
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <span style="color: #b89040; font-size: 0.8rem;">АВАРИЙНЫЙ РЕЗЕРВ</span>
+                    <span style="color: #88ff99; font-size: 1.2rem;">−18,4%</span>
+                </div>
+                <div style="margin-top: 0.8rem; height: 6px; background: #332811;">
+                    <div style="width: 81.6%; height: 6px; background: #88ccff;" id="reserve-bar"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                    <span style="font-size: 0.6rem; color: #b89040;">ПОТРЕБНОСТЬ</span>
+                    <span style="font-size: 0.6rem; color: #b89040;">СНИЖЕНИЕ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ключевой вывод -->
+        <div style="background: #0a0f0a; border-left: 3px solid #88ccff; padding: 1rem;">
+            <span style="color: #ffcc88; font-size: 0.9rem;">
+                Система переходит от компенсации пиков к их предотвращению.
+            </span>
+        </div>
+    </section>
+
+    <!-- Секция 3: регионы и нагрузка (исходная) -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>05/ РЕГИОНАЛЬНАЯ НАГРУЗКА</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <span style="font-size: 2rem; color: #ff6f6f;">⚠</span>
-                <div>
-                    <div style="font-weight: 400; color: #ffb0b0;">ИНТЕГРАЛЬНЫЙ УРОВЕНЬ РИСКА</div>
-                    <div style="font-size: 0.8rem; color: #ff8888;">По состоянию на 2046.02.19</div>
+                <span style="min-width: 80px;">СЕВЕР</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 45%;"></div>
                 </div>
+                <span>0.9 GW</span>
             </div>
-            <div style="display: flex; align-items: center; gap: 1.5rem;">
-                <div style="font-size: 2.5rem; color: #ffb0b0;" id="integral-risk">47.3</div>
-                <div style="width: 150px;">
-                    <div style="height: 8px; background: #551f1f; width: 100%; border-radius: 4px;">
-                        <div id="integral-bar" style="width: 47.3%; height: 8px; background: linear-gradient(90deg, #ffaa4f, #ff6f6f); border-radius: 4px;"></div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem; font-size: 0.6rem; color: #ff8888;">
-                        <span>НИЗКИЙ</span>
-                        <span>КРИТИЧЕСКИЙ</span>
-                    </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">ЦЕНТР</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 82%;"></div>
                 </div>
+                <span>1.6 GW</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Интерактивные карточки рисков -->
-    <section style="margin: 1rem 0;">
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;" id="risks-grid">
-            
-            <!-- Технологические риски -->
-            <div class="risk-card" data-risk="technology" style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.2rem; border-radius: 4px; cursor: pointer; transition: all 0.3s;">
-                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <span style="font-size: 2rem; color: #ff6f6f;">⚙</span>
-                    <span style="font-weight: 400; color: #ffb0b0;">ТЕХНОЛОГИЧЕСКИЕ</span>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">ЮГ</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 31%;"></div>
                 </div>
-                <div style="height: 60px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #ff8888; margin-bottom: 0.3rem;">
-                        <span>УРОВЕНЬ РИСКА</span>
-                        <span class="risk-level">68%</span>
-                    </div>
-                    <div style="height: 6px; background: #551f1f; width: 100%;">
-                        <div class="risk-bar" style="width: 68%; height: 6px; background: #ff6f6f;"></div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: #ffc0c0; margin-bottom: 1rem; border-left: 2px solid #ff6f6f; padding-left: 0.5rem;">
-                    Износ оборудования, сбои автоматизации, недостаточная надежность новых технологий.
-                </p>
-                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ff8888;">
-                    <span>⬤ 3 АКТИВНЫХ</span>
-                    <span class="expand-indicator">▼ ПОДРОБНЕЕ</span>
-                </div>
-                
-                <!-- Детали (скрыты по умолчанию) -->
-                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa5555;">
-                    <div style="margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Аварийность оборудования</span>
-                            <span style="color: #ff6f6f;">ВЫСОКИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 72%; height: 3px; background: #ff6f6f;"></div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Сбои ПО АСУ ТП</span>
-                            <span style="color: #ffaa4f;">СРЕДНИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 45%; height: 3px; background: #ffaa4f;"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Несовместимость стандартов</span>
-                            <span style="color: #ffaa4f;">СРЕДНИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 38%; height: 3px; background: #ffaa4f;"></div>
-                        </div>
-                    </div>
-                </div>
+                <span>0.6 GW</span>
             </div>
-
-            <!-- Финансовые риски -->
-            <div class="risk-card" data-risk="financial" style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.2rem; border-radius: 4px; cursor: pointer;">
-                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <span style="font-size: 2rem; color: #ffaa4f;">💰</span>
-                    <span style="font-weight: 400; color: #ffb0b0;">ФИНАНСОВЫЕ</span>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="min-width: 80px;">ВОСТОК</span>
+                <div style="flex:1; height: 6px; background: #332811;">
+                    <div style="height: 6px; background: #ffaa33; width: 64%;"></div>
                 </div>
-                <div style="height: 60px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #ff8888; margin-bottom: 0.3rem;">
-                        <span>УРОВЕНЬ РИСКА</span>
-                        <span class="risk-level">42%</span>
-                    </div>
-                    <div style="height: 6px; background: #551f1f; width: 100%;">
-                        <div class="risk-bar" style="width: 42%; height: 6px; background: #ffaa4f;"></div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: #ffc0c0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.5rem;">
-                    Волатильность цен на энергоносители, колебания валютных курсов, инфляционные риски.
-                </p>
-                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ff8888;">
-                    <span>⬤ 2 АКТИВНЫХ</span>
-                    <span class="expand-indicator">▼ ПОДРОБНЕЕ</span>
-                </div>
-                
-                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa5555;">
-                    <div style="margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Колебания цен на газ</span>
-                            <span style="color: #ffaa4f;">СРЕДНИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 55%; height: 3px; background: #ffaa4f;"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Кредитные риски</span>
-                            <span style="color: #88ff88;">НИЗКИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 22%; height: 3px; background: #88ff88;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Кибербезопасность -->
-            <div class="risk-card" data-risk="cyber" style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.2rem; border-radius: 4px; cursor: pointer;">
-                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <span style="font-size: 2rem; color: #4f9fff;">⌗</span>
-                    <span style="font-weight: 400; color: #ffb0b0;">КИБЕРБЕЗОПАСНОСТЬ</span>
-                </div>
-                <div style="height: 60px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #ff8888; margin-bottom: 0.3rem;">
-                        <span>УРОВЕНЬ РИСКА</span>
-                        <span class="risk-level">57%</span>
-                    </div>
-                    <div style="height: 6px; background: #551f1f; width: 100%;">
-                        <div class="risk-bar" style="width: 57%; height: 6px; background: #4f9fff;"></div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: #ffc0c0; margin-bottom: 1rem; border-left: 2px solid #4f9fff; padding-left: 0.5rem;">
-                    Атаки на АСУ ТП, утечки данных, компрометация нейроинтерфейсов, DDoS.
-                </p>
-                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ff8888;">
-                    <span>⬤ 4 АКТИВНЫХ</span>
-                    <span class="expand-indicator">▼ ПОДРОБНЕЕ</span>
-                </div>
-                
-                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa5555;">
-                    <div style="margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Атаки на АСУ ТП</span>
-                            <span style="color: #ff6f6f;">ВЫСОКИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 81%; height: 3px; background: #ff6f6f;"></div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Утечки данных</span>
-                            <span style="color: #ffaa4f;">СРЕДНИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 43%; height: 3px; background: #ffaa4f;"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Компрометация нейроинтерфейсов</span>
-                            <span style="color: #88ff88;">НИЗКИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 18%; height: 3px; background: #88ff88;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Кадровые риски -->
-            <div class="risk-card" data-risk="hr" style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.2rem; border-radius: 4px; cursor: pointer;">
-                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <span style="font-size: 2rem; color: #b0e0ff;">⏺</span>
-                    <span style="font-weight: 400; color: #ffb0b0;">КАДРОВЫЕ</span>
-                </div>
-                <div style="height: 60px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #ff8888; margin-bottom: 0.3rem;">
-                        <span>УРОВЕНЬ РИСКА</span>
-                        <span class="risk-level">35%</span>
-                    </div>
-                    <div style="height: 6px; background: #551f1f; width: 100%;">
-                        <div class="risk-bar" style="width: 35%; height: 6px; background: #b0e0ff;"></div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: #ffc0c0; margin-bottom: 1rem; border-left: 2px solid #b0e0ff; padding-left: 0.5rem;">
-                    Дефицит квалифицированных специалистов, текучесть кадров, устаревание компетенций.
-                </p>
-                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ff8888;">
-                    <span>⬤ 2 АКТИВНЫХ</span>
-                    <span class="expand-indicator">▼ ПОДРОБНЕЕ</span>
-                </div>
-                
-                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa5555;">
-                    <div style="margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Дефицит ИТ-специалистов</span>
-                            <span style="color: #ffaa4f;">СРЕДНИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 52%; height: 3px; background: #ffaa4f;"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Текучесть персонала</span>
-                            <span style="color: #88ff88;">НИЗКИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 24%; height: 3px; background: #88ff88;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Социальные риски -->
-            <div class="risk-card" data-risk="social" style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.2rem; border-radius: 4px; cursor: pointer;">
-                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <span style="font-size: 2rem; color: #ffb0b0;">⌇</span>
-                    <span style="font-weight: 400; color: #ffb0b0;">СОЦИАЛЬНЫЕ</span>
-                </div>
-                <div style="height: 60px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #ff8888; margin-bottom: 0.3rem;">
-                        <span>УРОВЕНЬ РИСКА</span>
-                        <span class="risk-level">23%</span>
-                    </div>
-                    <div style="height: 6px; background: #551f1f; width: 100%;">
-                        <div class="risk-bar" style="width: 23%; height: 6px; background: #ffb0b0;"></div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: #ffc0c0; margin-bottom: 1rem; border-left: 2px solid #ffb0b0; padding-left: 0.5rem;">
-                    Общественное неприятие технологий, социальная напряженность, миграция населения.
-                </p>
-                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ff8888;">
-                    <span>⬤ 1 АКТИВНЫЙ</span>
-                    <span class="expand-indicator">▼ ПОДРОБНЕЕ</span>
-                </div>
-                
-                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa5555;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                            <span>Общественное неприятие</span>
-                            <span style="color: #88ff88;">НИЗКИЙ</span>
-                        </div>
-                        <div style="height: 3px; background: #551f1f; width: 100%;">
-                            <div style="width: 23%; height: 3px; background: #88ff88;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Пустая карточка для симметрии (или можно добавить еще один риск) -->
-            <div class="risk-card" style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.2rem; border-radius: 4px; opacity: 0.7;">
-                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <span style="font-size: 2rem; color: #555;">⚡</span>
-                    <span style="font-weight: 400; color: #888;">ЭКОЛОГИЧЕСКИЕ</span>
-                </div>
-                <div style="height: 60px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #888; margin-bottom: 0.3rem;">
-                        <span>УРОВЕНЬ РИСКА</span>
-                        <span>12%</span>
-                    </div>
-                    <div style="height: 6px; background: #333; width: 100%;">
-                        <div style="width: 12%; height: 6px; background: #555;"></div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 1rem; border-left: 2px solid #555; padding-left: 0.5rem;">
-                    В стадии оценки. Данные обновляются.
-                </p>
-                <div style="display: flex; justify-content: flex-end; font-size: 0.7rem; color: #888;">
-                    <span>СКОРО</span>
-                </div>
+                <span>1.2 GW</span>
             </div>
         </div>
     </section>
 
-    <!-- Матрица рисков (интерактивная) -->
-    <section style="margin: 2rem 0;">
-        <h2 style="font-size: 1.3rem; font-weight: 300; color: #ffb0b0; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-            <span style="width: 30px; height: 1px; background: #ff6f6f;"></span>
-            <span>МАТРИЦА ВЕРОЯТНОСТЬ × ВЛИЯНИЕ</span>
-            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #ff6f6f, transparent);"></span>
+    <!-- Секция 4: прогноз -->
+    <section>
+        <h2 style="color: #ffcc88;">
+            <span>06/ ПРОГНОЗ НА 24Ч</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
         </h2>
-
-        <div style="background: rgba(30, 5, 5, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa5555; padding: 1.5rem;">
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 0.5rem;">
-                <div style="color: #ff8888; font-size: 0.7rem; text-align: center;">НИЗКОЕ</div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div style="color: #ff8888; font-size: 0.7rem; text-align: center;">ВЫСОКОЕ</div>
-            </div>
-            
-            <!-- Строки матрицы -->
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <!-- Вероятность высокая -->
-                <div style="display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 0.5rem; align-items: center;">
-                    <div style="color: #ff8888; font-size: 0.7rem;">ВЫСОКАЯ</div>
-                    <div style="height: 30px; background: rgba(255, 100, 100, 0.3); border: 1px solid #aa5555; display: flex; align-items: center; justify-content: center; position: relative;" class="matrix-cell" data-x="4" data-y="0">
-                        <span class="matrix-marker" style="display: none;">⬤</span>
-                    </div>
-                    <div style="height: 30px; background: rgba(255, 100, 100, 0.4); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(255, 80, 80, 0.5); border: 1px solid #aa5555; position: relative;" class="matrix-cell" data-x="2" data-y="0">
-                        <span class="matrix-marker" style="display: none;">⬤</span>
-                    </div>
-                    <div style="height: 30px; background: rgba(255, 60, 60, 0.6); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(255, 40, 40, 0.7); border: 1px solid #ff6f6f; position: relative;" class="matrix-cell" data-x="0" data-y="0">
-                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff6f6f;">⬤</span>
-                    </div>
-                </div>
-                
-                <!-- Вероятность средняя -->
-                <div style="display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 0.5rem; align-items: center;">
-                    <div style="color: #ff8888; font-size: 0.7rem;">СРЕДНЯЯ</div>
-                    <div style="height: 30px; background: rgba(255, 150, 100, 0.3); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(255, 130, 80, 0.4); border: 1px solid #aa5555; position: relative;" class="matrix-cell" data-x="3" data-y="1">
-                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffaa4f;">⬤</span>
-                    </div>
-                    <div style="height: 30px; background: rgba(255, 110, 60, 0.5); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(255, 90, 40, 0.6); border: 1px solid #aa5555; position: relative;" class="matrix-cell" data-x="1" data-y="1">
-                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff6f6f;">⬤</span>
-                    </div>
-                    <div style="height: 30px; background: rgba(255, 70, 20, 0.7); border: 1px solid #aa5555;"></div>
-                </div>
-                
-                <!-- Вероятность низкая -->
-                <div style="display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 0.5rem; align-items: center;">
-                    <div style="color: #ff8888; font-size: 0.7rem;">НИЗКАЯ</div>
-                    <div style="height: 30px; background: rgba(200, 200, 100, 0.2); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(180, 180, 80, 0.3); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(160, 160, 60, 0.4); border: 1px solid #aa5555; position: relative;" class="matrix-cell" data-x="2" data-y="2">
-                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #88ff88;">⬤</span>
-                    </div>
-                    <div style="height: 30px; background: rgba(140, 140, 40, 0.5); border: 1px solid #aa5555;"></div>
-                    <div style="height: 30px; background: rgba(120, 120, 20, 0.6); border: 1px solid #aa5555;"></div>
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 0.5rem; margin-top: 0.5rem;">
-                <div></div>
-                <div style="color: #ff8888; font-size: 0.6rem; text-align: center;">1</div>
-                <div style="color: #ff8888; font-size: 0.6rem; text-align: center;">2</div>
-                <div style="color: #ff8888; font-size: 0.6rem; text-align: center;">3</div>
-                <div style="color: #ff8888; font-size: 0.6rem; text-align: center;">4</div>
-                <div style="color: #ff8888; font-size: 0.6rem; text-align: center;">5</div>
-            </div>
-            
-            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; font-size: 0.7rem; color: #ff8888;">
-                <span><span style="color: #88ff88;">⬤</span> НИЗКИЙ РИСК</span>
-                <span><span style="color: #ffaa4f;">⬤</span> СРЕДНИЙ РИСК</span>
-                <span><span style="color: #ff6f6f;">⬤</span> ВЫСОКИЙ РИСК</span>
-            </div>
+        <div style="display: flex; gap: 4px; align-items: flex-end; height: 100px;">
+            <div style="flex:1; height: 40px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 65px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 80px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 95px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 70px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 55px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 45px; background: #ffaa33;"></div>
+            <div style="flex:1; height: 35px; background: #ffaa33;"></div>
         </div>
+        <div style="display: flex; justify-content: space-between; color: #aa8844; margin-top: 4px;">
+            <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span>
+        </div>
+
+        {% include 'back_button.html' %}
     </section>
 
-    <!-- Меры по снижению рисков -->
-    <section style="margin: 2rem 0;">
-        <h2 style="font-size: 1.3rem; font-weight: 300; color: #ffb0b0; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-            <span style="width: 30px; height: 1px; background: #ff6f6f;"></span>
-            <span>МЕРЫ ПО СНИЖЕНИЮ</span>
-            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #ff6f6f, transparent);"></span>
-        </h2>
-
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-            <div style="background: rgba(30, 5, 5, 0.7); border: 1px solid #aa5555; padding: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <span style="color: #4f9fff;">✓</span>
-                    <span style="font-weight: 400;">Резервирование оборудования</span>
-                </div>
-                <div style="font-size: 0.8rem; color: #ffc0c0; margin-left: 1.5rem;">Снижение технологических рисков на 40%</div>
-            </div>
-            <div style="background: rgba(30, 5, 5, 0.7); border: 1px solid #aa5555; padding: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <span style="color: #ffaa4f;">✓</span>
-                    <span style="font-weight: 400;">Хеджирование валютных рисков</span>
-                </div>
-                <div style="font-size: 0.8rem; color: #ffc0c0; margin-left: 1.5rem;">Защита от колебаний курсов</div>
-            </div>
-            <div style="background: rgba(30, 5, 5, 0.7); border: 1px solid #aa5555; padding: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <span style="color: #4f9fff;">✓</span>
-                    <span style="font-weight: 400;">SIEM-системы и киберучения</span>
-                </div>
-                <div style="font-size: 0.8rem; color: #ffc0c0; margin-left: 1.5rem;">Мониторинг атак 24/7</div>
-            </div>
-            <div style="background: rgba(30, 5, 5, 0.7); border: 1px solid #aa5555; padding: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <span style="color: #b0e0ff;">✓</span>
-                    <span style="font-weight: 400;">Программы непрерывного обучения</span>
-                </div>
-                <div style="font-size: 0.8rem; color: #ffc0c0; margin-left: 1.5rem;">Повышение квалификации персонала</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Динамика рисков (простая визуализация) -->
-    <section style="margin: 1rem 0; padding: 1.5rem; background: rgba(30, 5, 5, 0.7); border: 1px solid #aa5555;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <span style="color: #ffb0b0;">ДИНАМИКА ЗА 12 МЕСЯЦЕВ</span>
-            <span style="color: #ff8888; font-size: 0.8rem;">ОБЩИЙ ТРЕНД: +2.3%</span>
-        </div>
-        <div style="display: flex; gap: 4px; height: 100px; align-items: flex-end;">
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                <div style="height: 67px; width: 100%; background: #ff6f6f; opacity: 0.7;"></div>
-                <span style="font-size: 0.6rem; margin-top: 4px;">ЯНВ</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                <div style="height: 52px; width: 100%; background: #ff6f6f; opacity: 0.7;"></div>
-                <span style="font-size: 0.6rem;">ФЕВ</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                <div style="height: 48px; width: 100%; background: #ff6f6f; opacity: 0.7;"></div>
-                <span style="font-size: 0.6rem;">МАР</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                <div style="height: 63px; width: 100%; background: #ff6f6f; opacity: 0.7;"></div>
-                <span style="font-size: 0.6rem;">АПР</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                <div style="height: 71px; width: 100%; background: #ff6f6f; opacity: 0.7;"></div>
-                <span style="font-size: 0.6rem;">МАЙ</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                <div style="height: 59px; width: 100%; background: #ff6f6f; opacity: 0.7;"></div>
-                <span style="font-size: 0.6rem;">ИЮН</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Мета-информация -->
-    <section style="margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid #aa5555;">
-        <div class="meta-signal">
-            <span class="dot" style="background: #ff6f6f;"></span>
-            <span>СИСТЕМА УПРАВЛЕНИЯ РИСКАМИ • ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ: 2046.02.19</span>
-        </div>
-    </section>
-
+    {% include 'footer.html' %}
 </div>
 
-<style>
-    /* Стили для интерактивных карточек */
-    .risk-card {
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    
-    .risk-card:hover {
-        border-color: #ff6f6f !important;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(255, 100, 100, 0.2);
-    }
-    
-    .risk-card.expanded {
-        border-color: #ff6f6f;
-        background: rgba(40, 10, 10, 0.8);
-    }
-    
-    .matrix-cell {
-        transition: background 0.2s;
-        cursor: help;
-    }
-    
-    .matrix-cell:hover {
-        filter: brightness(1.2);
-    }
-    
-    /* Адаптация для мобильных */
-    @media (max-width: 700px) {
-        #risks-grid {
-            grid-template-columns: 1fr !important;
-        }
-        
-        [style*="grid-template-columns: repeat(2, 1fr)"] {
-            grid-template-columns: 1fr !important;
-        }
-    }
-</style>
-
+<!-- Интерактивные скрипты -->
 <script>
-    // Интерактивность для карточек рисков
     document.addEventListener('DOMContentLoaded', function() {
-        const riskCards = document.querySelectorAll('.risk-card');
-        const integralRisk = document.getElementById('integral-risk');
-        const integralBar = document.getElementById('integral-bar');
+        // Анимация для индекса настроения (случайные колебания)
+        const ienValue = document.getElementById('ien-value');
+        const trendBar = document.getElementById('trend-bar');
         
-        // Функция обновления интегрального риска
-        function updateIntegralRisk() {
-            const levels = document.querySelectorAll('.risk-level');
-            let sum = 0;
-            levels.forEach(el => {
-                sum += parseInt(el.textContent);
-            });
-            const avg = (sum / levels.length).toFixed(1);
-            if (integralRisk) integralRisk.textContent = avg;
-            if (integralBar) integralBar.style.width = avg + '%';
+        if (ienValue) {
+            setInterval(() => {
+                // Небольшие флуктуации для демонстрации
+                const baseValue = 6.3;
+                const fluctuation = (Math.random() - 0.5) * 0.6;
+                const newValue = (baseValue + fluctuation).toFixed(1);
+                ienValue.textContent = (newValue > 0 ? '+' : '') + newValue;
+                
+                // Меняем высоту трендового бара
+                if (trendBar) {
+                    const newHeight = 35 + Math.random() * 15;
+                    trendBar.style.height = newHeight + 'px';
+                }
+            }, 3000);
         }
         
-        // Разворачивание/сворачивание карточек
-        riskCards.forEach(card => {
-            if (card.querySelector('.risk-details')) { // Только для карточек с деталями
-                card.addEventListener('click', function(e) {
-                    // Предотвращаем срабатывание при клике на индикатор
-                    if (e.target.classList.contains('expand-indicator')) {
-                        e.stopPropagation();
-                    }
-                    
-                    const details = this.querySelector('.risk-details');
-                    const indicator = this.querySelector('.expand-indicator');
-                    
-                    if (details.style.display === 'none') {
-                        details.style.display = 'block';
-                        this.classList.add('expanded');
-                        if (indicator) indicator.innerHTML = '▲ СВЕРНУТЬ';
-                    } else {
-                        details.style.display = 'none';
-                        this.classList.remove('expanded');
-                        if (indicator) indicator.innerHTML = '▼ ПОДРОБНЕЕ';
-                    }
-                });
-            }
-        });
+        // Анимация для баров гибкости
+        const loadBar = document.getElementById('load-bar');
+        const peakBar = document.getElementById('peak-bar');
+        const reserveBar = document.getElementById('reserve-bar');
         
-        // Интерактивность для матрицы рисков
-        const matrixCells = document.querySelectorAll('.matrix-cell');
-        matrixCells.forEach(cell => {
-            cell.addEventListener('mouseenter', function() {
-                // Показываем подсказку (можно добавить tooltip)
-                const x = this.dataset.x;
-                const y = this.dataset.y;
-                if (x && y) {
-                    // Здесь можно добавить тултип
-                }
-            });
-        });
-        
-        // Периодическое обновление для имитации динамики
-        setInterval(() => {
-            // Небольшие случайные изменения для демонстрации
-            const bars = document.querySelectorAll('.risk-bar');
-            bars.forEach(bar => {
-                const currentWidth = parseFloat(bar.style.width);
-                if (currentWidth) {
-                    const change = (Math.random() - 0.5) * 2;
-                    let newWidth = currentWidth + change;
-                    newWidth = Math.max(10, Math.min(95, newWidth));
-                    bar.style.width = newWidth + '%';
-                    
-                    // Обновляем текст
-                    const levelEl = bar.closest('.risk-card')?.querySelector('.risk-level');
-                    if (levelEl) {
-                        levelEl.textContent = Math.round(newWidth) + '%';
-                    }
-                }
-            });
-            
-            updateIntegralRisk();
-        }, 5000);
+        if (loadBar) {
+            setInterval(() => {
+                // Небольшие изменения для демонстрации
+                const loadWidth = 62 + (Math.random() - 0.5) * 2;
+                loadBar.style.width = loadWidth + '%';
+                
+                const peakWidth = 90.4 + (Math.random() - 0.5) * 1;
+                peakBar.style.width = peakWidth + '%';
+                
+                const reserveWidth = 81.6 + (Math.random() - 0.5) * 1.5;
+                reserveBar.style.width = reserveWidth + '%';
+            }, 4000);
+        }
     });
 </script>
 
+<style>
+    /* Дополнительные стили для новых блоков */
+    @keyframes gentlePulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { opacity: 0.8; }
+    }
+    
+    #ien-value {
+        animation: gentlePulse 3s infinite;
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 500px) {
+        [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        h1 {
+            font-size: 2.5rem !important;
+        }
+    }
+</style>
 {% endblock %}
