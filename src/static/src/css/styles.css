@@ -975,3 +975,32 @@ footer {
         transform: scale(1.05);
         box-shadow: 0 0 15px currentColor;
     }
+
+
+
+
+    /* Дополнительные стили для новых блоков */
+    @keyframes gentlePulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { opacity: 0.8; }
+    }
+    
+    #ien-value {
+        animation: gentlePulse 3s infinite;
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 500px) {
+        [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        h1 {
+            font-size: 2.5rem !important;
+        }
+    }

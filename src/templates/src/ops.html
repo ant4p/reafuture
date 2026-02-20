@@ -23,13 +23,10 @@
             <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
         </h2>
         <p>
-            
-
-            [МОДУЛЬ] __Поведенческий_{оператор}_энергосистемы__<br>
-
+            [МОДУЛЬ] __Поведенческий_{оператор}_энергосистемы__<br><br>
             [ОПИСАНИЕ МОДУЛЯ]<br> <strong>РЭА Минэнерго России</strong> является системным аналитическим центром и оператором управления спросом в электроэнергетике.<br>
-Агентство занимается не столько генерацией или передачей энергии, сколько управлением потреблением, т.е. анализирует, как люди, города и отрасли экономики используют электроэнергию, и на основании этого управляет устойчивостью энергосистемы.
-
+            Агентство занимается не столько генерацией или передачей энергии, сколько управлением потреблением, т.е. анализирует, как люди, города и отрасли экономики используют электроэнергию, и на основании этого управляет устойчивостью энергосистемы.
+        </p>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
             <div style="background: #1a150c; padding: 1.2rem; text-align: center; border: 1px solid #55401a;">
@@ -45,6 +42,7 @@
                 <div style="font-size: 0.7rem;">НАКОПЛЕНИЕ (GW)</div>
             </div>
         </div>
+        
         <!-- Индикатор баланса -->
         <div style="margin: 1rem 0;">
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #b89040;">
@@ -94,10 +92,134 @@
         </div>
     </section>
 
-    <!-- Секция 3: регионы и нагрузка -->
+    <!-- НОВЫЙ БЛОК: Индекс энергетического настроения (ИЭН) -->
     <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
         <h2 style="color: #ffcc88;">
-            <span>03/ РЕГИОНАЛЬНАЯ НАГРУЗКА</span>
+            <span>03/ ИНДЭКС ЭНЕРГЕТИЧЕСКОГО НАСТРОЕНИЯ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+        
+        <!-- Основной показатель с анимацией -->
+        <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.5rem; margin: 1rem 0;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;">
+                <span style="color: #ffcc88; font-size: 1.1rem;">ТЕКУЩЕЕ ЗНАЧЕНИЕ ИЭН</span>
+                <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                    <span style="font-size: 2.5rem; color: #88ff99; font-weight: 300;" id="ien-value">+6,3</span>
+                    <span style="color: #88ff99; font-size: 1.2rem;">%</span>
+                </div>
+            </div>
+            <div style="margin-top: 0.5rem; color: #b89040; font-size: 0.9rem;">
+                к среднегодовой норме
+            </div>
+            
+            <!-- Анимированный тренд -->
+            <div style="margin-top: 1.5rem; height: 40px; display: flex; align-items: flex-end; gap: 2px;">
+                <div style="flex: 1; height: 20px; background: #ffaa33; opacity: 0.5;"></div>
+                <div style="flex: 1; height: 28px; background: #ffaa33; opacity: 0.6;"></div>
+                <div style="flex: 1; height: 35px; background: #ffaa33; opacity: 0.7;"></div>
+                <div style="flex: 1; height: 42px; background: #88ff99; width: 8px;" id="trend-bar"></div>
+                <div style="flex: 1; height: 38px; background: #ffaa33; opacity: 0.8;"></div>
+                <div style="flex: 1; height: 30px; background: #ffaa33; opacity: 0.6;"></div>
+                <div style="flex: 1; height: 25px; background: #ffaa33; opacity: 0.5;"></div>
+            </div>
+        </div>
+
+        <!-- Детальные показатели -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; padding: 1rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 0.7rem; color: #b89040; margin-bottom: 0.3rem;">НОЧНАЯ НАГРУЗКА</div>
+                <div style="font-size: 1.5rem; color: #88ff99;">+4,8%</div>
+                <div style="font-size: 0.6rem; color: #b89040;">промышленность</div>
+            </div>
+            <div style="background: #1a150c; padding: 1rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 0.7rem; color: #b89040; margin-bottom: 0.3rem;">КОММЕРЧЕСКИЙ СЕКТОР</div>
+                <div style="font-size: 1.5rem; color: #88ff99;">+5,1%</div>
+                <div style="font-size: 0.6rem; color: #b89040;">потребление</div>
+            </div>
+            <div style="background: #1a150c; padding: 1rem; text-align: center; border: 1px solid #55401a;">
+                <div style="font-size: 0.7rem; color: #b89040; margin-bottom: 0.3rem;">БЫТОВОЙ СПРОС</div>
+                <div style="font-size: 1.5rem; color: #ffaa33;">СТАБИЛЬНО</div>
+                <div style="font-size: 0.6rem; color: #b89040;">без пиков</div>
+            </div>
+        </div>
+
+        <!-- Вывод -->
+        <div style="background: #0a0f0a; border-left: 3px solid #88ff99; padding: 1rem;">
+            <span style="color: #ffcc88; font-size: 0.9rem;">
+                Индекс демонстрирует умеренно позитивную динамику экономической активности.
+            </span>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК: Состояние гибкости энергосистемы -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>04/ ГИБКОСТЬ ЭНЕРГОСИСТЕМЫ</span>
+            <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
+        </h2>
+
+        <!-- Основные показатели в сетке -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="font-size: 0.8rem; color: #b89040;">УПРАВЛЯЕМАЯ НАГРУЗКА</div>
+                <div style="font-size: 2rem; color: #88ccff; font-weight: 300;">18,7</div>
+                <div style="font-size: 0.7rem; color: #b89040;">ГВт</div>
+                <div style="margin-top: 0.5rem; height: 4px; background: #332811;">
+                    <div style="width: 62%; height: 4px; background: #88ccff;" id="load-bar"></div>
+                </div>
+            </div>
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="font-size: 0.8rem; color: #b89040;">ГИБКОЕ РЕГУЛИРОВАНИЕ</div>
+                <div style="font-size: 2rem; color: #88ff99; font-weight: 300;">12,3%</div>
+                <div style="font-size: 0.7rem; color: #b89040;">потребления</div>
+                <div style="margin-top: 0.5rem; height: 4px; background: #332811;">
+                    <div style="width: 12.3%; height: 4px; background: #88ff99;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Эффективность управления -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <span style="color: #b89040; font-size: 0.8rem;">ВЕЧЕРНИЕ ПИКИ</span>
+                    <span style="color: #88ff99; font-size: 1.2rem;">−9,6%</span>
+                </div>
+                <div style="margin-top: 0.8rem; height: 6px; background: #332811;">
+                    <div style="width: 90.4%; height: 6px; background: #ffaa33;" id="peak-bar"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                    <span style="font-size: 0.6rem; color: #b89040;">БЫЛО</span>
+                    <span style="font-size: 0.6rem; color: #b89040;">СТАЛО</span>
+                </div>
+            </div>
+            <div style="background: #1a150c; border: 1px solid #55401a; padding: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <span style="color: #b89040; font-size: 0.8rem;">АВАРИЙНЫЙ РЕЗЕРВ</span>
+                    <span style="color: #88ff99; font-size: 1.2rem;">−18,4%</span>
+                </div>
+                <div style="margin-top: 0.8rem; height: 6px; background: #332811;">
+                    <div style="width: 81.6%; height: 6px; background: #88ccff;" id="reserve-bar"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                    <span style="font-size: 0.6rem; color: #b89040;">ПОТРЕБНОСТЬ</span>
+                    <span style="font-size: 0.6rem; color: #b89040;">СНИЖЕНИЕ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ключевой вывод -->
+        <div style="background: #0a0f0a; border-left: 3px solid #88ccff; padding: 1rem;">
+            <span style="color: #ffcc88; font-size: 0.9rem;">
+                Система переходит от компенсации пиков к их предотвращению.
+            </span>
+        </div>
+    </section>
+
+    <!-- Секция 3: регионы и нагрузка (исходная) -->
+    <section style="border-bottom: 0.5px solid rgba(255, 200, 100, 0.25); padding-bottom: 2rem;">
+        <h2 style="color: #ffcc88;">
+            <span>05/ РЕГИОНАЛЬНАЯ НАГРУЗКА</span>
             <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
         </h2>
         <div style="display: flex; flex-direction: column; gap: 0.8rem;">
@@ -135,7 +257,7 @@
     <!-- Секция 4: прогноз -->
     <section>
         <h2 style="color: #ffcc88;">
-            <span>04/ ПРОГНОЗ НА 24Ч</span>
+            <span>06/ ПРОГНОЗ НА 24Ч</span>
             <span class="thin-line" style="background: linear-gradient(90deg, #ffaa33 0%, transparent 90%);"></span>
         </h2>
         <div style="display: flex; gap: 4px; align-items: flex-end; height: 100px;">
@@ -152,9 +274,58 @@
             <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span>
         </div>
 
-        {% include 'back_button.html' %}
+        
     </section>
-
+{% include 'data.html' %}
+{% include 'back_button.html' %}
     {% include 'footer.html' %}
 </div>
+
+<!-- Интерактивные скрипты -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Анимация для индекса настроения (случайные колебания)
+        const ienValue = document.getElementById('ien-value');
+        const trendBar = document.getElementById('trend-bar');
+        
+        if (ienValue) {
+            setInterval(() => {
+                // Небольшие флуктуации для демонстрации
+                const baseValue = 6.3;
+                const fluctuation = (Math.random() - 0.5) * 0.6;
+                const newValue = (baseValue + fluctuation).toFixed(1);
+                ienValue.textContent = (newValue > 0 ? '+' : '') + newValue;
+                
+                // Меняем высоту трендового бара
+                if (trendBar) {
+                    const newHeight = 35 + Math.random() * 15;
+                    trendBar.style.height = newHeight + 'px';
+                }
+            }, 3000);
+        }
+        
+        // Анимация для баров гибкости
+        const loadBar = document.getElementById('load-bar');
+        const peakBar = document.getElementById('peak-bar');
+        const reserveBar = document.getElementById('reserve-bar');
+        
+        if (loadBar) {
+            setInterval(() => {
+                // Небольшие изменения для демонстрации
+                const loadWidth = 62 + (Math.random() - 0.5) * 2;
+                loadBar.style.width = loadWidth + '%';
+                
+                const peakWidth = 90.4 + (Math.random() - 0.5) * 1;
+                peakBar.style.width = peakWidth + '%';
+                
+                const reserveWidth = 81.6 + (Math.random() - 0.5) * 1.5;
+                reserveBar.style.width = reserveWidth + '%';
+            }, 4000);
+        }
+    });
+</script>
+
+<style>
+    
+</style>
 {% endblock %}
