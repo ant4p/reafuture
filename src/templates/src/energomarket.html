@@ -4,7 +4,7 @@
 {% block content %}
 <canvas id="matrix-canvas"></canvas>
 
-<!-- Единый контейнер с фиксированной максимальной шириной для всех страниц -->
+<!-- Единый контейнер -->
 <div class="frame" style="max-width: 1000px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box;">
 
     <!-- Заголовок -->
@@ -14,7 +14,7 @@
             <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 200; letter-spacing: 4px; margin: 0; text-shadow: 0 0 20px #ffaa4f; color: #ffdbaa;">ЭНЕРГОМАРКЕТ</h1>
             <span style="height: 1px; width: 60px; background: linear-gradient(90deg, #ffaa4f, transparent);"></span>
         </div>
-        <div style="display: flex; justify-content: center; gap: 1rem; color: #ffaa4f; font-size: 0.9rem; letter-spacing: 2px;">
+        <div style="display: flex; justify-content: center; gap: 1rem; color: #ffaa4f; font-size: 0.9rem; letter-spacing: 2px; flex-wrap: wrap;">
             <span>⚡ ТОРГОВАЯ ПЛОЩАДКА</span>
             <span>✦</span>
             <span>⚡ ЭНЕРГЕТИЧЕСКИЙ РЫНОК</span>
@@ -22,23 +22,23 @@
         <div style="width: 200px; height: 1px; background: #ffaa4f; margin: 1rem auto; opacity: 0.3;"></div>
     </section>
 
-    <!-- Статистика рынка -->
+    <!-- Ключевые показатели рынка (обновленные данные) -->
     <section style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin: 1rem 0;">
         <div style="background: rgba(28, 18, 8, 0.7); border: 1px solid #aa7733; padding: 1rem; text-align: center; border-radius: 4px;">
-            <div style="font-size: 1.5rem; color: #ffaa4f;">1.2</div>
-            <div style="font-size: 0.7rem; color: #e0c8a0;">ПВт·ч/сут</div>
+            <div style="font-size: 1.3rem; color: #ffaa4f;">150K</div>
+            <div style="font-size: 0.65rem; color: #e0c8a0;">ПОСТАВЩИКОВ</div>
         </div>
         <div style="background: rgba(28, 18, 8, 0.7); border: 1px solid #aa7733; padding: 1rem; text-align: center; border-radius: 4px;">
-            <div style="font-size: 1.5rem; color: #ffaa4f;">47</div>
-            <div style="font-size: 0.7rem; color: #e0c8a0;">УЧАСТНИКОВ</div>
+            <div style="font-size: 1.3rem; color: #ffaa4f;">20M</div>
+            <div style="font-size: 0.65rem; color: #e0c8a0;">ЕДИНИЦ ОБОРУД.</div>
         </div>
         <div style="background: rgba(28, 18, 8, 0.7); border: 1px solid #aa7733; padding: 1rem; text-align: center; border-radius: 4px;">
-            <div style="font-size: 1.5rem; color: #ffaa4f;">312</div>
-            <div style="font-size: 0.7rem; color: #e0c8a0;">ЛОТОВ</div>
+            <div style="font-size: 1.3rem; color: #ffaa4f;">2.7M</div>
+            <div style="font-size: 0.65rem; color: #e0c8a0;">ОБУЧЕННЫХ</div>
         </div>
         <div style="background: rgba(28, 18, 8, 0.7); border: 1px solid #aa7733; padding: 1rem; text-align: center; border-radius: 4px;">
-            <div style="font-size: 1.5rem; color: #ffaa4f;">98.3</div>
-            <div style="font-size: 0.7rem; color: #e0c8a0;">% СПРОСА</div>
+            <div style="font-size: 1.3rem; color: #ffaa4f;">64K</div>
+            <div style="font-size: 0.65rem; color: #e0c8a0;">ПРОЕКТОВ</div>
         </div>
     </section>
 
@@ -51,60 +51,127 @@
         </h2>
         
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;">
-            <!-- Образование -->
-            <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px; transition: all 0.3s;">
+            <!-- Образование (полные данные) -->
+            <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px;">
                 <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <!-- Минималистичный значок: книга -->
                     <span style="font-size: 1.8rem; color: #ffaa4f; font-weight: 200;">⌘</span>
                     <span style="font-size: 1.2rem; font-weight: 400; color: #ffdbaa;">ОБРАЗОВАНИЕ</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
-                    Подготовка кадров для энергетики. Курсы повышения квалификации, магистерские программы, тренажерные комплексы.
+                <p style="font-size: 0.85rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
+                    Подготовка кадров для ТЭК. Курсы повышения квалификации, магистерские программы, тренажерные комплексы.
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">12 ПРОГРАММ</span>
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">300+ СТУДЕНТОВ</span>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem; color: #b89040;">НАПРАВЛЕНИЙ ОБУЧЕНИЯ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">3 000+</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 95%; height: 3px; background: #88ff99;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #b89040;">ПРОШЛИ ОБУЧЕНИЕ</span>
+                        <span style="font-size: 1rem; color: #ffaa4f;">2 700 000</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 90%; height: 3px; background: #ffaa4f;"></div>
+                    </div>
                 </div>
-                <div style="margin-top: 1rem; height: 2px; background: #553d1a;">
-                    <div style="width: 75%; height: 2px; background: #ffaa4f;"></div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="expand-indicator" style="color: #ffaa4f; font-size: 0.7rem; cursor: pointer;">▼ ПОДРОБНЕЕ</span>
+                </div>
+                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                    <div style="font-size: 0.8rem; color: #e0c8a0;">Активные программы:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem;">
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Цифровые подстанции</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Управление спросом</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">ВИЭ</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Квантовые сети</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Аналитика и право -->
+            <!-- Аналитика и право (полные данные) -->
             <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px;">
                 <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <!-- Минималистичный значок: весы/аналитика -->
                     <span style="font-size: 1.8rem; color: #ffaa4f; font-weight: 200;">⚖</span>
                     <span style="font-size: 1.2rem; font-weight: 400; color: #ffdbaa;">АНАЛИТИКА И ПРАВО</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
-                    Правовое сопровождение сделок, аналитика рынка, нормативная база, юридический консалтинг для участников ТЭК.
+                <p style="font-size: 0.85rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
+                    <strong>Аналитика:</strong> исследования, анализ данных и прогнозирование для оценки состояния отраслей ТЭК, выявление трендов, оценка инвестиционных проектов.
+                    <br><br>
+                    <strong>Право:</strong> законодательная база, государственное регулирование, договорные отношения, ответственность за нарушения.
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">45 АНАЛИТИКОВ</span>
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">1200+ КЕЙСОВ</span>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem; color: #b89040;">ПАРТНЕРОВ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">20 000+</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 85%; height: 3px; background: #88ff99;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #b89040;">ЭКСПЕРТИЗ ПРОВЕДЕНО</span>
+                        <span style="font-size: 1rem; color: #ffaa4f;">15 000</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 75%; height: 3px; background: #ffaa4f;"></div>
+                    </div>
                 </div>
-                <div style="margin-top: 1rem; height: 2px; background: #553d1a;">
-                    <div style="width: 88%; height: 2px; background: #ffaa4f;"></div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="expand-indicator" style="color: #ffaa4f; font-size: 0.7rem; cursor: pointer;">▼ ПОДРОБНЕЕ</span>
+                </div>
+                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                    <div style="font-size: 0.8rem; color: #e0c8a0;">Направления аналитики:</div>
+                    <ul style="font-size: 0.7rem; color: #b89040; margin-top: 0.3rem; padding-left: 1.2rem;">
+                        <li>Исследования рынка ТЭК</li>
+                        <li>Прогнозирование спроса</li>
+                        <li>Оценка инвестпроектов</li>
+                    </ul>
+                    <div style="font-size: 0.8rem; color: #e0c8a0; margin-top: 0.5rem;">Правовые направления:</div>
+                    <ul style="font-size: 0.7rem; color: #b89040; margin-top: 0.3rem; padding-left: 1.2rem;">
+                        <li>Договорное право</li>
+                        <li>Антимонопольное регулирование</li>
+                        <li>Энергетическое право</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Экспертиза -->
+            <!-- Экспертиза (полные данные) -->
             <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px;">
                 <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <!-- Минималистичный значок: лупа/экспертиза -->
                     <span style="font-size: 1.8rem; color: #ffaa4f; font-weight: 200;">◉</span>
                     <span style="font-size: 1.2rem; font-weight: 400; color: #ffdbaa;">ЭКСПЕРТИЗА</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
-                    Техническая экспертиза проектов, аудит энергоэффективности, сертификация, независимая оценка.
+                <p style="font-size: 0.85rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
+                    Проведение исследований для выявления неисправностей на объектах ТЭК, оптимизация энергопотребления, повышение энергоэффективности. Оценка проектной документации объектов ТЭК (тепловые сети, котельные установки, системы отопления и ГВС).
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">87 ЭКСПЕРТОВ</span>
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">300+ ПРОЕКТОВ</span>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem; color: #b89040;">ПРОВЕДЕНО ЭКСПЕРТИЗ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">30 000</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 90%; height: 3px; background: #88ff99;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #b89040;">СОКРАЩЕНИЕ ВЫБРОСОВ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">-70%</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 30%; height: 3px; background: #88ff99;"></div>
+                    </div>
                 </div>
-                <div style="margin-top: 1rem; height: 2px; background: #553d1a;">
-                    <div style="width: 92%; height: 2px; background: #ffaa4f;"></div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="expand-indicator" style="color: #ffaa4f; font-size: 0.7rem; cursor: pointer;">▼ ПОДРОБНЕЕ</span>
+                </div>
+                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                    <div style="font-size: 0.8rem; color: #e0c8a0;">Объекты экспертизы:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem;">
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Тепловые сети</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Котельные установки</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Системы ГВС</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Энергоаудит</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,136 +191,292 @@
         </h2>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;">
-            <!-- Оборудование для ТЭК -->
+            <!-- Оборудование для ТЭК (полные данные) -->
             <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px;">
                 <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <!-- Минималистичный значок: шестерня/оборудование -->
                     <span style="font-size: 1.8rem; color: #ffaa4f; font-weight: 200;">⚙</span>
                     <span style="font-size: 1.2rem; font-weight: 400; color: #ffdbaa;">ОБОРУДОВАНИЕ ДЛЯ ТЭК</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
-                    Поставка энергетического оборудования, турбины, генераторы, трансформаторы, системы автоматизации.
+                <p style="font-size: 0.85rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
+                    Поставка оборудования для нефтедобычи и нефтепереработки, газотранспорта и производства СПГ, производства и транспортировки тепла и электроэнергии.
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">156 ПОСТАВЩИКОВ</span>
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">3400 ЕДИНИЦ</span>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem; color: #b89040;">ПОСТАВЩИКОВ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">150 000</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 88%; height: 3px; background: #88ff99;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #b89040;">НАИМЕНОВАНИЙ</span>
+                        <span style="font-size: 1rem; color: #ffaa4f;">20 000 000</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 95%; height: 3px; background: #ffaa4f;"></div>
+                    </div>
                 </div>
-                <div style="margin-top: 1rem; height: 2px; background: #553d1a;">
-                    <div style="width: 78%; height: 2px; background: #ffaa4f;"></div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="expand-indicator" style="color: #ffaa4f; font-size: 0.7rem; cursor: pointer;">▼ ПОДРОБНЕЕ</span>
+                </div>
+                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                    <div style="font-size: 0.8rem; color: #e0c8a0;">Категории оборудования:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem;">
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Турбины</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Генераторы</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Трансформаторы</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Насосы</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Специалисты -->
+            <!-- Специалисты (полные данные) -->
             <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px;">
                 <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <!-- Минималистичный значок: человек/специалист -->
                     <span style="font-size: 1.8rem; color: #ffaa4f; font-weight: 200;">⏺</span>
                     <span style="font-size: 1.2rem; font-weight: 400; color: #ffdbaa;">СПЕЦИАЛИСТЫ</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
-                    База специалистов энергетической отрасли. Подбор персонала, аутстаффинг, эксперты для проектов.
+                <p style="font-size: 0.85rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
+                    Подбор персонала, база соискателей, база выпускников вузов по распределению (направление ТЭК). Аутсорсинг производственного персонала (инженеры, команды экспертов, проекты под ключ).
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">1200 РЕЗЮМЕ</span>
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">45 КОМПАНИЙ</span>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem; color: #b89040;">РЕЗЮМЕ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">500 000+</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 92%; height: 3px; background: #88ff99;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #b89040;">КОМПАНИЙ ДЛЯ АУТСОРСИНГА</span>
+                        <span style="font-size: 1rem; color: #ffaa4f;">12 000+</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 78%; height: 3px; background: #ffaa4f;"></div>
+                    </div>
                 </div>
-                <div style="margin-top: 1rem; height: 2px; background: #553d1a;">
-                    <div style="width: 65%; height: 2px; background: #ffaa4f;"></div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="expand-indicator" style="color: #ffaa4f; font-size: 0.7rem; cursor: pointer;">▼ ПОДРОБНЕЕ</span>
+                </div>
+                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                    <div style="font-size: 0.8rem; color: #e0c8a0;">Формы сотрудничества:</div>
+                    <ul style="font-size: 0.7rem; color: #b89040; margin-top: 0.3rem;">
+                        <li>Аутсорсинг инженеров</li>
+                        <li>Команды под ключ</li>
+                        <li>Выпускники ТЭК</li>
+                        <li>Экспертные группы</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Проектирование -->
+            <!-- Проектирование (полные данные) -->
             <div class="market-card" style="background: rgba(28, 18, 8, 0.7); backdrop-filter: blur(10px); border: 1px solid #aa7733; padding: 1.5rem; border-radius: 4px;">
                 <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-                    <!-- Минималистичный значок: линия/проект -->
                     <span style="font-size: 1.8rem; color: #ffaa4f; font-weight: 200;">⌂</span>
                     <span style="font-size: 1.2rem; font-weight: 400; color: #ffdbaa;">ПРОЕКТИРОВАНИЕ</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
-                    Проектные решения для энергообъектов, инжиниринг, BIM-моделирование, сметная документация.
+                <p style="font-size: 0.85rem; color: #e0c8a0; margin-bottom: 1rem; border-left: 2px solid #ffaa4f; padding-left: 0.8rem;">
+                    Разработка технологически и экономически эффективных проектных решений; внедрение системы управления проектной деятельностью; разработка энергостратегии для компаний ТЭК.
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">89 ПРОЕКТОВ</span>
-                    <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">34 БЮРО</span>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem; color: #b89040;">ПРОЕКТОВ РЕАЛИЗОВАНО</span>
+                        <span style="font-size: 1rem; color: #88ff99;">64 000+</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 86%; height: 3px; background: #88ff99;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #b89040;">СОКРАЩЕНИЕ АВАРИЙНОСТИ</span>
+                        <span style="font-size: 1rem; color: #88ff99;">-70%</span>
+                    </div>
+                    <div style="height: 3px; background: #332811;">
+                        <div style="width: 30%; height: 3px; background: #88ff99;"></div>
+                    </div>
                 </div>
-                <div style="margin-top: 1rem; height: 2px; background: #553d1a;">
-                    <div style="width: 82%; height: 2px; background: #ffaa4f;"></div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="expand-indicator" style="color: #ffaa4f; font-size: 0.7rem; cursor: pointer;">▼ ПОДРОБНЕЕ</span>
+                </div>
+                <div class="risk-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                    <div style="font-size: 0.8rem; color: #e0c8a0;">Направления:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem;">
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">BIM-моделирование</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Энергостратегии</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Инжиниринг</span>
+                        <span style="background: #553d1a; padding: 0.2rem 0.5rem; font-size: 0.65rem;">Управление проектами</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Текущие торги и лоты -->
+    <!-- НОВЫЙ ПРОСТОЙ ИНТЕРАКТИВНЫЙ ГРАФИК ПО ОБОРУДОВАНИЮ -->
     <section style="margin: 1rem 0; border-top: 0.5px solid #aa7733; padding-top: 2rem;">
         <h2 style="font-size: 1.3rem; font-weight: 300; color: #ffdbaa; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
             <span style="width: 30px; height: 1px; background: #ffaa4f;"></span>
-            <span>03/ АКТИВНЫЕ ЛОТЫ</span>
+            <span>03/ СТРУКТУРА ОБОРУДОВАНИЯ</span>
             <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #ffaa4f, transparent);"></span>
         </h2>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-            <!-- Лот 1 -->
-            <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <div style="font-weight: 400;">Поставка трансформаторов</div>
-                    <div style="font-size: 0.7rem; color: #e0c8a0;">№Т-2046-87 • Завершение через 3д</div>
+        <div style="background: rgba(28, 18, 8, 0.7); border: 1px solid #aa7733; padding: 1.5rem;">
+            <!-- Легенда графика -->
+            <div style="display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 12px; height: 12px; background: #ffaa4f;"></div>
+                    <span style="font-size: 0.8rem; color: #e0c8a0;">Генерация</span>
                 </div>
-                <div style="color: #ffaa4f; font-weight: 400;">18-ТнС 400</div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 12px; height: 12px; background: #88ff99;"></div>
+                    <span style="font-size: 0.8rem; color: #e0c8a0;">Передача</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 12px; height: 12px; background: #4f9fff;"></div>
+                    <span style="font-size: 0.8rem; color: #e0c8a0;">Нефтегаз</span>
+                </div>
             </div>
-            <!-- Лот 2 -->
-            <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <div style="font-weight: 400;">Проектирование ПС 110 кВ</div>
-                    <div style="font-size: 0.7rem; color: #e0c8a0;">№П-2046-12 • 5 заявок</div>
+
+            <!-- Простая круговая диаграмма -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem;">
+                <div style="position: relative; width: 180px; height: 180px; margin: 1rem 0;" id="pie-container">
+                    <!-- Сегменты круговой диаграммы (SVG) -->
+                    <svg width="180" height="180" viewBox="0 0 180 180" style="transform: rotate(-90deg);">
+                        <!-- Генерация - 45% -->
+                        <circle cx="90" cy="90" r="80" fill="none" stroke="#ffaa4f" stroke-width="40" stroke-dasharray="251.2" stroke-dashoffset="0" opacity="0.9" class="pie-segment" data-category="generation" data-value="45"/>
+                        <!-- Передача - 30% -->
+                        <circle cx="90" cy="90" r="80" fill="none" stroke="#88ff99" stroke-width="40" stroke-dasharray="251.2" stroke-dashoffset="113" opacity="0.9" class="pie-segment" data-category="transmission" data-value="30"/>
+                        <!-- Нефтегаз - 25% -->
+                        <circle cx="90" cy="90" r="80" fill="none" stroke="#4f9fff" stroke-width="40" stroke-dasharray="251.2" stroke-dashoffset="188.4" opacity="0.9" class="pie-segment" data-category="oilgas" data-value="25"/>
+                    </svg>
+                    
+                    <!-- Центральная часть для отображения информации -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; background: rgba(28, 18, 8, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #aa7733;">
+                        <div style="text-align: center;" id="pie-center">
+                            <div style="font-size: 1.2rem; color: #ffaa4f;" id="pie-value">20M</div>
+                            <div style="font-size: 0.5rem; color: #e0c8a0;" id="pie-label">всего ед.</div>
+                        </div>
+                    </div>
                 </div>
-                <div style="color: #ffaa4f; font-weight: 400;">Документация</div>
+
+                <!-- Детальная информация под графиком -->
+                <div style="display: flex; justify-content: space-around; width: 100%; margin-top: 1rem;" id="pie-details">
+                    <div class="pie-detail-item" data-category="generation" style="text-align: center; cursor: pointer; padding: 0.5rem; border-bottom: 2px solid transparent; transition: all 0.3s;">
+                        <div style="font-size: 1rem; color: #ffaa4f;">9 млн</div>
+                        <div style="font-size: 0.6rem; color: #e0c8a0;">Генерация</div>
+                        <div style="font-size: 0.7rem; color: #ffaa4f;">45%</div>
+                    </div>
+                    <div class="pie-detail-item" data-category="transmission" style="text-align: center; cursor: pointer; padding: 0.5rem; border-bottom: 2px solid transparent; transition: all 0.3s;">
+                        <div style="font-size: 1rem; color: #88ff99;">6 млн</div>
+                        <div style="font-size: 0.6rem; color: #e0c8a0;">Передача</div>
+                        <div style="font-size: 0.7rem; color: #88ff99;">30%</div>
+                    </div>
+                    <div class="pie-detail-item" data-category="oilgas" style="text-align: center; cursor: pointer; padding: 0.5rem; border-bottom: 2px solid transparent; transition: all 0.3s;">
+                        <div style="font-size: 1rem; color: #4f9fff;">5 млн</div>
+                        <div style="font-size: 0.6rem; color: #e0c8a0;">Нефтегаз</div>
+                        <div style="font-size: 0.7rem; color: #4f9fff;">25%</div>
+                    </div>
+                </div>
             </div>
-            <!-- Лот 3 -->
-            <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <div style="font-weight: 400;">Энергоаудит промплощадки</div>
-                    <div style="font-size: 0.7rem; color: #e0c8a0;">№Э-2046-34 • Экспертиза</div>
-                </div>
-                <div style="color: #ffaa4f; font-weight: 400;">Энергоаудит</div>
-            </div>
-            <!-- Лот 4 -->
-            <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <div style="font-weight: 400;">Обучение персонала</div>
-                    <div style="font-size: 0.7rem; color: #e0c8a0;">№О-2046-09 • 12 слушателей</div>
-                </div>
-                <div style="color: #ffaa4f; font-weight: 400;">54 сотрудника</div>
+
+            <!-- Общая статистика -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #aa7733;">
+                <span style="color: #b89040; font-size: 0.8rem;">ВСЕГО НАИМЕНОВАНИЙ:</span>
+                <span style="color: #ffaa4f; font-size: 1.5rem; font-weight: 300;">20 000 000</span>
             </div>
         </div>
     </section>
 
-    <!-- Навигация и мета-информация -->
-    <!-- <section style="margin-top: 2rem; padding-top: 1.5rem; border-top: 0.5px solid #aa7733;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div class="meta-signal">
-                <span class="dot" style="background: #ffaa4f; width: 8px; height: 8px;"></span>
-                <span>ТОРГИ: 2046.02.19 14:30 UTC</span>
+    <!-- Блок с активными заявками и предложениями -->
+    <section style="margin: 1rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #ffdbaa; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #ffaa4f;"></span>
+            <span>04/ ТОРГОВАЯ ПЛОЩАДКА</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #ffaa4f, transparent);"></span>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+            <!-- Активные заявки на поставку -->
+            <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span style="color: #ffaa4f; font-size: 1rem;">📋</span>
+                    <span style="color: #ffdbaa; font-size: 0.9rem;">АКТИВНЫЕ ЗАЯВКИ</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.8rem; color: #e0c8a0;">Волноводный рефлекс-радарный уровнемер ВРРУ-1000</span>
+                        <span style="color: #ffaa4f;">12 шт.</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.8rem; color: #e0c8a0;">Трансформатор 18-ТнС 400</span>
+                        <span style="color: #ffaa4f;">1 шт.</span>
+                    </div>
+                </div>
             </div>
-            <div style="display: flex; gap: 1.5rem;">
-                <a href="#" style="color: #ffaa4f; text-decoration: none; font-size: 0.9rem;">ВСЕ ЛОТЫ →</a>
-                <a href="#" style="color: #ffaa4f; text-decoration: none; font-size: 0.9rem;">СТАТИСТИКА РЫНКА →</a>
+
+            <!-- Активные предложения от поставщиков -->
+            <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span style="color: #ffaa4f; font-size: 1rem;">🏷️</span>
+                    <span style="color: #ffdbaa; font-size: 0.9rem;">ПРЕДЛОЖЕНИЯ</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.8rem; color: #e0c8a0;">Диспергатор ГДВ-6</span>
+                        <span style="color: #88ff99;">172 000 ₽</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.8rem; color: #e0c8a0;">Устройство заземления вала К-20-900</span>
+                        <span style="color: #88ff99;">64 000 ₽</span>
+                    </div>
+                </div>
             </div>
-        </div> -->
-        
-        <!-- Индикатор активности -->
-        <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
-            <span style="font-size: 0.8rem; color: #e0c8a0;">АКТИВНОСТЬ РЫНКА</span>
-            <div style="flex: 1; height: 4px; background: #553d1a;">
-                <div style="width: 87%; height: 4px; background: #ffaa4f;"></div>
+        </div>
+
+        <!-- Ближайшие образовательные мероприятия -->
+        <div style="background: rgba(28, 18, 8, 0.5); border: 1px solid #aa7733; padding: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                <span style="color: #ffaa4f; font-size: 1rem;">📅</span>
+                <span style="color: #ffdbaa;">БЛИЖАЙШИЕ ОБРАЗОВАТЕЛЬНЫЕ МЕРОПРИЯТИЯ</span>
             </div>
-            <span style="color: #ffaa4f; font-size: 0.8rem;">87%</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <div style="font-weight: 400; color: #ffdbaa;">Право управления роботами категории [R2D2]</div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #e0c8a0;">16.05.2046</span>
+                        <span style="font-size: 0.7rem; color: #88ff99;">2432 места</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-weight: 400; color: #ffdbaa;">Оператор ИИ в энергетике</div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem; color: #e0c8a0;">25.05.2046</span>
+                        <span style="font-size: 0.7rem; color: #88ff99;">140 мест</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-{% include 'data.html' %}
+
+    <!-- Индикатор активности рынка -->
+    <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+        <span style="font-size: 0.8rem; color: #e0c8a0;">АКТИВНОСТЬ РЫНКА</span>
+        <div style="flex: 1; height: 4px; background: #553d1a;">
+            <div id="market-activity-bar" style="width: 87%; height: 4px; background: #ffaa4f;"></div>
+        </div>
+        <span style="color: #ffaa4f; font-size: 0.8rem;" id="market-activity">87%</span>
+    </div>
+
+    {% include 'data.html' %}
     {% include "back_button.html" %}
     {% include "footer.html" %}
 
 </div>
 
+<!-- Интерактивные скрипты -->
+<script>
+    
+</script>
+
+<style>
+
+</style>
 {% endblock %}

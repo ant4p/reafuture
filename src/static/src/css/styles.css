@@ -1004,3 +1004,84 @@ footer {
             font-size: 2.5rem !important;
         }
     }
+
+
+
+/* Энергомаркет */ 
+    /* Стили для карточек */
+    .market-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .market-card:hover {
+        border-color: #ffaa4f !important;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 170, 79, 0.15);
+    }
+    
+    .market-card.expanded {
+        border-color: #ffaa4f;
+        background: rgba(40, 25, 10, 0.8);
+    }
+    
+    .expand-indicator {
+        transition: color 0.2s;
+    }
+    
+    .expand-indicator:hover {
+        color: #ffdbaa !important;
+    }
+    
+    /* Стили для круговой диаграммы */
+    .pie-segment {
+        transition: opacity 0.3s, stroke-width 0.3s;
+        cursor: pointer;
+    }
+    
+    .pie-detail-item {
+        transition: all 0.3s;
+        border-bottom: 2px solid transparent;
+    }
+    
+    .pie-detail-item:hover {
+        transform: translateY(-2px);
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 700px) {
+        [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: repeat(2, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: repeat(4, 1fr)"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        
+        h1 {
+            font-size: 2.2rem !important;
+        }
+    }
+    
+    @media (max-width: 400px) {
+        .frame {
+            padding: 1rem !important;
+        }
+    }
+    
+    /* Убираем hover на тач-устройствах */
+    @media (hover: none) {
+        .market-card:hover {
+            transform: none !important;
+            border-color: #aa7733 !important;
+        }
+        
+        .pie-detail-item:hover {
+            transform: none !important;
+        }
+    }
+    

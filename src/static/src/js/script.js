@@ -134,5 +134,141 @@ document.querySelectorAll('.market-card').forEach(card => {
     });
 
 
+    // Энергомаркет
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Интерактивность для карточек
+        const cards = document.querySelectorAll('.market-card');
+        cards.forEach(card => {
+            const indicator = card.querySelector('.expand-indicator');
+            if (indicator) {
+                indicator.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const details = card.querySelector('.risk-details');
+                    if (details.style.display === 'none' || !details.style.display) {
+                        details.style.display = 'block';
+                        this.innerHTML = '▲ СВЕРНУТЬ';
+                    } else {
+                        details.style.display = 'none';
+                        this.innerHTML = '▼ ПОДРОБНЕЕ';
+                    }
+                });
+            }
+        });
+
+        // Интерактивность для круговой диаграммы
+        const segments = document.querySelectorAll('.pie-segment');
+        const detailItems = document.querySelectorAll('.pie-detail-item');
+        const pieCenterValue = document.getElementById('pie-value');
+        const pieCenterLabel = document.getElementById('pie-label');
+        
+        // Данные для сегментов
+        const segmentData = {
+            generation: { value: '9 млн', label: 'Генерация', color: '#ffaa4f' },
+            transmission: { value: '6 млн', label: 'Передача', color: '#88ff99' },
+            oilgas: { value: '5 млн', label: 'Нефтегаз', color: '#4f9fff' }
+        };
+        
+        // Функция сброса выделения
+        function resetHighlight() {
+            segments.forEach(seg => {
+                seg.style.opacity = '0.9';
+                seg.style.strokeWidth = '40';
+            });
+            detailItems.forEach(item => {
+                item.style.borderBottomColor = 'transparent';
+                item.style.opacity = '1';
+            });
+            pieCenterValue.textContent = '20M';
+            pieCenterLabel.textContent = 'всего ед.';
+        }
+        
+        // Добавляем обработчики для сегментов
+        segments.forEach(segment => {
+            const category = segment.dataset.category;
+            
+            segment.addEventListener('mouseenter', function() {
+                // Затемняем все сегменты кроме текущего
+                segments.forEach(seg => {
+                    if (seg !== this) {
+                        seg.style.opacity = '0.3';
+                    } else {
+                        seg.style.opacity = '1';
+                        seg.style.strokeWidth = '45';
+                    }
+                });
+                
+                // Подсвечиваем соответствующий пункт в легенде
+                detailItems.forEach(item => {
+                    if (item.dataset.category === category) {
+                        item.style.borderBottomColor = segmentData[category].color;
+                        item.style.opacity = '1';
+                    } else {
+                        item.style.opacity = '0.5';
+                    }
+                });
+                
+                // Обновляем центральную часть
+                pieCenterValue.textContent = segmentData[category].value;
+                pieCenterLabel.textContent = segmentData[category].label;
+            });
+            
+            segment.addEventListener('mouseleave', function() {
+                resetHighlight();
+            });
+        });
+        
+        // Добавляем обработчики для пунктов легенды
+        detailItems.forEach(item => {
+            const category = item.dataset.category;
+            
+            item.addEventListener('mouseenter', function() {
+                // Подсвечиваем соответствующий сегмент
+                segments.forEach(seg => {
+                    if (seg.dataset.category === category) {
+                        seg.style.opacity = '1';
+                        seg.style.strokeWidth = '45';
+                    } else {
+                        seg.style.opacity = '0.3';
+                    }
+                });
+                
+                // Подсвечиваем текущий пункт
+                detailItems.forEach(i => {
+                    if (i === this) {
+                        i.style.borderBottomColor = segmentData[category].color;
+                        i.style.opacity = '1';
+                    } else {
+                        i.style.opacity = '0.5';
+                    }
+                });
+                
+                // Обновляем центральную часть
+                pieCenterValue.textContent = segmentData[category].value;
+                pieCenterLabel.textContent = segmentData[category].label;
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                resetHighlight();
+            });
+        });
+
+        // Анимация активности рынка
+        const activityBar = document.getElementById('market-activity-bar');
+        const activityText = document.getElementById('market-activity');
+        
+        if (activityBar) {
+            setInterval(() => {
+                const baseValue = 87;
+                const fluctuation = Math.floor(Math.random() * 5) - 2;
+                let newValue = baseValue + fluctuation;
+                newValue = Math.max(80, Math.min(94, newValue));
+                
+                activityBar.style.width = newValue + '%';
+                activityText.textContent = newValue + '%';
+            }, 5000);
+        }
+    });
+
 
 
