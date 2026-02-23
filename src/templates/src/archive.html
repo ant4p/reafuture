@@ -19,17 +19,33 @@
         </div>
     </section>
 
-    <!-- секция 1: Архив -->
+    <!-- секция 1: Архив с переключателем на три ленты -->
     <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
         <h2>
             <span>001/ Архив </span>
             <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
         </h2>
         <p>
-            [БАНК]_данных временных событий с 2026 по 2046 г.г***!.<br>
-            [ОБЪЕКТ] наблюдения: __РЭА_МИН[ЭНЕРГО]__##<br>
+            [БАНК ДАННЫХ] временных событий с {2026} по {2046}<br>
+             <img src={% static "src/images/reia2.png" %} style="width: 170px; height: 250px; object-fit: cover; border-radius: 0.1rem;"> <br>
 
-               
+            [РЭЯ] <span>Я загрузила ключевые данные за последние 20 лет, выберите объект для отображения: </span><br>
+            [ОБЪЕКТ НАБЛЮДЕНИЯ] - <span id="timeline-object">РЭА МИН[ЭНЕРГО]</span><br>
+        </p>
+        
+        <!-- Прямоугольные кнопки переключения для трех лент -->
+        <div style="display: flex; gap: 0; justify-content: center; margin: 1.5rem 0; width: 100%;">
+            <button id="switch-local" class="timeline-switch active-switch" style="background: rgba(79, 159, 255, 0.15); border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; letter-spacing: 1px; border-right: none; flex: 1; max-width: 180px;">
+                [ЛОКАЛЬНЫЙ] РЭА
+            </button>
+            <button id="switch-global" class="timeline-switch" style="background: transparent; border: 1px solid #4f9fff; color: #8fc0ff; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; letter-spacing: 1px; border-right: none; flex: 1; max-width: 180px;">
+                [ГЛОБАЛЬНЫЙ] МИР
+            </button>
+            <button id="switch-energy" class="timeline-switch" style="background: transparent; border: 1px solid #4f9fff; color: #8fc0ff; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; letter-spacing: 1px; flex: 1; max-width: 180px;">
+                [СИСТЕМНЫЙ] ЭНЕРГЕТИКА
+            </button>
+        </div>
+    </section>
 
     <!-- Вертикальная линия времени с прогресс-баром -->
     <section style="position: relative; margin: 0.5rem 0;" id="timeline-container">
@@ -45,256 +61,762 @@
         </div>
 
         <!-- Контейнер событий с отступом под прогресс-бар -->
-        <div style="margin-left: 50px; position: relative; z-index: 20;">
+        <div style="margin-left: 50px; position: relative; z-index: 20;" id="timeline-events-container">
             
-            <!-- Событие 1: 2027 - Основание РЭА -->
-            <div class="timeline-item" data-year="2027">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <!-- Год и дата -->
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff; line-height: 1.2;">2027</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">12.03</div>
-                    </div>
-                    <!-- Точка на линии -->
-                    <div style="position: relative;">
-                        <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 20px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <!-- Карточка события -->
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Цифровая трансформация</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">ПРОТОКОЛ №001</span>
+            <!-- ЛОКАЛЬНАЯ ЛЕНТА (РЭА) - 10 событий -->
+            <div id="timeline-local" style="display: block;">
+                <!-- Событие 1: 2027 - Основание РЭА -->
+                <div class="timeline-item" data-year="2027">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff; line-height: 1.1;">2027</div>
+                            <div style="font-size: 0.6rem; color: #6a9fcf; opacity: 0.8;">12.03</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Подписание энергетического протокола. Начало цифровой трансформации энергосистемы.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60; width: 100%;">
-                            <div style="width: 100%; height: 2px; background: #4f9fff;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.3rem;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Основание РЭА</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ПРОТОКОЛ №001</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0; line-height: 1.3;">
+                                Российское энергетическое агентство Минэнерго России начинает работу над созданием инновационной модели организации труда.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60; width: 100%;">
+                                <div style="width: 100%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 2: 2029 - Первая тестовая сеть -->
+                <div class="timeline-item" data-year="2029">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2029</div>
+                            <div style="font-size: 0.6rem; color: #6a9fcf; opacity: 0.8;">18.07</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Первая тестовая сеть</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">5 УЗЛОВ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Запуск пилотной сети из 5 узлов для тестирования протоколов обмена данными в энергосистеме.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 25%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 3: 2031 - Начало разработки ИИ "Рея" -->
+                <div class="timeline-item" data-year="2031">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2031</div>
+                            <div style="font-size: 0.6rem; color: #6a9fcf;">22.07</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 15px; height: 15px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 18px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Начало разработки ИИ "Рея"</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ПРОТОТИП</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Старт разработки универсального ИИ-проводника для управления энергосистемами.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 40%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 4: 2033 - Масштабирование сети -->
+                <div class="timeline-item" data-year="2033">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2033</div>
+                            <div style="font-size: 0.6rem; color: #6a9fcf;">04.11</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Масштабирование сети</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">47 УЗЛОВ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Расширение сети до 47 узлов. Охват 5 энергорайонов. РЭА становится ключевым оператором.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 55%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 5: 2035 - Запуск Энергомаркета -->
+                <div class="timeline-item" data-year="2035">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ffaa4f;">2035</div>
+                            <div style="font-size: 0.6rem; color: #ffaa4f;">15.01</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 16px; height: 16px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 18px #ffaa4f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ffaa4f; background: rgba(28, 18, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Запуск Энергомаркета</span>
+                                <span style="background: #553d1a; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">1.2 ПВт·ч</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0c8a0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Первые торги мощностью. 47 участников, объем 1.2 ПВт·ч. РЭА выступает оператором площадки.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #553d1a;">
+                                <div style="width: 60%; height: 1px; background: #ffaa4f;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 6: 2037 - Внедрение нейроинтерфейсов в РЭА -->
+                <div class="timeline-item" data-year="2037">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #88ff99;">2037</div>
+                            <div style="font-size: 0.6rem; color: #88ff99;">09.03</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 18px; height: 18px; background: #88ff99; border-radius: 50%; box-shadow: 0 0 20px #88ff99; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff99; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Нейроинтерфейсы с наночипами</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ПРЯМОЙ ДОСТУП</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Внедрение нейроинтерфейсов с наночипами для прямого подключения сотрудников РЭА к системам управления и отраслевой базе знаний.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 60%; height: 1px; background: #88ff99;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 7: 2039 - Цифровые двойники экспертов -->
+                <div class="timeline-item" data-year="2039">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2039</div>
+                            <div style="font-size: 0.6rem; color: #6a9fcf;">30.09</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 18px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Цифровые двойники экспертов</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">24/7</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Создание цифровых двойников экспертов РЭА для круглосуточной консультационной поддержки и автоматизации рутинных процессов.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 70%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 8: 2041 - Отраслевая СУЗ -->
+                <div class="timeline-item" data-year="2041">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #7fc0ff;">2041</div>
+                            <div style="font-size: 0.6rem; color: #7fc0ff;">12.05</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #7fc0ff; border-radius: 50%; box-shadow: 0 0 15px #7fc0ff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #7fc0ff; background: rgba(8, 18, 28, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Отраслевая СУЗ</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">БАЗА ЗНАНИЙ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Запуск отраслевой системы управления знаниями (СУЗ) с мгновенным доступом через нейроинтерфейсы сотрудников РЭА.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 80%; height: 1px; background: #7fc0ff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 9: 2043 - 5-часовой рабочий день -->
+                <div class="timeline-item" data-year="2043">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ff6f6f;">2043</div>
+                            <div style="font-size: 0.6rem; color: #ff6f6f;">18.05</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 18px; height: 18px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 20px #ff6f6f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ff6f6f; background: rgba(28, 8, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">5-часовой рабочий день</span>
+                                <span style="background: #551f1f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">НОВЫЙ ФОРМАТ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0b0b0; margin: 0.2rem 0; border: none; padding: 0;">
+                                В РЭА внедрен удаленный формат с 5-часовым рабочим днем. Интеграция с ИИ для автоматизации задач повышает эффективность.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #551f1f;">
+                                <div style="width: 88%; height: 1px; background: #ff6f6f;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 10: 2046 - Платформа "Max" -->
+                <div class="timeline-item" data-year="2046" style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.5rem; font-weight: 300; color: #88ff88; text-shadow: 0 0 10px #88ff88;">2046</div>
+                            <div style="font-size: 0.6rem; color: #88ff88;">17.02</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 20px; height: 20px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 25px #88ff88; margin-top: 5px; animation: pulse 2s infinite;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff88; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Платформа "Max"</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">100%</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Государственная платформа «Max» становится единой цифровой средой для коммуникации и совместной работы сотрудников РЭА.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 100%; height: 1px; background: #88ff88;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ГЛОБАЛЬНАЯ ЛЕНТА (МИР) - 10 событий -->
+            <div id="timeline-global" style="display: none;">
+                <!-- Событие 1: 2027 - Глобальный климатический саммит -->
+                <div class="timeline-item" data-year="2027">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #7fc0ff; line-height: 1.1;">2027</div>
+                            <div style="font-size: 0.6rem; color: #7fc0ff; opacity: 0.8;">15.05</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #7fc0ff; border-radius: 50%; box-shadow: 0 0 15px #7fc0ff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #7fc0ff; background: rgba(8, 18, 28, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.3rem;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Глобальный климатический саммит</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ПАРИЖ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                147 стран подписали расширенное Парижское соглашение. Новые обязательства по сокращению выбросов.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 100%; height: 1px; background: #7fc0ff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 2: 2029 - Массовое внедрение VR/AR технологий -->
+                <div class="timeline-item" data-year="2029">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #88ff99;">2029</div>
+                            <div style="font-size: 0.6rem; color: #88ff99;">03.03</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #88ff99; border-radius: 50%; box-shadow: 0 0 15px #88ff99; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff99; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Массовое внедрение VR/AR</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">LIFELONG LEARNING</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Виртуальная и дополненная реальность трансформируют способы общения, обучения и работы, стирая границы между физическим и цифровым пространством.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 30%; height: 1px; background: #88ff99;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 3: 2031 - Расцвет экономики Глобального Юга -->
+                <div class="timeline-item" data-year="2031">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ffaa4f;">2031</div>
+                            <div style="font-size: 0.6rem; color: #ffaa4f;">12.09</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 15px; height: 15px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 18px #ffaa4f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ffaa4f; background: rgba(28, 18, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Экономический сдвиг</span>
+                                <span style="background: #553d1a; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">БРИКС+</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0c8a0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Экономический центр смещается в страны Глобального Юга. БРИКС, ЭСКАТО, АСЕАН, АТЭС и ИЭК ООН играют важнейшую роль в мировой экономике.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #553d1a;">
+                                <div style="width: 50%; height: 1px; background: #ffaa4f;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 4: 2033 - Искусственный интеллект во всех сферах -->
+                <div class="timeline-item" data-year="2033">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2033</div>
+                            <div style="font-size: 0.6rem; color: #4f9fff;">20.06</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">ИИ проникает во все сферы</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">УПРАВЛЕНИЕ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Искусственный интеллект и автоматизация проникли практически во все сферы: от управления городской инфраструктурой до персонализированного образования и медицины.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 60%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 5: 2035 - Этические вызовы биотехнологий -->
+                <div class="timeline-item" data-year="2035">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ff6f6f;">2035</div>
+                            <div style="font-size: 0.6rem; color: #ff6f6f;">08.11</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 16px; height: 16px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 18px #ff6f6f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ff6f6f; background: rgba(28, 8, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Этические вызовы биотехнологий</span>
+                                <span style="background: #551f1f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">РЕГУЛИРОВАНИЕ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0b0b0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Борьба с климатическими изменениями, управление ресурсами и этические вопросы биотехнологий стали ключевыми вызовами для международного сотрудничества.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #551f1f;">
+                                <div style="width: 60%; height: 1px; background: #ff6f6f;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 6: 2037 - Трансформация образования -->
+                <div class="timeline-item" data-year="2037">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #88ff99;">2037</div>
+                            <div style="font-size: 0.6rem; color: #88ff99;">15.04</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 15px; height: 15px; background: #88ff99; border-radius: 50%; box-shadow: 0 0 18px #88ff99; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff99; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Непрерывное образование</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">VR-ОБУЧЕНИЕ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Система образования адаптировалась к модели непрерывного обучения (lifelong learning). Удаленная работа с помощью VR-технологий стала стандартом.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 75%; height: 1px; background: #88ff99;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 7: 2039 - Глобальное сотрудничество -->
+                <div class="timeline-item" data-year="2039">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2039</div>
+                            <div style="font-size: 0.6rem; color: #4f9fff;">22.08</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Расширение международного сотрудничества</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">АТЭС+</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Новые форматы международного сотрудничества в рамках АТЭС и ЭСКАТО ускорили глобальное развитие.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 80%; height: 1px; background: #4f9fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 8: 2041 - Управление ресурсами -->
+                <div class="timeline-item" data-year="2041">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ffaa4f;">2041</div>
+                            <div style="font-size: 0.6rem; color: #ffaa4f;">30.11</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 15px #ffaa4f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ffaa4f; background: rgba(28, 18, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Цифровое управление ресурсами</span>
+                                <span style="background: #553d1a; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ГЛОБАЛЬНО</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0c8a0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Цифровые системы управления ресурсами достигли глобального масштаба, оптимизируя потребление и распределение.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #553d1a;">
+                                <div style="width: 85%; height: 1px; background: #ffaa4f;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 9: 2043 - Климатические цели -->
+                <div class="timeline-item" data-year="2043">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #88ff99;">2043</div>
+                            <div style="font-size: 0.6rem; color: #88ff99;">05.06</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 16px; height: 16px; background: #88ff99; border-radius: 50%; box-shadow: 0 0 18px #88ff99; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff99; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Промежуточные климатические цели</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">-40% ВЫБРОСОВ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Достижение промежуточных климатических целей. Сокращение выбросов на 40% от уровня 2030 года.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 88%; height: 1px; background: #88ff99;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 10: 2046 - Глобальная цель 50% ВИЭ -->
+                <div class="timeline-item" data-year="2046" style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.5rem; font-weight: 300; color: #88ff88; text-shadow: 0 0 10px #88ff88;">2046</div>
+                            <div style="font-size: 0.6rem; color: #88ff88;">01.01</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 20px; height: 20px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 25px #88ff88; margin-top: 5px; animation: pulse 2s infinite;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff88; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Глобальная цель достигнута</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">50% ВИЭ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Мир достиг 50% генерации из возобновляемых источников. Климатические соглашения выполнены.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 100%; height: 1px; background: #88ff88;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Событие 2: 2029 - Первая тестовая сеть -->
-            <div class="timeline-item" data-year="2029">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff;">2029</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">18.07</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 20px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Первая тестовая сеть</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">5 УЗЛОВ</span>
+            <!-- ЭНЕРГЕТИЧЕСКАЯ ЛЕНТА (ЭНЕРГЕТИКА) - 10 событий -->
+            <div id="timeline-energy" style="display: none;">
+                <!-- Событие 1: 2027 - Начало энергетического перехода -->
+                <div class="timeline-item" data-year="2027">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #88ff99; line-height: 1.1;">2027</div>
+                            <div style="font-size: 0.6rem; color: #88ff99; opacity: 0.8;">10.02</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Запуск пилотной сети из 5 узлов. Успешное тестирование протоколов обмена данными.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60;">
-                            <div style="width: 25%; height: 2px; background: #4f9fff;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #88ff99; border-radius: 50%; box-shadow: 0 0 15px #88ff99; margin-top: 5px;"></div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Событие 3: 2031 - Запуск ИИ "Рея" -->
-            <div class="timeline-item" data-year="2031">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff;">2031</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">22.07</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 18px; height: 18px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 25px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Запуск ИИ "Рея"</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">v1.0</span>
-                        </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Инициализация универсального проводника. Квантовая эвристика, 128 кубит.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60;">
-                            <div style="width: 40%; height: 2px; background: #4f9fff;"></div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff99; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Начало энергетического перехода</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ВИЭ+30%</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Переход на возобновляемые источники энергии набирает обороты. Доля ВИЭ в мировом балансе достигает 30%.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 30%; height: 1px; background: #88ff99;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 4: 2033 - Масштабирование сети -->
-            <div class="timeline-item" data-year="2033">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff;">2033</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">04.11</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 20px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Масштабирование сети</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">47 УЗЛОВ</span>
+                <!-- Событие 2: 2029 - Масштабное внедрение систем хранения -->
+                <div class="timeline-item" data-year="2029">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2029</div>
+                            <div style="font-size: 0.6rem; color: #4f9fff;">18.07</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Расширение до 47 узлов. Охват 5 энергорайонов.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60;">
-                            <div style="width: 55%; height: 2px; background: #4f9fff;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 15px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Системы хранения энергии</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">+200%</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Масштабное внедрение систем хранения энергии позволяет компенсировать нестабильность ВИЭ и обеспечивать надежность сетей.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 40%; height: 1px; background: #4f9fff;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 5: 2035 - Энергомаркет -->
-            <div class="timeline-item" data-year="2035">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #ffaa4f;">2035</div>
-                        <div style="font-size: 0.7rem; color: #ffaa4f;">15.01</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 20px; height: 20px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 25px #ffaa4f; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #ffaa4f; background: rgba(28, 18, 8, 0.85);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Энергомаркет</span>
-                            <span style="background: #553d1a; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">1.2 ПВт·ч</span>
+                <!-- Событие 3: 2031 - Первые промышленные квантовые компьютеры -->
+                <div class="timeline-item" data-year="2031">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ff6f6f;">2031</div>
+                            <div style="font-size: 0.6rem; color: #ff6f6f;">15.08</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #e0c8a0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Первые торги мощностью. 47 участников, объем 1.2 ПВт·ч.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #553d1a;">
-                            <div style="width: 60%; height: 2px; background: #ffaa4f;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 18px; height: 18px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 20px #ff6f6f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ff6f6f; background: rgba(28, 8, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Промышленные квантовые компьютеры</span>
+                                <span style="background: #551f1f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">1024 КУБИТ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0b0b0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Изобретение и запуск первых промышленных квантовых компьютеров мощностью 1024 кубита. Революция в моделировании энергосистем и оптимизации сетей.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #551f1f;">
+                                <div style="width: 45%; height: 1px; background: #ff6f6f;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 6: 2037 - Квантовый прорыв -->
-            <div class="timeline-item" data-year="2037">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff;">2037</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">09.03</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 18px; height: 18px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 25px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Квантовый прорыв</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">1024 КУБИТ</span>
+                <!-- Событие 4: 2033 - Smart Grid становится стандартом -->
+                <div class="timeline-item" data-year="2033">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ffaa4f;">2033</div>
+                            <div style="font-size: 0.6rem; color: #ffaa4f;">15.11</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Увеличение вычислительной мощности до 1024 кубит.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60;">
-                            <div style="width: 75%; height: 2px; background: #4f9fff;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 16px; height: 16px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 18px #ffaa4f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ffaa4f; background: rgba(28, 18, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Smart Grid стандарт</span>
+                                <span style="background: #553d1a; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ИИ УПРАВЛЕНИЕ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0c8a0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Интеллектуальные сети становятся стандартом в энергетике, объединяя генерацию, распределение и потребление в единую цифровую систему под управлением ИИ.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #553d1a;">
+                                <div style="width: 55%; height: 1px; background: #ffaa4f;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 7: 2039 - Интеграция с ЕЭС -->
-            <div class="timeline-item" data-year="2039">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff;">2039</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">30.09</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 18px; height: 18px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 25px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Интеграция с ЕЭС</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">95%</span>
+                <!-- Событие 5: 2035 - Интеграция квантовых компьютеров в энергосистемы -->
+                <div class="timeline-item" data-year="2035">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #4f9fff;">2035</div>
+                            <div style="font-size: 0.6rem; color: #4f9fff;">07.05</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Полная синхронизация с единой энергосистемой. Покрытие 95%.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60;">
-                            <div style="width: 85%; height: 2px; background: #4f9fff;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 18px; height: 18px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 20px #4f9fff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff; padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Квантовые компьютеры в энергетике</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ОПТИМИЗАЦИЯ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Интеграция квантовых компьютеров в управление энергосистемами для мгновенной оптимизации распределения ресурсов.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 65%; height: 1px; background: #4f9fff;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 8: 2041 - Цифровые двойники -->
-            <div class="timeline-item" data-year="2041">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #4f9fff;">2041</div>
-                        <div style="font-size: 0.7rem; color: #6a9fcf;">12.05</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 16px; height: 16px; background: #4f9fff; border-radius: 50%; box-shadow: 0 0 20px #4f9fff; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #4f9fff;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Цифровые двойники</span>
-                            <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">12 ОБЪЕКТОВ</span>
+                <!-- Событие 6: 2037 - Распределенные энергоресурсы -->
+                <div class="timeline-item" data-year="2037">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #88ff99;">2037</div>
+                            <div style="font-size: 0.6rem; color: #88ff99;">12.09</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #b0c8e0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Внедрение цифровых двойников энергообъектов.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1a3f60;">
-                            <div style="width: 90%; height: 2px; background: #4f9fff;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 15px; height: 15px; background: #88ff99; border-radius: 50%; box-shadow: 0 0 18px #88ff99; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff99; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Распределенные энергоресурсы</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">DEMAND RESPONSE</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Масштабное внедрение распределенных энергоресурсов и программ управления спросом (demand response).
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 75%; height: 1px; background: #88ff99;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 9: 2043 - Поведенческий оператор -->
-            <div class="timeline-item" data-year="2043">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 200; color: #ff6f6f;">2043</div>
-                        <div style="font-size: 0.7rem; color: #ff6f6f;">18.05</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 22px; height: 22px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 30px #ff6f6f; margin-top: 10px;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #ff6f6f; background: rgba(28, 8, 8, 0.85);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Поведенческий оператор</span>
-                            <span style="background: #551f1f; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">-67% АВАРИЙ</span>
+                <!-- Событие 7: 2039 - Снижение углеродного следа -->
+                <div class="timeline-item" data-year="2039">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ffaa4f;">2039</div>
+                            <div style="font-size: 0.6rem; color: #ffaa4f;">20.01</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #e0b0b0; margin: 0.3rem 0; border: none; padding: 0;">
-                            Предиктивное управление нагрузками. Снижение аварийности.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #551f1f;">
-                            <div style="width: 88%; height: 2px; background: #ff6f6f;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #ffaa4f; border-radius: 50%; box-shadow: 0 0 15px #ffaa4f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ffaa4f; background: rgba(28, 18, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Снижение углеродного следа</span>
+                                <span style="background: #553d1a; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">-45%</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0c8a0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Достигнуто снижение углеродного следа энергетики на 45% благодаря переходу на ВИЭ и оптимизации сетей.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #553d1a;">
+                                <div style="width: 80%; height: 1px; background: #ffaa4f;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Событие 10: 2046 - Настоящее время -->
-            <div class="timeline-item" data-year="2046" style="margin-bottom: 1rem;">
-                <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                    <div style="min-width: 70px; text-align: right;">
-                        <div style="font-size: clamp(1.8rem, 3.5vw, 2.2rem); font-weight: 300; color: #88ff88; text-shadow: 0 0 15px #88ff88;">2046</div>
-                        <div style="font-size: 0.7rem; color: #88ff88;">17.02</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="width: 26px; height: 26px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 30px #88ff88; margin-top: 10px; animation: pulse 2s infinite;"></div>
-                    </div>
-                    <div class="timeline-card" style="flex: 1; border-left-color: #88ff88; background: rgba(8, 28, 8, 0.85);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                            <span style="font-weight: 500; font-size: clamp(1rem, 2vw, 1.2rem);">Настоящее время</span>
-                            <span style="background: #1f551f; padding: 0.2rem 0.8rem; font-size: 0.7rem; border-radius: 20px;">99.97%</span>
+                <!-- Событие 8: 2041 - Аналитика больших данных -->
+                <div class="timeline-item" data-year="2041">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #7fc0ff;">2041</div>
+                            <div style="font-size: 0.6rem; color: #7fc0ff;">08.06</div>
                         </div>
-                        <p style="font-size: clamp(0.8rem, 1.5vw, 0.9rem); color: #c0e0c0; margin: 0.3rem 0; border: none; padding: 0;">
-                            20 лет эпохи. Стабильность 99.97%. 47 активных узлов.
-                        </p>
-                        <div style="margin-top: 0.8rem; height: 2px; background: #1f551f;">
-                            <div style="width: 100%; height: 2px; background: #88ff88;"></div>
+                        <div style="position: relative;">
+                            <div style="width: 14px; height: 14px; background: #7fc0ff; border-radius: 50%; box-shadow: 0 0 15px #7fc0ff; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #7fc0ff; background: rgba(8, 18, 28, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Аналитика больших данных</span>
+                                <span style="background: #1a3f60; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">ПРЕДИКТИВНОСТЬ</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #b0c8e0; margin: 0.2rem 0; border: none; padding: 0;">
+                                ИИ и аналитика больших данных обеспечивают предиктивное управление энергосистемами, предотвращая аварии.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1a3f60;">
+                                <div style="width: 90%; height: 1px; background: #7fc0ff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 9: 2043 - Полная автоматизация распределения -->
+                <div class="timeline-item" data-year="2043">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.3rem; font-weight: 200; color: #ff6f6f;">2043</div>
+                            <div style="font-size: 0.6rem; color: #ff6f6f;">17.03</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 16px; height: 16px; background: #ff6f6f; border-radius: 50%; box-shadow: 0 0 18px #ff6f6f; margin-top: 5px;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #ff6f6f; background: rgba(28, 8, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Автоматизация распределения</span>
+                                <span style="background: #551f1f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">100%</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #e0b0b0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Полная автоматизация распределения энергии в большинстве развитых стран. Минимальное участие человека в управлении сетями.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #551f1f;">
+                                <div style="width: 95%; height: 1px; background: #ff6f6f;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Событие 10: 2046 - Доступность энергии -->
+                <div class="timeline-item" data-year="2046" style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="min-width: 60px; text-align: right;">
+                            <div style="font-size: 1.5rem; font-weight: 300; color: #88ff88; text-shadow: 0 0 10px #88ff88;">2046</div>
+                            <div style="font-size: 0.6rem; color: #88ff88;">19.02</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="width: 20px; height: 20px; background: #88ff88; border-radius: 50%; box-shadow: 0 0 25px #88ff88; margin-top: 5px; animation: pulse 2s infinite;"></div>
+                        </div>
+                        <div class="timeline-card" style="flex: 1; border-left-color: #88ff88; background: rgba(8, 28, 8, 0.85); padding: 0.8rem 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                                <span style="font-weight: 500; font-size: 0.95rem;">Доступность энергии</span>
+                                <span style="background: #1f551f; padding: 0.15rem 0.6rem; font-size: 0.6rem; border-radius: 20px;">100%</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #c0e0c0; margin: 0.2rem 0; border: none; padding: 0;">
+                                Обеспечение доступности энергии для 100% населения развитых стран. Чистая, надежная и гибкая энергосистема стала реальностью.
+                            </p>
+                            <div style="margin-top: 0.5rem; height: 1px; background: #1f551f;">
+                                <div style="width: 100%; height: 1px; background: #88ff88;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -304,21 +826,49 @@
 
     <!-- Навигация и статистика -->
     <section style="margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid rgba(100,180,255,0.2);">
-        <!-- Быстрая навигация по годам -->
-        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem;">
-            <button onclick="scrollToYear(2027)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2027</button>
-            <button onclick="scrollToYear(2029)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2029</button>
-            <button onclick="scrollToYear(2031)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2031</button>
-            <button onclick="scrollToYear(2033)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2033</button>
-            <button onclick="scrollToYear(2035)" style="background: transparent; border: 1px solid #ffaa4f; color: #ffaa4f; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2035</button>
-            <button onclick="scrollToYear(2037)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2037</button>
-            <button onclick="scrollToYear(2039)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2039</button>
-            <button onclick="scrollToYear(2041)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2041</button>
-            <button onclick="scrollToYear(2043)" style="background: transparent; border: 1px solid #ff6f6f; color: #ff6f6f; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2043</button>
-            <button onclick="scrollToYear(2046)" style="background: transparent; border: 1px solid #88ff88; color: #88ff88; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 20px; cursor: pointer;">2046</button>
+        <!-- Года под временной лентой -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0 1.5rem 0; padding: 0 0.5rem; font-family: 'Courier New', monospace;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 0.7rem; color: #4f9fff; letter-spacing: 1px;">2026</span>
+                <span style="width: 2px; height: 12px; background: #4f9fff; margin-top: 4px; opacity: 0.5;"></span>
+            </div>
+            <div style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, #7fc0ff, #4f9fff); opacity: 0.3; margin: 0 0.5rem;"></div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 0.7rem; color: #7fc0ff; letter-spacing: 1px;">2030</span>
+                <span style="width: 2px; height: 12px; background: #7fc0ff; margin-top: 4px; opacity: 0.5;"></span>
+            </div>
+            <div style="flex: 1; height: 1px; background: linear-gradient(90deg, #7fc0ff, #88ff99, #7fc0ff); opacity: 0.3; margin: 0 0.5rem;"></div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 0.7rem; color: #88ff99; letter-spacing: 1px;">2035</span>
+                <span style="width: 2px; height: 12px; background: #88ff99; margin-top: 4px; opacity: 0.5;"></span>
+            </div>
+            <div style="flex: 1; height: 1px; background: linear-gradient(90deg, #88ff99, #ffaa4f, #88ff99); opacity: 0.3; margin: 0 0.5rem;"></div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 0.7rem; color: #ffaa4f; letter-spacing: 1px;">2040</span>
+                <span style="width: 2px; height: 12px; background: #ffaa4f; margin-top: 4px; opacity: 0.5;"></span>
+            </div>
+            <div style="flex: 1; height: 1px; background: linear-gradient(90deg, #ffaa4f, #88ff88, #ffaa4f); opacity: 0.3; margin: 0 0.5rem;"></div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 0.7rem; color: #88ff88; letter-spacing: 1px;">2046</span>
+                <span style="width: 2px; height: 12px; background: #88ff88; margin-top: 4px; opacity: 0.5;"></span>
+            </div>
         </div>
 
-        
+        <!-- Быстрая навигация по годам -->
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem;">
+            <button onclick="scrollToYear(2027)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">2027</button>
+            <button onclick="scrollToYear(2029)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2029</button>
+            <button onclick="scrollToYear(2031)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2031</button>
+            <button onclick="scrollToYear(2033)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2033</button>
+            <button onclick="scrollToYear(2035)" style="background: transparent; border: 1px solid #ffaa4f; color: #ffaa4f; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2035</button>
+            <button onclick="scrollToYear(2037)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2037</button>
+            <button onclick="scrollToYear(2039)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2039</button>
+            <button onclick="scrollToYear(2041)" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2041</button>
+            <button onclick="scrollToYear(2043)" style="background: transparent; border: 1px solid #ff6f6f; color: #ff6f6f; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2043</button>
+            <button onclick="scrollToYear(2046)" style="background: transparent; border: 1px solid #88ff88; color: #88ff88; padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer;">2046</button>
+        </div>
+    </section>    
+
     <!-- секция 2: Статистика -->
     <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
         <h2>
@@ -328,7 +878,6 @@
         <p>
             [СТАТИСТИКА]<br>            
 
-
         <!-- Статистика -->
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin: 1.5rem 0;">
             <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center; border-radius: 8px;">
@@ -336,47 +885,40 @@
                 <div style="font-size: 0.7rem;">ЛЕТ</div>
             </div>
             <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center; border-radius: 8px;">
-                <div style="font-size: 1.3rem; color: #ffaa4f;">10</div>
+                <div style="font-size: 1.3rem; color: #ffaa4f;">30</div>
                 <div style="font-size: 0.7rem;">СОБЫТИЙ</div>
             </div>
             <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center; border-radius: 8px;">
-                <div style="font-size: 1.3rem; color: #88ff88;">47</div>
-                <div style="font-size: 0.7rem;">УЗЛОВ</div>
+                <div style="font-size: 1.3rem; color: #88ff88;">3</div>
+                <div style="font-size: 0.7rem;">ВЕТКИ</div>
             </div>
             <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center; border-radius: 8px;">
-                <div style="font-size: 1.3rem; color: #ff6f6f;">99.97%</div>
-                <div style="font-size: 0.7rem;">СТАБ.</div>
+                <div style="font-size: 1.3rem; color: #ff6f6f;">100%</div>
+                <div style="font-size: 0.7rem;">СИНХРОН</div>
             </div>
         </div>
+    </section>
 
-        
-
-            <!-- секция 3: Статистика -->
+    <!-- секция 3: Объект -->
     <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
         <h2>
-            <span>003/ Объект </span>
+            <span>003/ Разрешение </span>
             <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
         </h2>
         <p>
-            [ОБЪЕКТ]<br>            
-            [ДОСТУП] разрешен переход на уровень [ГЛОБАЛЬНЫЙ]<br>            
-
-            <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; width: 100%; flex-wrap: wrap;">
-                <a href = {% url 'src:archive_w' %} class="data-button">
-                    <span>#</span> АРХИВ [ГЛОБАЛЬНАЯ ДИРЕКТОРИЯ] 2026 - 2046 г.г[***]#!!#@
-                </a>
-            </div>
+            [АКЦЕПТОВАНО]<br>            
+            [ДОСТУП] предоставлен для уровней<br>     
+            [ЛОКАЛЬНЫЙ] # [ГЛОБАЛЬНЫЙ] # [СИСТЕМНЫЙ]<br>            
 
 
-        <!-- Подсказка для мобильных -->
-        <!-- <div style="display: flex; justify-content: center; gap: 0.5rem; opacity: 0.6; margin-top: 1rem;">
-            <span style="font-size: 1rem; animation: bounce 1.5s infinite;">⇣</span>
-            <span style="font-size: 0.8rem; color: #6a9fcf;">ЛИСТАЙТЕ ВНИЗ, ЧТОБЫ ПУТЕШЕСТВОВАТЬ ВО ВРЕМЕНИ</span>
-            <span style="font-size: 1rem; animation: bounce 1.5s infinite;">⇣</span>
-        </div> -->
+        </p>
+        {% include 'data.html' %}
         {% include 'back_button.html' %}
     </section>
-{% include "footer.html" %}
+    {% include "footer.html" %}
 </div>
+
+
+
 
 {% endblock %}

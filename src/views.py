@@ -13,8 +13,8 @@ class ShowReIAPage(TemplateView):
 class ShowArchivePage(TemplateView):
     template_name = "src/archive.html"
 
-class ShowArchiveWPage(TemplateView):
-    template_name = "src/archive_w.html"
+class ShowLabPage(TemplateView):
+    template_name = "src/lab.html"
 
 class ShowOPSPage(TemplateView):
     template_name = "src/ops.html"
@@ -40,21 +40,21 @@ class ShowRiskPage(TemplateView):
 def handler_404(request, exception):
     return render(request, template_name='src/handlers/error_404.html')
 
-class Show1(TemplateView):
-    template_name = "src/1.html"
+# class Show1(TemplateView):
+#     template_name = "src/1.html"
 
 class Show2(TemplateView):
     template_name = "src/2.html"
 
-class Show3(TemplateView):
-    template_name = "src/3.html"
+# class Show3(TemplateView):
+#     template_name = "src/3.html"
 
-class Show4(TemplateView):
-    template_name = "src/4.html"
+# class Show4(TemplateView):
+#     template_name = "src/4.html"
 
-class Show5(TemplateView):
-    template_name = "src/5.html"
+# class Show5(TemplateView):
+#     template_name = "src/5.html"
 
-class Show6(TemplateView):
-    template_name = "src/6.html"
+# class Show6(TemplateView):
+#     template_name = "src/6.html"
     
