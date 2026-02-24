@@ -43,8 +43,8 @@ def handler_404(request, exception):
 # class Show1(TemplateView):
 #     template_name = "src/1.html"
 
-class Show2(TemplateView):
-    template_name = "src/2.html"
+# class Show2(TemplateView):
+#     template_name = "src/2.html"
 
 # class Show3(TemplateView):
 #     template_name = "src/3.html"

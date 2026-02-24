@@ -766,3 +766,55 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+    // РИСКИ
+
+        document.addEventListener('DOMContentLoaded', function() {
+        // Интерактивность для карточек (разворачивание)
+        const cards = document.querySelectorAll('.risk-card');
+        cards.forEach(card => {
+            const indicator = card.querySelector('.expand-indicator');
+            if (indicator) {
+                indicator.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const details = card.querySelector('.risk-details');
+                    if (details.style.display === 'none' || !details.style.display) {
+                        details.style.display = 'block';
+                        this.innerHTML = '▲ СВЕРНУТЬ';
+                    } else {
+                        details.style.display = 'none';
+                        this.innerHTML = '▼ ПОДРОБНЕЕ';
+                    }
+                });
+            }
+        });
+
+        // Анимация графика тренда
+        const trendBars = document.querySelectorAll('.trend-bar');
+        const trendValue = document.getElementById('trend-value');
+        
+        setInterval(() => {
+            trendBars.forEach(bar => {
+                const barDiv = bar.querySelector('div:first-child');
+                const newHeight = Math.floor(Math.random() * 50) + 35;
+                barDiv.style.height = newHeight + 'px';
+            });
+            
+            // Обновляем тренд
+            const trend = (Math.random() * 6 - 3).toFixed(1);
+            trendValue.textContent = `ОБЩИЙ ТРЕНД: ${trend > 0 ? '+' : ''}${trend}%`;
+        }, 4000);
+
+        // Анимация для интегрального риска
+        const integralRisk = document.getElementById('integral-risk');
+        const integralBar = document.getElementById('integral-bar');
+        
+        setInterval(() => {
+            const change = (Math.random() * 4 - 2).toFixed(1);
+            let newValue = (27.3 + parseFloat(change)).toFixed(1);
+            newValue = Math.max(20, Math.min(35, newValue));
+            
+            integralRisk.textContent = newValue;
+            integralBar.style.width = newValue + '%';
+        }, 5000);
+    });
+
