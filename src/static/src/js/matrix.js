@@ -75,7 +75,7 @@
     const textElement = document.getElementById('typed-text');
     const button = document.getElementById('join-button');
     
-    const fullText = "Соединение_с_виртуальным_сервером\nРЭА МИН[ЭНЕРГО]***\n...соединение...\n...соединение...\n...\nдоступ разрешен и рекомендован\n...\nДОБРО ПОЖАЛОВАТЬ В БУДУЩЕЕ!***";
+    const fullText = "Соединение_с_виртуальным_сервером\nРЭА МИН[ЭНЕРГО]***\n...\n...\n...\nдоступ разрешен и рекомендован\n...\nДОБРО ПОЖАЛОВАТЬ В БУДУЩЕЕ!***";
     
     let currentIndex = 0;
     

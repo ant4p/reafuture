@@ -912,7 +912,7 @@ document.addEventListener('DOMContentLoaded', function() {
             employees.forEach(emp => {
                 html += `<span style="display: inline-block; padding: 0 2rem; color: #b0e0ff; font-family: 'Courier New', monospace;">
                     <span style="color: #4f9fff;">⏺</span> ${emp.name} 
-                    <span style="color: #8fc0ff; font-size: 0.8rem;">[${emp.role}]</span>
+                    <span style="color: #8fc0ff; font-size: 1.6rem;">[${emp.role}]</span>
                     <span style="color: #2f5070;"> | </span>
                 </span>`;
             });
@@ -992,5 +992,3 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 5000);
     });
-
-
