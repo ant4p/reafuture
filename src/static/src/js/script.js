@@ -886,3 +886,111 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     });
 
+
+// ЦИФРОВЫЕ ДВОЙНИКИ
+
+document.addEventListener('DOMContentLoaded', function() {
+        // Данные сотрудников для бегущей строки
+        const employees = [
+            { name: "Еферина Татьяна Вячеславовна", role: "Директор, лидер цифрового кластера" },
+            { name: "Артамонов Максим Александрович", role: "Техно-верификатор цифрового кластера, заместитель лидера кластера" },
+            { name: "Леонова Олеся Владимировна", role: "Техно-верификатор технологического хаба, заместитель лидера кластера" },
+            { name: "Кремнев Сергей Владимирович", role: "Техно-мнемоник узла технологического хаба, техножрец" },
+            { name: "Шелешков Кирилл Олегович", role: "Техно-энергетик инновационных проектов технологических инноваций, техножрец" },
+            { name: "Галяткина Юлия Сергеевна", role: "Техно-энергетик хаба Поведенческого Оператора Энергосистемы, техножрец" },
+            { name: "Яковлева Светлана Юрьевна", role: "Техно-энергетик Рискменеджмент ТЭК, техножрец" },
+            { name: "Коновальцев Юрий Иванович", role: "Техно-мнемоник БД НТИ, техножрец" },
+            { name: "Пархаев Андрей Иванович", role: "Техно-мнемоник технологических инновационных проектов, техножрец" }, 
+            { name: "Сафронова Ольга Николаевна", role: "Техно-мнемоник мониторинга НТИ, техножрец" },
+            { name: "Кузнецов Антон Игоревич", role: "Техно-специалист хаба БД НТИ, техножрец" },
+        ];
+
+        // Построение бегущей строки
+        const scrollingDiv = document.querySelector('.scrolling-text');
+        if (scrollingDiv) {
+            let html = '';
+            employees.forEach(emp => {
+                html += `<span style="display: inline-block; padding: 0 2rem; color: #b0e0ff; font-family: 'Courier New', monospace;">
+                    <span style="color: #4f9fff;">⏺</span> ${emp.name} 
+                    <span style="color: #8fc0ff; font-size: 0.8rem;">[${emp.role}]</span>
+                    <span style="color: #2f5070;"> | </span>
+                </span>`;
+            });
+            scrollingDiv.innerHTML = html;
+        }
+
+        // Интерактивность для карточек двойников
+        const twinCards = document.querySelectorAll('.twin-card');
+        twinCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const details = this.querySelector('.twin-details');
+                if (details.style.display === 'none' || !details.style.display) {
+                    details.style.display = 'block';
+                    this.style.borderColor = '#4f9fff';
+                } else {
+                    details.style.display = 'none';
+                    this.style.borderColor = '#2f5070';
+                }
+            });
+        });
+
+        // Анимация графиков
+        const chartBars = document.querySelectorAll('#efficiency-chart div');
+        const accuracyEl = document.getElementById('prediction-accuracy');
+        
+        setInterval(() => {
+            chartBars.forEach(bar => {
+                const newHeight = Math.floor(Math.random() * 10) + 90;
+                bar.style.height = newHeight + 'px';
+            });
+            
+            // Обновление точности прогнозов
+            const newAccuracy = (98 + Math.random()).toFixed(1);
+            if (accuracyEl) accuracyEl.textContent = newAccuracy + '%';
+        }, 3000);
+
+        // Симуляция
+        const simBtns = document.querySelectorAll('.sim-btn');
+        const simOutput = document.getElementById('simulation-output');
+        
+        simBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const object = this.dataset.object;
+                const time = new Date().toLocaleTimeString();
+                
+                let output = '';
+                if (object === 'power') {
+                    output = `[${time}] ▶ Симуляция энергоблока №1: нагрузка 87%, температура 523°C, ресурс 342 дня`;
+                } else if (object === 'substation') {
+                    output = `[${time}] ▶ Симуляция подстанции "Северная": напряжение 220 кВ, частота 50.02 Гц, стабильность 99.2%`;
+                } else if (object === 'pipeline') {
+                    output = `[${time}] ▶ Симуляция газопровода: расход 142 млн м³/сут, давление 7.8 МПа, эффективность +8%`;
+                }
+                
+                simOutput.innerHTML = `> ${output}`;
+            });
+        });
+
+        // Обновление показателей на карточках
+        setInterval(() => {
+            twinCards.forEach(card => {
+                const loadBar = card.querySelector('.load-bar');
+                const loadValue = card.querySelector('.load-value');
+                if (loadBar && loadValue) {
+                    const newLoad = Math.floor(Math.random() * 30) + 60;
+                    loadBar.style.width = newLoad + '%';
+                    loadValue.textContent = newLoad + '%';
+                    
+                    if (newLoad > 85) {
+                        loadBar.style.background = '#88ff88';
+                    } else if (newLoad > 70) {
+                        loadBar.style.background = '#ffaa4f';
+                    } else {
+                        loadBar.style.background = '#ff6f6f';
+                    }
+                }
+            });
+        }, 5000);
+    });
+
+

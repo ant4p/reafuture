@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Единый контейнер -->
+<div class="frame" style="max-width: 1200px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box;">
+
+    <!-- Заголовок -->
+    <section style="text-align: center; margin: 0.5rem 0 1rem 0;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, transparent, #4f9fff);"></span>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 200; letter-spacing: 4px; margin: 0; text-shadow: 0 0 30px #4f9fff; color: #ffffff;">ЦИФРОВЫЕ</h1>
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </div>
+        <div style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 200; color: #b0e0ff; margin-top: -0.5rem; letter-spacing: 6px;">ДВОЙНИКИ</div>
+        
+        <div style="display: flex; justify-content: center; gap: 2rem; color: #8fc0ff; font-size: 0.9rem; letter-spacing: 2px; margin-top: 1rem; flex-wrap: wrap;">
+            <span>⚡ ВИРТУАЛЬНЫЕ КОПИИ</span>
+            <span>✦</span>
+            <span>⚡ ПРЕДИКТИВНАЯ АНАЛИТИКА</span>
+            <span>✦</span>
+            <span>⚡ СИМУЛЯЦИЯ РЕАЛЬНОСТИ</span>
+        </div>
+        
+        <div style="width: 300px; height: 1px; background: linear-gradient(90deg, transparent, #4f9fff, #b0e0ff, #4f9fff, transparent); margin: 1.5rem auto; opacity: 0.5;"></div>
+    </section>
+
+        <section style="border-bottom: 0.5px solid rgba(160, 200, 255, 0.18); padding-bottom: 2.2rem;">
+            <h2>
+                <span>[ИНИЦИАЦИЯ]/ Диалог </span>
+                <span class="thin-line" style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff 0%, transparent 90%); opacity: 0.3;"></span>
+            </h2>
+            <p>
+                [ХАБ] ЦИФРОВЫЕ ДВОЙНИКИ<br>
+                <img src={% static "src/images/reia12.png" %} style="width: 170px; height: 250px; object-fit: cover; border-radius: 0.1rem;"> <br>
+
+                [РЭЯ] <span>На данный момент доступны для контакта цифровые двойники </span><br>
+                [ЦИФРОВЫЕ ДВОЙНИКИ] - <span>[ОНЛАЙН]</span><br>
+            </p>
+        </section>
+
+    <!-- Бегущая строка с сотрудниками -->
+    <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 0.8rem 0; overflow: hidden; position: relative; margin-bottom: 1rem;">
+        <div style="position: absolute; top: 0; left: 0; width: 50px; height: 100%; background: linear-gradient(90deg, rgba(5,15,30,1), transparent); z-index: 5;"></div>
+        <div style="position: absolute; top: 0; right: 0; width: 50px; height: 100%; background: linear-gradient(270deg, rgba(5,15,30,1), transparent); z-index: 5;"></div>
+        
+        <div class="scrolling-text" style="white-space: nowrap; animation: scroll 60s linear infinite; display: inline-block; padding-left: 100%;">
+            {% for employee in employees %}
+                <span style="display: inline-block; padding: 0 2rem; color: #b0e0ff; font-family: 'Courier New', monospace;">
+                    <span style="color: #4f9fff;">⏺</span> {{ employee.name }} 
+                    <span style="color: #8fc0ff; font-size: 0.8rem;">[{{ employee.role }}]</span>
+                    {% if not forloop.last %}<span style="color: #2f5070;"> | </span>{% endif %}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Статистика цифровых двойников -->
+    <section style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1rem 0;">
+        <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #4f9fff; font-weight: 300;">247</div>
+            <div style="font-size: 0.7rem; color: #b0e0ff;">АКТИВНЫХ ДВОЙНИКОВ</div>
+        </div>
+        <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #88ff88; font-weight: 300;">98.7%</div>
+            <div style="font-size: 0.7rem; color: #b0e0ff;">ТОЧНОСТЬ СИМУЛЯЦИЙ</div>
+        </div>
+        <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #ffaa4f; font-weight: 300;">12</div>
+            <div style="font-size: 0.7rem; color: #b0e0ff;">ОБЪЕКТОВ ТЭК</div>
+        </div>
+        <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #ff6f6f; font-weight: 300;">-34%</div>
+            <div style="font-size: 0.7rem; color: #b0e0ff;">АВАРИЙНОСТИ</div>
+        </div>
+    </section>
+
+    <!-- Интерактивный блок: Управление цифровыми двойниками -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>01/ АКТИВНЫЕ ДВОЙНИКИ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;">
+            <!-- Энергоблок №1 -->
+            <div class="twin-card" data-twin="1" style="background: rgba(5, 15, 30, 0.7); backdrop-filter: blur(10px); border: 1px solid #2f5070; padding: 1.5rem; border-radius: 4px; cursor: pointer; transition: all 0.3s;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #4f9fff;">⚡</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">Энергоблок №1</span>
+                    <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.6rem; border-radius: 20px; margin-left: auto;">ОНЛАЙН</span>
+                </div>
+                <div style="height: 60px; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.3rem;">
+                        <span>ЗАГРУЗКА</span>
+                        <span class="load-value">87%</span>
+                    </div>
+                    <div style="height: 6px; background: #1a3f60; width: 100%;">
+                        <div class="load-bar" style="width: 87%; height: 6px; background: #88ff88;"></div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <div style="font-size: 0.6rem; color: #8fc0ff;">Температура</div>
+                        <div class="temp-value">523°C</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.6rem; color: #8fc0ff;">Давление</div>
+                        <div class="pressure-value">12.4 МПа</div>
+                    </div>
+                </div>
+                <div class="twin-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #2f5070;">
+                    <div style="font-size: 0.8rem; color: #b0e0ff;">Прогноз отказов: через 342 дня</div>
+                    <div style="font-size: 0.8rem; color: #88ff88;">Эффективность: +12%</div>
+                </div>
+            </div>
+
+            <!-- Подстанция "Северная" -->
+            <div class="twin-card" data-twin="2" style="background: rgba(5, 15, 30, 0.7); backdrop-filter: blur(10px); border: 1px solid #2f5070; padding: 1.5rem; border-radius: 4px; cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #88ff88;">⌗</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">Подстанция "Северная"</span>
+                    <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.6rem; border-radius: 20px; margin-left: auto;">ОНЛАЙН</span>
+                </div>
+                <div style="height: 60px; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.3rem;">
+                        <span>ЗАГРУЗКА</span>
+                        <span class="load-value">62%</span>
+                    </div>
+                    <div style="height: 6px; background: #1a3f60; width: 100%;">
+                        <div class="load-bar" style="width: 62%; height: 6px; background: #ffaa4f;"></div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <div style="font-size: 0.6rem; color: #8fc0ff;">Напряжение</div>
+                        <div class="voltage-value">220 кВ</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.6rem; color: #8fc0ff;">Частота</div>
+                        <div class="frequency-value">50.02 Гц</div>
+                    </div>
+                </div>
+                <div class="twin-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #2f5070;">
+                    <div style="font-size: 0.8rem; color: #b0e0ff;">Прогноз перегрузки: через 127 дней</div>
+                    <div style="font-size: 0.8rem; color: #88ff88;">Стабильность: 99.2%</div>
+                </div>
+            </div>
+
+            <!-- Газопровод "Сила Сибири" -->
+            <div class="twin-card" data-twin="3" style="background: rgba(5, 15, 30, 0.7); backdrop-filter: blur(10px); border: 1px solid #2f5070; padding: 1.5rem; border-radius: 4px; cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2rem; color: #ffaa4f;">⌇</span>
+                    <span style="font-weight: 400; color: #b0e0ff;">Газопровод "Сила Сибири"</span>
+                    <span style="background: #1a3f60; padding: 0.2rem 0.8rem; font-size: 0.6rem; border-radius: 20px; margin-left: auto;">ОНЛАЙН</span>
+                </div>
+                <div style="height: 60px; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #8fc0ff; margin-bottom: 0.3rem;">
+                        <span>ПРОПУСКНАЯ</span>
+                        <span class="load-value">94%</span>
+                    </div>
+                    <div style="height: 6px; background: #1a3f60; width: 100%;">
+                        <div class="load-bar" style="width: 94%; height: 6px; background: #88ff88;"></div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <div style="font-size: 0.6rem; color: #8fc0ff;">Расход</div>
+                        <div class="flow-value">142 млн м³/сут</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.6rem; color: #8fc0ff;">Давление</div>
+                        <div class="pipeline-pressure">7.8 МПа</div>
+                    </div>
+                </div>
+                <div class="twin-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #2f5070;">
+                    <div style="font-size: 0.8rem; color: #b0e0ff;">Оптимизация режима: +8%</div>
+                    <div style="font-size: 0.8rem; color: #88ff88;">Снижение потерь: 3.2%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интерактивный блок: Команда цифровых двойников -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>02/ КОМАНДА УПРАВЛЕНИЯ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+
+        <!-- Лидеры (первые 3) -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+            <!-- Еферина Татьяна -->
+            <div class="leader-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #4f9fff; padding: 1.5rem; text-align: center;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #4f9fff; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 2.5rem; color: #4f9fff;">⏺</span>
+                </div>
+                <div style="font-weight: 400; color: #b0e0ff;">Еферина Татьяна Вячеславовна</div>
+                <div style="font-size: 0.8rem; color: #88ff88; margin: 0.5rem 0;">Директор цифрового кластера</div>
+                <div style="font-size: 0.7rem; color: #8fc0ff;">Лидер  кластера</div>
+            </div>
+
+            <!-- Артамонов Максим -->
+            <div class="leader-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #4f9fff; padding: 1.5rem; text-align: center;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #4f9fff; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 2.5rem; color: #4f9fff;">⏺</span>
+                </div>
+                <div style="font-weight: 400; color: #b0e0ff;">Артамонов Максим Александрович</div>
+                <div style="font-size: 0.8rem; color: #88ff88; margin: 0.5rem 0;">Заместитель руководителя цифрового кластера</div>
+                <div style="font-size: 0.7rem; color: #8fc0ff;">Техно-верификатор кластера</div>
+            </div>
+
+            <!-- Леонова Олеся -->
+            <div class="leader-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #4f9fff; padding: 1.5rem; text-align: center;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #4f9fff; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 2.5rem; color: #4f9fff;">⏺</span>
+                </div>
+                <div style="font-weight: 400; color: #b0e0ff;">Леонова Олеся Владимировна</div>
+                <div style="font-size: 0.8rem; color: #88ff88; margin: 0.5rem 0;">Директор проекта технологического хаба</div>
+                <div style="font-size: 0.7rem; color: #8fc0ff;">Техно-верификатор кластера</div>
+            </div>
+        </div>
+
+        <!-- Остальные участники (сетка) -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+            {% for employee in employees %}
+                {% if forloop.counter > 3 %}
+                <div class="team-card" style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: #4f9fff;">⏺</span>
+                        <div style="overflow: hidden;">
+                            <div style="font-size: 0.8rem; color: #b0e0ff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ employee.name }}</div>
+                            <div style="font-size: 0.6rem; color: #8fc0ff;">{{ employee.role }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Интерактивный блок: Мониторинг состояния двойников -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>03/ ПРЕДИКТИВНАЯ АНАЛИТИКА</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <!-- График эффективности -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="color: #b0e0ff;">ЭФФЕКТИВНОСТЬ ПРОГНОЗИРОВАНИЯ</span>
+                    <span style="color: #88ff88;" id="prediction-accuracy">98.7%</span>
+                </div>
+                <div style="height: 150px; display: flex; align-items: flex-end; gap: 4px;" id="efficiency-chart">
+                    <div style="flex: 1; height: 95px; background: #4f9fff; opacity: 0.7;"></div>
+                    <div style="flex: 1; height: 97px; background: #4f9fff; opacity: 0.8;"></div>
+                    <div style="flex: 1; height: 98px; background: #4f9fff;"></div>
+                    <div style="flex: 1; height: 96px; background: #4f9fff; opacity: 0.9;"></div>
+                    <div style="flex: 1; height: 99px; background: #4f9fff;"></div>
+                    <div style="flex: 1; height: 97px; background: #4f9fff; opacity: 0.9;"></div>
+                    <div style="flex: 1; height: 95px; background: #4f9fff; opacity: 0.8;"></div>
+                    <div style="flex: 1; height: 96px; background: #4f9fff; opacity: 0.8;"></div>
+                    <div style="flex: 1; height: 98px; background: #4f9fff; opacity: 0.9;"></div>
+                    <div style="flex: 1; height: 99px; background: #4f9fff;"></div>
+                    <div style="flex: 1; height: 97px; background: #4f9fff; opacity: 0.9;"></div>
+                    <div style="flex: 1; height: 96px; background: #4f9fff; opacity: 0.8;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; color: #2f5070; font-size: 0.6rem;">
+                    <span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00</span>
+                </div>
+            </div>
+
+            <!-- Список предиктивных рекомендаций -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+                <div style="color: #b0e0ff; margin-bottom: 1rem;">РЕКОМЕНДАЦИИ</div>
+                <div class="recommendation-list" style="max-height: 150px; overflow-y: auto;">
+                    <div style="padding: 0.5rem; border-bottom: 0.5px solid #2f5070;">
+                        <span style="color: #ffaa4f;">⚠</span> Энергоблок №1: профилактика через 342 дня
+                    </div>
+                    <div style="padding: 0.5rem; border-bottom: 0.5px solid #2f5070;">
+                        <span style="color: #88ff88;">✓</span> Подстанция "Северная": стабильность 99.2%
+                    </div>
+                    <div style="padding: 0.5rem; border-bottom: 0.5px solid #2f5070;">
+                        <span style="color: #4f9fff;">⚡</span> Газопровод: оптимизация режима +8%
+                    </div>
+                    <div style="padding: 0.5rem;">
+                        <span style="color: #ff6f6f;">⚠</span> Турбина №3: вибрация выше нормы
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-size: 0.7rem;">ТОЧНОСТЬ ПРОГНОЗОВ</span>
+                        <span style="color: #88ff88;">98.7%</span>
+                    </div>
+                    <div style="height: 4px; background: #1a3f60; width: 100%; margin-top: 0.3rem;">
+                        <div style="width: 98.7%; height: 4px; background: #88ff88;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интерактивный блок: Виртуальная симуляция -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #b0e0ff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #4f9fff;"></span>
+            <span>04/ ВИРТУАЛЬНАЯ СИМУЛЯЦИЯ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </h2>
+
+        <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #2f5070; padding: 1.5rem;">
+            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1;">
+                    <div style="font-size: 0.9rem; color: #b0e0ff; margin-bottom: 1rem;">ЗАПУСТИТЬ СИМУЛЯЦИЮ РАБОТЫ ОБЪЕКТА</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="sim-btn" data-object="power" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.5rem 1rem; cursor: pointer;">Энергоблок</button>
+                        <button class="sim-btn" data-object="substation" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.5rem 1rem; cursor: pointer;">Подстанция</button>
+                        <button class="sim-btn" data-object="pipeline" style="background: transparent; border: 1px solid #4f9fff; color: #b0e0ff; padding: 0.5rem 1rem; cursor: pointer;">Газопровод</button>
+                    </div>
+                    <div style="margin-top: 1rem; background: #0a1a2a; padding: 1rem;">
+                        <div id="simulation-output" style="color: #88ff88; font-family: 'Courier New';">
+                            > Симуляция готова. Выберите объект.
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 150px; height: 150px; border-radius: 50%; border: 2px solid #4f9fff; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <div style="font-size: 2rem; color: #4f9fff;">⌗</div>
+                    <div style="font-size: 0.7rem;">ВИРТУАЛЬНАЯ</div>
+                    <div style="font-size: 0.7rem;">КОПИЯ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Мета-информация -->
+    <section style="margin-top: 2rem; padding-top: 1rem; border-top: 0.5px solid #2f5070;">
+        <div class="meta-signal">
+            <span class="dot" style="background: #4f9fff;"></span>
+            <span>ЦИФРОВЫЕ ДВОЙНИКИ • ТОЧНОСТЬ 98.7% • 247 ОБЪЕКТОВ • РЕЖИМ РЕАЛЬНОГО ВРЕМЕНИ</span>
+        </div>
+    </section>
+{% include 'data.html' %}
+    {% include "back_button.html" %}
+    {% include "footer.html" %}
+</div>
+
+<!-- Интерактивные скрипты -->
+<script>
+    
+</script>
+
+<style>
+
+</style>
+{% endblock %}

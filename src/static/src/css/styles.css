@@ -1456,3 +1456,80 @@ footer {
             grid-template-columns: 1fr !important;
         }
     }
+
+
+/* ЦИФРОВОЙ ДВОЙНИК */
+
+    /* Анимация бегущей строки */
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    
+    .scrolling-text:hover {
+        animation-play-state: paused;
+    }
+    
+    /* Стили для карточек */
+    .twin-card {
+        transition: all 0.3s ease;
+    }
+    
+    .twin-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(79, 159, 255, 0.2);
+    }
+    
+    .leader-card, .team-card {
+        transition: all 0.2s ease;
+    }
+    
+    .leader-card:hover, .team-card:hover {
+        transform: translateY(-2px);
+        border-color: #4f9fff !important;
+    }
+    
+    #efficiency-chart div {
+        transition: height 0.5s ease;
+    }
+    
+    .sim-btn {
+        transition: all 0.2s ease;
+    }
+    
+    .sim-btn:hover {
+        background: rgba(79, 159, 255, 0.2) !important;
+        transform: translateY(-2px);
+    }
+    
+    .recommendation-list {
+        scrollbar-width: thin;
+        scrollbar-color: #4f9fff #1a3f60;
+    }
+    
+    .recommendation-list::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .recommendation-list::-webkit-scrollbar-track {
+        background: #1a3f60;
+    }
+    
+    .recommendation-list::-webkit-scrollbar-thumb {
+        background: #4f9fff;
+        border-radius: 2px;
+    }
+    
+    @media (max-width: 700px) {
+        [style*="grid-template-columns: repeat(4, 1fr)"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        
+        [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+        }
+        
+        [style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+        }
+    }
