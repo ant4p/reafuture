@@ -1,0 +1,471 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Единый контейнер -->
+<div class="frame" style="max-width: 1200px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box;">
+
+    <!-- Заголовок -->
+    <section style="text-align: center; margin: 0.5rem 0 1rem 0;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, transparent, #ffd700);"></span>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 200; letter-spacing: 4px; margin: 0; text-shadow: 0 0 30px #ffd700; color: #ffffff;">ТЕХНОЛОГИИ ИЗВЛЕЧЕНИЯ</h1>
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, #ffd700, transparent);"></span>
+        </div>
+        <div style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 200; color: #ffecb0; margin-top: -0.5rem; letter-spacing: 6px;">ДРАГОЦЕННЫХ МЕТАЛЛОВ</div>
+        
+        <div style="display: flex; justify-content: center; gap: 2rem; color: #ffd700; font-size: 0.9rem; letter-spacing: 2px; margin-top: 1rem; flex-wrap: wrap;">
+            <span>⚡ ЗОЛОШЛАКОВЫЕ ОТХОДЫ</span>
+            <span>✦</span>
+            <span>⚡ ОЧИСТКА ДЫМОВЫХ ГАЗОВ</span>
+        </div>
+        
+        <div style="width: 300px; height: 1px; background: linear-gradient(90deg, transparent, #ffd700, #ffecb0, #ffd700, transparent); margin: 1.5rem auto; opacity: 0.5;"></div>
+    </section>
+
+    <!-- Общая статистика проектов -->
+    <section style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1rem 0;">
+        <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #ffd700; font-weight: 300;">₽ 2.4</div>
+            <div style="font-size: 0.7rem; color: #ffecb0;">МЛРД ПРИБЫЛИ</div>
+            <div style="font-size: 0.6rem; color: #aa8c4f;">с 2042 года</div>
+        </div>
+        <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #ffd700; font-weight: 300;">12</div>
+            <div style="font-size: 0.7rem; color: #ffecb0;">ПРОМЫШЛЕННЫХ УСТАНОВОК</div>
+            <div style="font-size: 0.6rem; color: #aa8c4f;">в эксплуатации</div>
+        </div>
+        <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #ffd700; font-weight: 300;">47</div>
+            <div style="font-size: 0.7rem; color: #ffecb0;">ТЫС. ТОНН ЗШО</div>
+            <div style="font-size: 0.6rem; color: #aa8c4f;">переработано</div>
+        </div>
+        <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1.2rem; text-align: center; border-radius: 4px;">
+            <div style="font-size: 1.8rem; color: #ffd700; font-weight: 300;">89%</div>
+            <div style="font-size: 0.7rem; color: #ffecb0;">СНИЖЕНИЕ ВРЕДНЫХ ВЫБРОСОВ</div>
+            <div style="font-size: 0.6rem; color: #aa8c4f;">на ТЭЦ</div>
+        </div>
+    </section>
+
+    <!-- ПЕРВЫЙ ПРОЕКТ: Извлечение золота из золошлаковых отходов -->
+    <section style="margin: 2rem 0; border: 1px solid #aa8c4f; background: rgba(20, 15, 5, 0.5); backdrop-filter: blur(10px); position: relative; overflow: hidden;">
+        <!-- Декоративный фон с частицами золота -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.05; pointer-events: none;">
+            <div style="position: absolute; top: 20%; left: 10%; width: 4px; height: 4px; background: #ffd700; border-radius: 50%; box-shadow: 0 0 10px #ffd700;"></div>
+            <div style="position: absolute; top: 50%; left: 30%; width: 6px; height: 6px; background: #ffd700; border-radius: 50%;"></div>
+            <div style="position: absolute; top: 70%; left: 60%; width: 3px; height: 3px; background: #ffd700; border-radius: 50%;"></div>
+            <div style="position: absolute; top: 30%; left: 80%; width: 5px; height: 5px; background: #ffd700; border-radius: 50%;"></div>
+        </div>
+
+        <div style="padding: 2rem; position: relative; z-index: 2;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #aa8c4f; padding-bottom: 1rem;">
+                <span style="font-size: 2.5rem; color: #ffd700;">⏣</span>
+                <h2 style="font-size: 1.8rem; font-weight: 300; color: #ffecb0; margin: 0;">ИЗВЛЕЧЕНИЕ ЗОЛОТА ИЗ ЗОЛОШЛАКОВЫХ ОТХОДОВ</h2>
+                <span style="background: #3a6f3a; padding: 0.3rem 1rem; font-size: 0.8rem; color: #88ff88; margin-left: auto;">СТАТУС: РЕАЛИЗОВАНО</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <!-- Левая колонка - описание и технология -->
+                <div>
+                    <p style="font-size: 0.95rem; color: #e0d0b0; line-height: 1.6; border-left: 3px solid #ffd700; padding-left: 1rem;">
+                        <span style="color: #ffecb0;">Гидрометаллургический комплекс</span> по переработке золошлаковых отходов (ЗШО) от сжигания природных углей. Технология позволяет извлекать ультрадисперсное и наноразмерное золото без применения ядовитых реагентов.
+                    </p>
+
+                    <div style="background: rgba(0,0,0,0.3); padding: 1.2rem; margin: 1.5rem 0;">
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ffd700; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: #ffd700;">1</span>
+                            </div>
+                            <div>
+                                <div style="font-weight: 400; color: #ffecb0;">Подготовка сырья</div>
+                                <div style="font-size: 0.8rem; color: #aa8c4f;">Зола от сжигания угля при T > 1064°C</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ffd700; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: #ffd700;">2</span>
+                            </div>
+                            <div>
+                                <div style="font-weight: 400; color: #ffecb0;">Водное выщелачивание</div>
+                                <div style="font-size: 0.8rem; color: #aa8c4f;">Перемешивание 20+ мин, вода H₂O</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ffd700; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: #ffd700;">3</span>
+                            </div>
+                            <div>
+                                <div style="font-weight: 400; color: #ffecb0;">Сорбция активированным углем</div>
+                                <div style="font-size: 0.8rem; color: #aa8c4f;">Извлечение золота из раствора</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ffd700; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: #ffd700;">4</span>
+                            </div>
+                            <div>
+                                <div style="font-weight: 400; color: #ffecb0;">Электролиз и плавка</div>
+                                <div style="font-size: 0.8rem; color: #aa8c4f;">Шлиховое золото 999,9</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background: rgba(0,0,0,0.3); padding: 1rem; text-align: center;">
+                            <div style="font-size: 1.5rem; color: #ffd700;">₽ 847M</div>
+                            <div style="font-size: 0.7rem;">ГОДОВАЯ ПРИБЫЛЬ</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 1rem; text-align: center;">
+                            <div style="font-size: 1.5rem; color: #ffd700;">3.2</div>
+                            <div style="font-size: 0.7rem;">Т/ГОД ЗОЛОТА</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка - новые графики -->
+                <div>
+                    <!-- Новый график: Распределение фракций золота в ЗШО -->
+                    <div style="background: rgba(0,0,0,0.3); padding: 1.2rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span style="color: #ffecb0;">РАСПРЕДЕЛЕНИЕ ФРАКЦИЙ ЗОЛОТА В ЗШО</span>
+                            <span style="color: #ffd700;">100%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 80px; font-size: 0.8rem;">> 100 мкм</div>
+                            <div style="flex: 1; height: 10px; background: #3a2f1a;">
+                                <div style="width: 12%; height: 10px; background: #ffd700;"></div>
+                            </div>
+                            <div style="width: 40px; color: #ffd700;">12%</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 80px; font-size: 0.8rem;">50-100 мкм</div>
+                            <div style="flex: 1; height: 10px; background: #3a2f1a;">
+                                <div style="width: 23%; height: 10px; background: #ffd700;"></div>
+                            </div>
+                            <div style="width: 40px; color: #ffd700;">23%</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 80px; font-size: 0.8rem;">10-50 мкм</div>
+                            <div style="flex: 1; height: 10px; background: #3a2f1a;">
+                                <div style="width: 35%; height: 10px; background: #ffd700;"></div>
+                            </div>
+                            <div style="width: 40px; color: #ffd700;">35%</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 80px; font-size: 0.8rem;">< 10 мкм</div>
+                            <div style="flex: 1; height: 10px; background: #3a2f1a;">
+                                <div style="width: 30%; height: 10px; background: #ffd700;"></div>
+                            </div>
+                            <div style="width: 40px; color: #ffd700;">30%</div>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
+                            <span style="font-size: 0.7rem; color: #aa8c4f;">Преобладание ультратонких фракций</span>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div class="stat-block" style="background: rgba(0,0,0,0.3); padding: 1rem;">
+                            <div style="font-size: 0.7rem; color: #aa8c4f;">СОДЕРЖАНИЕ Au В ЗШО</div>
+                            <div style="font-size: 1.2rem; color: #ffd700;">2.7 г/т</div>
+                            <div style="height: 4px; background: #3a2f1a; width: 100%; margin-top: 0.5rem;">
+                                <div style="width: 89%; height: 4px; background: #ffd700;"></div>
+                            </div>
+                        </div>
+                        <div class="stat-block" style="background: rgba(0,0,0,0.3); padding: 1rem;">
+                            <div style="font-size: 0.7rem; color: #aa8c4f;">ЭФФЕКТИВНОСТЬ ИЗВЛЕЧЕНИЯ</div>
+                            <div style="font-size: 1.2rem; color: #ffd700;">96.3%</div>
+                            <div style="height: 4px; background: #3a2f1a; width: 100%; margin-top: 0.5rem;">
+                                <div style="width: 96%; height: 4px; background: #ffd700;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #ffecb0;">ЭКОЛОГИЧЕСКИЙ ЭФФЕКТ</span>
+                            <span style="color: #88ff88;">-100%</span>
+                        </div>
+                        <div style="height: 6px; background: #3a2f1a; width: 100%; margin-bottom: 1rem;">
+                            <div style="width: 100%; height: 6px; background: #88ff88;"></div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #e0d0b0;">
+                            <span style="color: #88ff88;">✓</span> Полное исключение ядовитых реагентов
+                        </div>
+                        <div style="font-size: 0.8rem; color: #e0d0b0; margin-top: 0.3rem;">
+                            <span style="color: #88ff88;">✓</span> Снижение себестоимости на 73%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Технические результаты изобретения -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-left: 3px solid #ffd700;">
+                    <div style="font-size: 1rem; color: #ffecb0;">Технический результат 1</div>
+                    <div style="font-size: 0.9rem; color: #ffd700;">Извлечение золота из ЗШО</div>
+                    <div style="font-size: 0.7rem; color: #aa8c4f;">47 000 тонн переработано</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-left: 3px solid #88ff88;">
+                    <div style="font-size: 1rem; color: #ffecb0;">Технический результат 2</div>
+                    <div style="font-size: 0.9rem; color: #88ff88;">Без ядовитых реагентов</div>
+                    <div style="font-size: 0.7rem; color: #aa8c4f;">Экологически чистая технология</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-left: 3px solid #4f9fff;">
+                    <div style="font-size: 1rem; color: #ffecb0;">Технический результат 3</div>
+                    <div style="font-size: 0.9rem; color: #4f9fff;">Снижение себестоимости</div>
+                    <div style="font-size: 0.7rem; color: #aa8c4f;">на 73% относительно стандартных методов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ВТОРОЙ ПРОЕКТ: Очистка дымовых газов с извлечением металлов -->
+    <section style="margin: 2rem 0; border: 1px solid #4f9fff; background: rgba(5, 15, 30, 0.7); backdrop-filter: blur(10px); position: relative;">
+        <!-- Декоративный фон с частицами -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; pointer-events: none;">
+            <div style="position: absolute; top: 10%; left: 20%; width: 2px; height: 20px; background: #4f9fff;"></div>
+            <div style="position: absolute; top: 40%; left: 50%; width: 2px; height: 30px; background: #88ff88;"></div>
+            <div style="position: absolute; top: 70%; left: 80%; width: 2px; height: 15px; background: #ffd700;"></div>
+        </div>
+
+        <div style="padding: 2rem; position: relative; z-index: 2;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #4f9fff; padding-bottom: 1rem;">
+                <span style="font-size: 2.5rem; color: #4f9fff;">⌗</span>
+                <h2 style="font-size: 1.8rem; font-weight: 300; color: #b0e0ff; margin: 0;">ОЧИСТКА ДЫМОВЫХ ГАЗОВ С ИЗВЛЕЧЕНИЕМ МЕТАЛЛОВ</h2>
+                <span style="background: #3a6f3a; padding: 0.3rem 1rem; font-size: 0.8rem; color: #88ff88; margin-left: auto;">СТАТУС: РЕАЛИЗОВАНО</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <!-- Левая колонка -->
+                <div>
+                    <p style="font-size: 0.95rem; color: #b0c8e0; line-height: 1.6; border-left: 3px solid #4f9fff; padding-left: 1rem;">
+                        <span style="color: #b0e0ff;">Экспериментальная площадка Амурского научного центра ДВО РАН.</span> Технологический комплекс на основе мокрого скруббера Вентури для очистки дымовых газов с попутным извлечением благородных металлов из бурых углей.
+                    </p>
+
+                    <div style="display: flex; gap: 2rem; margin: 1.5rem 0;">
+                        <div>
+                            <div style="font-size: 2rem; color: #4f9fff; font-weight: 300;">70</div>
+                            <div style="font-size: 0.7rem;">МЛРД Т</div>
+                            <div style="font-size: 0.6rem; color: #8fc0ff;">ресурсы угля в Амурской обл.</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2rem; color: #ffd700; font-weight: 300;">3500</div>
+                            <div style="font-size: 0.7rem;">ПРОБ</div>
+                            <div style="font-size: 0.6rem; color: #8fc0ff;">пробирных анализов</div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(0,10,20,0.5); padding: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Содержание Au в угле</span>
+                            <span id="au-grade">0.87 г/т</span>
+                        </div>
+                        <div style="height: 4px; background: #1a3f60; width: 100%;">
+                            <div style="width: 87%; height: 4px; background: #ffd700;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                            <span>Извлечение Au</span>
+                            <span id="au-recovery">82.4%</span>
+                        </div>
+                        <div style="height: 4px; background: #1a3f60; width: 100%;">
+                            <div style="width: 82%; height: 4px; background: #88ff88;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка -->
+                <div>
+                    <div style="background: rgba(0,10,20,0.5); padding: 1.2rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span style="color: #b0e0ff;">ЭФФЕКТИВНОСТЬ ОЧИСТКИ</span>
+                            <span style="color: #88ff88;" id="cleaning-efficiency">94.7%</span>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                <span>SO₂</span>
+                                <span>98%</span>
+                            </div>
+                            <div style="height: 4px; background: #1a3f60;">
+                                <div style="width: 98%; height: 4px; background: #88ff88;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                <span>NOₓ</span>
+                                <span>92%</span>
+                            </div>
+                            <div style="height: 4px; background: #1a3f60;">
+                                <div style="width: 92%; height: 4px; background: #88ff88;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                <span>Тяжелые металлы</span>
+                                <span>96%</span>
+                            </div>
+                            <div style="height: 4px; background: #1a3f60;">
+                                <div style="width: 96%; height: 4px; background: #88ff88;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                        <div style="background: rgba(0,10,20,0.5); padding: 1rem;">
+                            <div style="font-size: 0.7rem; color: #8fc0ff;">ИЗВЛЕЧЕНО Au</div>
+                            <div style="font-size: 1.5rem; color: #ffd700;">127</div>
+                            <div style="font-size: 0.6rem;">кг/год</div>
+                        </div>
+                        <div style="background: rgba(0,10,20,0.5); padding: 1rem;">
+                            <div style="font-size: 0.7rem; color: #8fc0ff;">ИЗВЛЕЧЕНО Cu</div>
+                            <div style="font-size: 1.5rem; color: #ffaa4f;">3.2</div>
+                            <div style="font-size: 0.6rem;">т/год</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Технические характеристики проекта -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem;">
+                <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center;">
+                    <div style="font-size: 0.7rem; color: #8fc0ff;">МЕСТО РЕАЛИЗАЦИИ</div>
+                    <div style="font-size: 1rem;">Амурский НЦ ДВО РАН</div>
+                </div>
+                <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center;">
+                    <div style="font-size: 0.7rem; color: #8fc0ff;">ТИП ПРОЕКТА</div>
+                    <div style="font-size: 1rem;">Инновационный</div>
+                </div>
+                <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center;">
+                    <div style="font-size: 0.7rem; color: #8fc0ff;">ЭНЕРГОПОТРЕБЛЕНИЕ</div>
+                    <div style="font-size: 1rem;">0.4 МВт</div>
+                </div>
+                <div style="background: rgba(0,10,20,0.5); padding: 0.8rem; text-align: center;">
+                    <div style="font-size: 0.7rem; color: #8fc0ff;">ЭКОНОМИЯ УГЛЯ</div>
+                    <div style="font-size: 1rem;">23%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интерактивный блок: Сравнение эффективности -->
+    <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 300; color: #ffecb0; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <span style="width: 30px; height: 1px; background: #ffd700;"></span>
+            <span>СРАВНЕНИЕ ЭФФЕКТИВНОСТИ</span>
+            <span style="flex: 1; height: 1px; background: linear-gradient(90deg, #ffd700, transparent);"></span>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <!-- Легенда -->
+            <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 20px; height: 20px; background: #ffd700;"></div>
+                    <span>Наша технология</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 20px; height: 20px; background: #4f9fff; opacity: 0.5;"></div>
+                    <span>Традиционные методы</span>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <div class="comparison-item" style="margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Себестоимость</span>
+                            <span id="cost-value">-73%</span>
+                        </div>
+                        <div style="height: 10px; background: #3a2f1a; width: 100%; position: relative;">
+                            <div style="position: absolute; top: 0; left: 0; width: 27%; height: 10px; background: #4f9fff; opacity: 0.5;"></div>
+                            <div style="position: absolute; top: 0; left: 0; width: 27%; height: 10px; background: #ffd700;"></div>
+                        </div>
+                    </div>
+                    <div class="comparison-item" style="margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Экологичность</span>
+                            <span id="eco-value">+100%</span>
+                        </div>
+                        <div style="height: 10px; background: #3a2f1a; width: 100%; position: relative;">
+                            <div style="position: absolute; top: 0; left: 0; width: 50%; height: 10px; background: #4f9fff; opacity: 0.5;"></div>
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: #ffd700;"></div>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Извлечение Au</span>
+                            <span id="recovery-value">+23%</span>
+                        </div>
+                        <div style="height: 10px; background: #3a2f1a; width: 100%; position: relative;">
+                            <div style="position: absolute; top: 0; left: 0; width: 73%; height: 10px; background: #4f9fff; opacity: 0.5;"></div>
+                            <div style="position: absolute; top: 0; left: 0; width: 96%; height: 10px; background: #ffd700;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Интерактивный калькулятор выгоды в рублях -->
+            <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #4f9fff; padding: 1.5rem;">
+                <h3 style="color: #b0e0ff; margin-top: 0; margin-bottom: 1.5rem;">КАЛЬКУЛЯТОР ВЫГОДЫ</h3>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; color: #8fc0ff; font-size: 0.8rem; margin-bottom: 0.3rem;">Объем переработки (тыс. тонн/год)</label>
+                    <input type="range" id="volume-slider" min="10" max="500" value="100" style="width: 100%; background: #1a3f60; height: 4px;">
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem;">10</span>
+                        <span style="font-size: 0.7rem;" id="volume-value">100</span>
+                        <span style="font-size: 0.7rem;">500</span>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; color: #8fc0ff; font-size: 0.8rem; margin-bottom: 0.3rem;">Цена золота (₽/г)</label>
+                    <input type="range" id="price-slider" min="4000" max="8000" value="6000" step="10" style="width: 100%; background: #1a3f60; height: 4px;">
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span style="font-size: 0.7rem;">4000</span>
+                        <span style="font-size: 0.7rem;" id="price-value">6000</span>
+                        <span style="font-size: 0.7rem;">8000</span>
+                    </div>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1rem; margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Ожидаемая годовая прибыль:</span>
+                        <span style="color: #ffd700; font-size: 1.2rem;" id="profit-value">₽ 847M</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Экономия на реагентах:</span>
+                        <span style="color: #88ff88;" id="savings-value">₽ 220M</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Партнеры и внедрение -->
+    <section style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0;">
+        <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1rem; text-align: center;">
+            <span style="font-size: 2rem; color: #ffd700;">⏣</span>
+            <div style="font-size: 0.9rem;">Амурский научный центр</div>
+            <div style="font-size: 0.7rem; color: #aa8c4f;">ДВО РАН</div>
+        </div>
+        <div style="background: rgba(5, 15, 30, 0.7); border: 1px solid #4f9fff; padding: 1rem; text-align: center;">
+            <span style="font-size: 2rem; color: #4f9fff;">⌗</span>
+            <div style="font-size: 0.9rem;">Промышленные партнеры</div>
+            <div style="font-size: 0.7rem; color: #8fc0ff;">12 установок в эксплуатации</div>
+        </div>
+        <div style="background: rgba(20, 15, 5, 0.7); border: 1px solid #aa8c4f; padding: 1rem; text-align: center;">
+            <span style="font-size: 2rem; color: #ffd700;">⚙</span>
+            <div style="font-size: 0.9rem;">Гидрометаллургический передел</div>
+            <div style="font-size: 0.7rem; color: #aa8c4f;">Интегрированное решение</div>
+        </div>
+    </section>
+
+    <!-- Мета-информация -->
+    <section style="margin-top: 2rem; padding-top: 1rem; border-top: 0.5px solid #aa8c4f;">
+        <div class="meta-signal">
+            <span class="dot" style="background: #ffd700;"></span>
+            <span>ТЕХНОЛОГИИ ИЗВЛЕЧЕНИЯ • ПАТЕНТЫ РФ № 2046-112-78 • ЭКОЛОГИЧЕСКИ ЧИСТОЕ ПРОИЗВОДСТВО</span>
+        </div>
+    </section>
+{% include 'data.html' %}
+    {% include "back_button.html" %}
+    {% include "footer.html" %}
+</div>
+
+
+{% endblock %}

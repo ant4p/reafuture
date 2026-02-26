@@ -818,3 +818,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     });
 
+
+    // ЗОЛОШЛАКИ
+
+        document.addEventListener('DOMContentLoaded', function() {
+        // Анимация для фракционного состава (небольшие колебания)
+        const fractionBars = document.querySelectorAll('[style*="background: #ffd700;"]');
+        
+        setInterval(() => {
+            fractionBars.forEach(bar => {
+                // Только для баров внутри блока фракций (защита от изменения других элементов)
+                if (bar.closest('[style*="background: rgba(0,0,0,0.3); padding: 1.2rem; margin-bottom: 1.5rem;"]')) {
+                    const currentWidth = parseFloat(bar.style.width) || parseFloat(bar.parentElement.style.width);
+                    if (currentWidth) {
+                        // Небольшие колебания для демонстрации
+                        const change = (Math.random() - 0.5) * 2;
+                        let newWidth = currentWidth + change;
+                        newWidth = Math.max(10, Math.min(40, newWidth));
+                        bar.style.width = newWidth + '%';
+                    }
+                }
+            });
+        }, 5000);
+
+        // Калькулятор выгоды в рублях
+        const volumeSlider = document.getElementById('volume-slider');
+        const priceSlider = document.getElementById('price-slider');
+        const volumeValue = document.getElementById('volume-value');
+        const priceValue = document.getElementById('price-value');
+        const profitValue = document.getElementById('profit-value');
+        const savingsValue = document.getElementById('savings-value');
+
+        function calculateProfit() {
+            const volume = parseInt(volumeSlider.value);
+            const price = parseInt(priceSlider.value);
+            
+            // Содержание Au 2.7 г/т, извлечение 96.3%
+            const goldContent = 2.7; // г/т
+            const recovery = 0.963;
+            
+            const goldGrams = volume * 1000 * goldContent * recovery; // граммов
+            const profit = goldGrams * price / 1000000; // в миллионах рублей
+            
+            const savings = profit * 0.26; // экономия на реагентах ~26%
+            
+            profitValue.textContent = '₽ ' + Math.round(profit) + 'M';
+            savingsValue.textContent = '₽ ' + Math.round(savings) + 'M';
+            
+            volumeValue.textContent = volume;
+            priceValue.textContent = price;
+        }
+
+        volumeSlider.addEventListener('input', calculateProfit);
+        priceSlider.addEventListener('input', calculateProfit);
+        calculateProfit();
+
+        // Обновление показателей эффективности
+        const cleaningEfficiency = document.getElementById('cleaning-efficiency');
+        const auRecovery = document.getElementById('au-recovery');
+        
+        setInterval(() => {
+            const newCleaning = (93 + Math.random() * 4).toFixed(1);
+            const newAuRecovery = (81 + Math.random() * 3).toFixed(1);
+            
+            if (cleaningEfficiency) cleaningEfficiency.textContent = newCleaning + '%';
+            if (auRecovery) auRecovery.textContent = newAuRecovery + '%';
+        }, 4000);
+    });
+
