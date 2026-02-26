@@ -911,12 +911,14 @@ document.addEventListener('DOMContentLoaded', function() {
             let html = '';
             employees.forEach(emp => {
                 html += `<span style="display: inline-block; padding: 0 2rem; color: #b0e0ff; font-family: 'Courier New', monospace;">
-                    <span style="color: #4f9fff;">⏺</span> ${emp.name} 
-                    <span style="color: #8fc0ff; font-size: 1.6rem;">[${emp.role}]</span>
+                    <span style="color: #4f9fff; font-size: 1.2rem;">⏺</span>
+                    <span style="color: #cad9ecff; font-size: 1.4rem;">[${emp.name}]</span>
+                    <span style="color: #8fc0ff; font-size: 1.4rem;">[${emp.role}]</span>
                     <span style="color: #2f5070;"> | </span>
                 </span>`;
             });
             scrollingDiv.innerHTML = html;
+            scrollingDiv.style.animation = "scroll 250s linear infinite"
         }
 
         // Интерактивность для карточек двойников

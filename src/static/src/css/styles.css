@@ -1465,6 +1465,10 @@ footer {
         0% { transform: translateX(0); }
         100% { transform: translateX(-100%); }
     }
+
+    .scrolling-text {
+    animation: scroll 1180s linear infinite;  /* Было 140s, стало 180s */
+    }
     
     .scrolling-text:hover {
         animation-play-state: paused;

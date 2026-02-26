@@ -83,7 +83,7 @@
         if (currentIndex < fullText.length) {
             textElement.textContent = fullText.substring(0, currentIndex + 1);
             currentIndex++;
-            setTimeout(typeEffect, 130);
+            setTimeout(typeEffect, 70);
         } else {
             textElement.style.animation = 'none';
             textElement.style.borderRight = 'none';
