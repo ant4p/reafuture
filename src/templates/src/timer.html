@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Единый контейнер -->
+<div class="frame" style="max-width: 900px; width: 100%; margin: 0 auto; background: transparent; display: flex; flex-direction: column; gap: 2rem; position: relative; z-index: 2; padding: 1.5rem; box-sizing: border-box; min-height: 80vh; justify-content: center;">
+
+    <!-- Заголовок -->
+    <section style="text-align: center; margin: 0.5rem 0 1rem 0;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, transparent, #4f9fff);"></span>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 200; letter-spacing: 4px; margin: 0; text-shadow: 0 0 30px #4f9fff; color: #ffffff;">ОТКРЫТИЕ</h1>
+            <span style="height: 1px; width: 80px; background: linear-gradient(90deg, #4f9fff, transparent);"></span>
+        </div>
+        <div style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 200; color: #b0e0ff; margin-top: -0.5rem; letter-spacing: 6px;">ПОРТАЛА</div>
+        
+        <div style="display: flex; justify-content: center; gap: 2rem; color: #8fc0ff; font-size: 0.9rem; letter-spacing: 2px; margin-top: 1rem; flex-wrap: wrap;">
+            <span>⚡ [ЦЕЛЕВАЯ ДАТА]</span>
+            <span>#</span>
+            <span>⚡ [06.03.2026]</span>
+            <span>#</span>
+            <span>⚡ [09:00 МСК]</span>
+        </div>
+        
+        <div style="width: 300px; height: 1px; background: linear-gradient(90deg, transparent, #4f9fff, #b0e0ff, #4f9fff, transparent); margin: 1.5rem auto; opacity: 0.5;"></div>
+    </section>
+
+    <span style="text-align: center">РЭЯ БУДЕТ ПРЕДСТАВЛЕНА МИРУ [06.03.2026]</span>
+    
+    <!-- Основной таймер (одна строка) -->
+    <section style="background: rgba(5, 15, 30, 0.7); backdrop-filter: blur(10px); border: 1px solid #4f9fff; padding: 3rem 2rem; margin-bottom: 2rem; position: relative; overflow: hidden;">
+        <!-- Декоративный фон с цифрами -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; pointer-events: none; font-family: 'Courier New'; color: #4f9fff; font-size: 1.5rem; line-height: 2;">
+            {% for i in "1234567890"|make_list %}
+                {{ i }} {{ i }} {{ i }} {{ i }} {{ i }} {{ i }} {{ i }} {{ i }} {{ i }} {{ i }} 
+            {% endfor %}
+        </div>
+
+        <div style="position: relative; z-index: 2;">
+            <div style="display: flex; justify-content: center; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;" id="countdown-container">
+                <!-- Дни -->
+                <div class="countdown-block" style="text-align: center;">
+                    <span style="font-size: 4rem; font-weight: 200; color: #b0e0ff; font-family: 'Courier New', monospace;" id="days">00</span>
+                </div>
+                
+                <span style="font-size: 2rem; font-weight: 200; color: #4f9fff; font-family: 'Courier New', monospace;">[д]</span>
+                
+                <!-- Часы -->
+                <div class="countdown-block" style="text-align: center;">
+                    <span style="font-size: 4rem; font-weight: 200; color: #b0e0ff; font-family: 'Courier New', monospace;" id="hours">00</span>
+                </div>
+                
+                <span style="font-size: 2rem; font-weight: 200; color: #4f9fff; font-family: 'Courier New', monospace;">[ч]</span>
+                
+                <!-- Минуты -->
+                <div class="countdown-block" style="text-align: center;">
+                    <span style="font-size: 4rem; font-weight: 200; color: #b0e0ff; font-family: 'Courier New', monospace;" id="minutes">00</span>
+                </div>
+                
+                <span style="font-size: 2rem; font-weight: 200; color: #4f9fff; font-family: 'Courier New', monospace;">[м]</span>
+                
+                <!-- Секунды -->
+                <div class="countdown-block" style="text-align: center;">
+                    <span style="font-size: 4rem; font-weight: 200; color: #b0e0ff; font-family: 'Courier New', monospace;" id="seconds">00</span>
+                </div>
+                
+                <span style="font-size: 2rem; font-weight: 200; color: #4f9fff; font-family: 'Courier New', monospace;">[с]</span>
+            </div>
+            
+            <!-- Нижняя линия -->
+            <!-- <div style="width: 200px; height: 1px; background: linear-gradient(90deg, transparent, #4f9fff, #b0e0ff, #4f9fff, transparent); margin: 2rem auto 0; opacity: 0.5;"></div>
+        </div> -->
+    </section>
+
+    <!-- Мета-информация -->
+    <section style="margin-top: 2rem; padding-top: 1rem; border-top: 0.5px solid #2f5070;">
+        <div class="meta-signal">
+            <span class="dot" style="background: #4f9fff;"></span>
+            <span>ТАЙМЕР СИНХРОНИЗИРОВАН • МСК • ОБНОВЛЕНИЕ КАЖДУЮ СЕКУНДУ</span>
+            <!-- <span>РЭЯ БУДЕТ ПРЕДСТАВЛЕНА МИРУ [06.03.2026]</span> -->
+        </div>
+    </section>
+
+</div>
+
+<!-- Интерактивные скрипты -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Целевая дата: 6 марта 2026, 09:00 по московскому времени (UTC+3)
+        // Москва UTC+3, поэтому в UTC это 06:00
+        const targetDate = new Date(Date.UTC(2026, 2, 6, 6, 0, 0)); // 09:00 МСК = 06:00 UTC
+        
+        // Функция обновления таймера
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                // Таймер достиг нуля
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                
+                // Показываем сообщение
+                const container = document.getElementById('countdown-container');
+                const message = document.createElement('div');
+                message.style.textAlign = 'center';
+                message.style.color = '#88ff88';
+                message.style.fontSize = '2rem';
+                message.style.marginTop = '1rem';
+                message.style.width = '100%';
+                message.style.fontFamily = "'Courier New', monospace";
+                message.innerHTML = '⚡ ПОРТАЛ ОТКРЫТ ⚡';
+                
+                // Добавляем сообщение, если его еще нет
+                if (!document.getElementById('portal-message')) {
+                    message.id = 'portal-message';
+                    container.parentNode.appendChild(message);
+                }
+                
+                return;
+            }
+            
+            // Расчет дней, часов, минут, секунд
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Обновление DOM
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Запускаем обновление каждую секунду
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Легкая анимация для блоков таймера
+        const countdownBlocks = document.querySelectorAll('.countdown-block');
+        countdownBlocks.forEach(block => {
+            block.addEventListener('mouseenter', function() {
+                this.style.opacity = '0.9';
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'all 0.2s';
+            });
+            
+            block.addEventListener('mouseleave', function() {
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1)';
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Стили для таймера - единый стиль */
+    .countdown-block {
+        transition: all 0.2s ease;
+        display: inline-block;
+    }
+    
+    #days, #hours, #minutes, #seconds {
+        transition: text-shadow 0.3s ease;
+        animation: gentlePulse 2s infinite;
+    }
+    
+    @keyframes gentlePulse {
+        0%, 100% { text-shadow: 0 0 10px #4f9fff; }
+        50% { text-shadow: 0 0 20px #4f9fff, 0 0 30px #4f9fff; }
+    }
+    
+    /* Разделители (буквы д, ч, м, с) */
+    [style*="font-size: 5rem"][style*="color: #4f9fff"] {
+        animation: separatorGlow 2s infinite;
+        margin: 0 0.2rem;
+    }
+    
+    @keyframes separatorGlow {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+    }
+    
+    /* Адаптация для мобильных */
+    @media (max-width: 700px) {
+        #days, #hours, #minutes, #seconds {
+            font-size: 3rem !important;
+        }
+        
+        [style*="font-size: 5rem"][style*="color: #4f9fff"] {
+            font-size: 3rem !important;
+        }
+        
+        #countdown-container {
+            gap: 0.2rem !important;
+        }
+    }
+    
+    @media (max-width: 500px) {
+        #days, #hours, #minutes, #seconds {
+            font-size: 2.2rem !important;
+        }
+        
+        [style*="font-size: 5rem"][style*="color: #4f9fff"] {
+            font-size: 2.2rem !important;
+        }
+    }
+</style>
+{% endblock %}

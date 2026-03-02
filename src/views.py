@@ -46,8 +46,8 @@ class ShowConvertPage(TemplateView):
 class ShowSimilarPage(TemplateView):
     template_name = "src/similar.html"
 
-# class Show3(TemplateView):
-#     template_name = "src/3.html"
+class ShowTimerPage(TemplateView):
+    template_name = "src/timer.html"
 
 # class Show4(TemplateView):
 #     template_name = "src/4.html"
